@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心の星｜Multebaer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	  <!-- 🔒 燈箱 -->
+  <div id="entrance-modal" class="modal">
+    <div class="modal-content">
+      <h2>進站須知</h2>
+      <p>本網站包含成人創作內容，請確認您點擊該內容時已滿18歲並願意瀏覽。</p>
+      <p class="tight">本人不承包精神損失費。</p>
+      <button id="enter-site">已閱並同意</button>
+    </div>
+  </div>
+	
+	<audio id="bgm" src="audio/來自遠方的風.mp3" loop></audio>
+	<script>
+  document.getElementById('enter-site').addEventListener('click', function () {
+    document.getElementById('entrance-modal').style.display = 'none';
+    document.getElementById('bgm').play();
+  });
+</script>
+	
+  <!-- 共用選單 -->
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><button onclick="loadPage('iframe.html')">Home</button></li>
+        <li><button onclick="loadPage('art-portfolio/index.html')">Gallery</button></li>
+        <li><button onclick="loadPage('bjd-portfolio/index.html')">BJD相關</button></li>
+        <li><button onclick="loadPage('dreams')">夢向相關</button></li>
+        <li><button onclick="loadPage('contact')">Contact</button></li>
+      </ul>
+    </nav>
+  </header>
+
+   <!-- 內容顯示區 -->
+  <iframe id="content-frame" src="iframe.html" frameborder="0" style="width:100%; height:80vh;"></iframe>
+
+  <script>
+    function loadPage(page) {
+      document.getElementById('content-frame').src = page;
+    }
+  </script>
+	
+
+</body>
+</html>

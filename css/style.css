@@ -1,0 +1,281 @@
+/* css/style.css */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/*進站須知*/
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2em;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-content p {
+	line-height: 0.6;
+	margin-bottom: 18px;
+}
+
+
+@media (max-width: 736px){
+	.modal-content p{		
+		line-height: 1.2;
+/*		margin-top: -0.7em;*/
+	}
+	.modal-content p.tight {
+		margin-top: -0.7em;
+	}
+}
+
+
+/*導覽列*/
+header { /*導覽列設計*/
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar ul { /*導覽列*/
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 10px 20px;
+  justify-content: center;
+}
+
+.navbar li { /*導覽列List間距*/
+  margin: 0 15px;
+}
+
+/*導覽列滑鼠未靠近顯示*/
+.navbar a ,
+.navbar button {
+	background: none;
+	border: none;
+	font-family: inherit;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	all: unset;
+	font-family: inherit;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+
+.navbar a:hover { /*導覽列滑鼠靠近顯示*/
+  color: #0077cc;
+}
+/*導覽列手機端設定*/
+@media (max-width: 480px) {
+  .navbar ul {
+    flex-wrap: nowrap;
+    justify-content: space-center;
+    padding: 12px 10px;
+  }
+
+  .navbar li {
+    margin: 0 10px;
+  }
+
+  .navbar a {
+    font-size: 0.85em;
+  }
+}
+
+
+
+/*首頁About*/
+.about-section {
+  background: #fff;
+  padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+  .about-box {
+    padding-top: 5px;
+  }
+}
+
+
+.about-box {
+  max-width: 1100px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.about-box h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-text {
+	flex: 1;
+	min-width: 280px;
+	padding: 20px;
+	margin-top: -50px;
+	margin-left: 50px;
+}
+
+.about-text p {
+  line-height: 1.6;
+}
+
+.about-text p > span {
+	display: block;
+  line-height: 0.8;
+}
+
+.about-text a {
+  color: #5577dd;
+  text-decoration: underline;
+}
+
+.about-text .social-links {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	max-width: max-content;
+}
+
+.about-text .social-links a {
+  background: #e0e0f0;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+	width: auto;
+}
+
+.about-text .social-links a:hover {
+  background: #cdd6ff;
+}
+
+.about-image {
+	flex: 1;		
+	min-width: 250px;
+	text-align: center;
+	max-height: 500px; /* 電腦預設最大高度 */
+	position: relative;
+	top: -150px; /* 圖片往上拉 */
+	z-index: 2; /* 確保圖層浮在上面 */
+}
+
+.about-image img {
+  max-width: 350px;
+  height: auto;
+  border-radius: 20px;
+}
+
+/*圖片陰影
+.character-shadow {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 90px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(4px);
+  z-index: 0;
+}
+*/
+
+/* 手機版排版 */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column-reverse;
+  }
+
+  .about-image {
+    top: 0; /* 取消位移 */
+    max-height: none;
+    margin-bottom: 20px;
+  }
+
+  .about-image img {
+    max-width: 70%; /* 縮小圖片 */
+    border-radius: 15px;
+  }
+
+  .about-text {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 10px 15px;
+  }
+}
+
+/* 模擬notion摺疊*/
+.about-text details.notion-fold {
+  margin-top: 30px;
+}
+
+.notion-fold {
+	max-width: 100%;
+	width: 100%;
+  margin: -2em 0em;
+  font-family: "微軟正黑體", sans-serif;
+  color: #444;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+	padding: 0.2em;
+}
+
+
+/* 未展開時沒底色 */
+.notion-fold {
+  background-color: transparent;
+}
+
+
+/* 摺疊內容（有縮排） */
+.notion-fold .fold-body {
+  padding: 0 2.7em;
+}
+
+/* ✅ 展開時：整塊有底色（包含 summary） */
+.notion-fold[open] {
+  background-color: #F5F5F5;
+}
+
+
+
+footer { /*網頁設計©內容造型*/
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #999;
+}
