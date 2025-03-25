@@ -52,6 +52,11 @@
   <footer>
     <p>© 2025 離淵. All rights reserved.</p>
   </footer>
-
+<script>
+  window.parent.postMessage({
+    type: "setHeight",
+    height: document.body.scrollHeight
+  }, "*");
+</script>
 </body>
 </html>
