@@ -40,43 +40,7 @@
 					<p>@2025年3月24日 架站</p>
 				</div>
 			</details>
-			<details class="notion-fold">
-				<summary>相關連結</summary>
-				<div class="fold-body">
-					<p>暫時沒有。</p>
-				</div>
-			</details>
-			<details class="notion-fold">
-				<summary>更新日誌</summary>
-				<div class="fold-body">
-					<p>@2025年3月24日 架站</p>
-				</div>
-			</details>
-			<details class="notion-fold">
-				<summary>相關連結</summary>
-				<div class="fold-body">
-					<p>暫時沒有。</p>
-				</div>
-			</details>
-			<details class="notion-fold">
-				<summary>更新日誌</summary>
-				<div class="fold-body">
-					<p>@2025年3月24日 架站</p>
-				</div>
-			</details><details class="notion-fold">
-				<summary>相關連結</summary>
-				<div class="fold-body">
-					<p>暫時沒有。</p>
-				</div>
-			</details>
-			<details class="notion-fold">
-				<summary>更新日誌</summary>
-				<div class="fold-body">
-					<p>@2025年3月24日 架站</p>
-				</div>
-			</details>
-			
-				</div>
+		  </div>
         <div class="about-image">
 <!--			<div class="character-shadow"></div>-->
           <img src="images/BeriaKenelm.webp" alt="角色立繪">
@@ -88,11 +52,35 @@
   <footer>
     <p>© 2025 離淵. All rights reserved.</p>
   </footer>
+	
+<!--
 <script>
   window.parent.postMessage({
     type: "setHeight",
     height: document.body.scrollHeight
   }, "*");
+	
+</script>
+-->
+	
+	<script>
+  function reportHeight() {
+    window.parent.postMessage({
+      type: "setHeight",
+      height: document.body.scrollHeight
+    }, "*");
+  }
+
+  // 初次載入時通報一次高度
+  window.addEventListener("load", reportHeight);
+
+  // 監聽所有 <details> 元素的開關，重新通報高度
+  document.addEventListener("DOMContentLoaded", function () {
+    const detailsList = document.querySelectorAll("details");
+    detailsList.forEach(detail => {
+      detail.addEventListener("toggle", reportHeight);
+    });
+  });
 </script>
 </body>
 </html>
