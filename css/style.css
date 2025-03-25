@@ -99,7 +99,6 @@ header { /*導覽列設計*/
 	color: #333;
 	font-weight: bold;
 	all: unset;
-	font-family: inherit;
 	font-size: 1em;
 	cursor: pointer;
 }
@@ -335,4 +334,89 @@ footer { /*網頁設計©內容造型*/
 		max-height: 200px; /* 手機上的最大高度 */
 		object-position: center 27%; /*圖片位置*/
   }
+}
+
+blockquote { /*引用*/
+	border-radius: 4px;
+}
+
+.notion-quote {
+	width: 100%;
+	max-width: 800px;
+	border-left: 4px solid #6f6f6f;  /* 左側灰色線 */
+	padding: 0.2em;
+	padding-left: 16px;              /* 內文縮排 */
+	line-height: 2;                  /* 行高 */
+	margin: 16px auto;                  /* 上下間距 */
+	color: #555;                     /* 字體顏色 */
+/*	font-style: italic;               可選：斜體 */
+	background-color: #F8FFF3;       /* 可選：淡背景 */
+}
+
+@media (max-width: 768px) {
+	.notion-quote {
+		max-width: 90%;
+		padding: 0.2em 12px;  /* 上下固定，左右略縮 */
+		font-size: 14px;      /* 可選 */
+	}
+}
+.split-box {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;           /* 讓手機也能自動換行 */
+}
+/* 左右比例：1:2 */
+.left-side {
+  flex: 1;
+  min-width: 180px;
+}
+
+.right-side {
+  flex: 2;
+  min-width: 300px;
+}
+
+/* iframe影片響應式 */
+.right-side iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+}
+
+/* 子頁面樣式 */
+.subpage {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.2em 0.2em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 0.4em;
+  background-color: #fcfcfc;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.subpage:hover {
+  background-color: #f3f3f3;
+}
+
+.subpage .icon {
+  font-size: 1.4em;
+  margin-right: 0.6em;
+}
+
+/* 左側圖片 */
+.side-image {
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 1em;
+}
+
+/* YouTube 高度自動調整 */
+.right-side iframe {
+	aspect-ratio: 16 / 9;
+	width: 100%;
+	border-radius: 8px;
+	margin-top: 30px
 }
