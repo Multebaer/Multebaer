@@ -184,7 +184,7 @@ header { /*導覽列設計*/
 	width:500px;
 	padding: 20px;
 	margin-top: -20px;
-	margin-left: 550px;
+	margin-left: 550px; /* 如果後面覺得克勞德擋住內容可以調大*/
 	margin-right: 50px;
 }
 .about-text p,
@@ -265,7 +265,7 @@ header { /*導覽列設計*/
 }
 
 .about-image-2 img {
-  max-width: 550px;
+  max-width: 600px;
   height: auto;
   border-radius: 20px;
 }
