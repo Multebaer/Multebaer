@@ -167,9 +167,11 @@ header { /*導覽列設計*/
 	align-self: flex-start;
 	flex: 1;
 	min-width: 280px;
+	width:500px;
 	padding: 20px;
 	margin-top: -20px;
 	margin-left: 50px;
+	margin-right: 350px;
 }
 
 .about-text p {
@@ -209,13 +211,18 @@ header { /*導覽列設計*/
   background: #cdd6ff;
 }
 
+.about-wrapper {
+  position: relative;
+}
+
 .about-image {
 	flex: 1;		
 	min-width: 250px;
 	text-align: center;
 	max-height: 500px; /* 電腦預設最大高度 */
-	position: relative;
+	position: absolute;
 	top: -165px; /* 圖片往上拉 */
+	right: 0;
 	align-self: flex-start;
 	z-index: 2; /* 確保圖層浮在上面 */
 }
