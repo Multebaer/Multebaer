@@ -125,7 +125,7 @@ header { /*導覽列設計*/
 }
 
 .spacer {
-  height: 1em; /* 控制空白行高度 */
+  height: 2em; /* 控制空白行高度 */
 }
 
 /*首頁About*/
@@ -138,7 +138,9 @@ header { /*導覽列設計*/
     padding-top: 5px;
   }
 }
-
+.about-section.flip .about-content {
+  flex-direction: row-reverse !important;
+}
 
 .about-box {
   max-width: 1100px;
@@ -175,28 +177,43 @@ header { /*導覽列設計*/
 	margin-right: 350px;
 }
 
-.about-text p {
+.about-text-2 {
+	align-self: flex-start;
+	flex: 1;
+	min-width: 280px;
+	width:500px;
+	padding: 20px;
+	margin-top: -20px;
+	margin-left: 550px;
+	margin-right: 50px;
+}
+.about-text p,
+.about-text-2 p {
   line-height: 1.6;
 }
 
-.about-text p > span {
+.about-text p > span,
+.about-text-2 p > span {
 	display: block;
   line-height: 0.8;
 }
 
-.about-text a {
+.about-text a,
+.about-text-2 a{
   color: #5577dd;
   text-decoration: underline;
 }
 
-.about-text .social-links {
+.about-text .social-links,
+.about-text-2 .social-links {
 	display: grid;
 	gap: 10px;
 	max-width: max-content;
 	grid-template-columns: repeat(2, 1fr);
 }
 
-.about-text .social-links a {
+.about-text .social-links a,
+.about-text-2 .social-links a {
   background: #e0e0f0;
   padding: 8px 14px;
   border-radius: 10px;
@@ -208,7 +225,8 @@ header { /*導覽列設計*/
 	width: auto;
 }
 
-.about-text .social-links a:hover {
+.about-text .social-links a:hover,
+.about-text-2 .social-links a:hover {
   background: #cdd6ff;
 }
 
@@ -228,12 +246,29 @@ header { /*導覽列設計*/
 	z-index: 2; /* 確保圖層浮在上面 */
 }
 
+.about-image-2 {
+	flex: 1;		
+	min-width: 250px;
+	text-align: center;
+	max-height: 500px; /* 電腦預設最大高度 */
+	position: absolute;
+	top: -185px; /* 圖片往上拉 */
+	left: 0;
+	align-self: flex-start;
+	z-index: 2; /* 確保圖層浮在上面 */
+}
+
 .about-image img {
   max-width: 350px;
   height: auto;
   border-radius: 20px;
 }
 
+.about-image-2 img {
+  max-width: 550px;
+  height: auto;
+  border-radius: 20px;
+}
 /*圖片陰影
 .character-shadow {
   position: absolute;
@@ -255,19 +290,41 @@ header { /*導覽列設計*/
     flex-direction: column-reverse;
   }
 
-  .about-image {
+  .about-image{
     top: 0; /* 取消位移 */
 	  position: static;
     max-height: none;
     margin-bottom: 20px;
+		
+  }
+	  .about-image-2{
+    top: 0; /* 取消位移 */
+	  position: static;
+    max-height: none;
+    margin-bottom: 20px;
+		  display: flex;
+  justify-content: center;
+		
   }
 
-  .about-image img {
+  .about-image img{
     max-width: 70%; /* 縮小圖片 */
     border-radius: 15px;
   }
+	.about-image-2 img{
+		max-width: 120%;
+		height: auto;
+  display: block;
+	}
 
   .about-text {
+    margin-left: -10px;
+    margin-top: 0;
+    padding: 10px 15px;
+	  width: 100%;
+	  margin-right: 0; 
+  }
+	  .about-text-2 {
     margin-left: -10px;
     margin-top: 0;
     padding: 10px 15px;
