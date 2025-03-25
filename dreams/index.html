@@ -5,10 +5,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心の星｜Multebaer</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 
-<body>
-	這是測試
+<body class="iframe-body">
+	<div class="banner-container">
+		<img src="../images/banner.webp" class="responsive-banner" alt="橫幅圖片"/>
+</div>
+	<main class="about-section"><div class="about-box"><h1>test</h1></div>
+		</main>
+		<footer>
+		<p>© 2025 離淵. All rights reserved.</p>
+	</footer>
+	
+<!--
+<script>
+  window.parent.postMessage({
+    type: "setHeight",
+    height: document.body.scrollHeight
+  }, "*");
+	
+</script>
+-->
+	
+	<script>
+  function reportHeight() {
+    window.parent.postMessage({
+      type: "setHeight",
+      height: document.body.scrollHeight
+    }, "*");
+  }
+
+  // 初次載入時通報一次高度
+  window.addEventListener("load", reportHeight);
+
+  // 監聽所有 <details> 元素的開關，重新通報高度
+  document.addEventListener("DOMContentLoaded", function () {
+    const detailsList = document.querySelectorAll("details");
+    detailsList.forEach(detail => {
+      detail.addEventListener("toggle", reportHeight);
+    });
+  });
+</script>
 </body>
 </html>

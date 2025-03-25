@@ -317,3 +317,22 @@ footer { /*網頁設計©內容造型*/
   font-size: 0.9em;
   color: #999;
 }
+
+/*夢向相關頁面CSS*/
+.responsive-banner {
+	aspect-ratio: 9 / 2; /* 固定容器比例，避免高度亂跑 */
+	max-height: 400px; /* 電腦預設最大高度 */
+	display: block;
+	object-fit: cover;
+	object-position: center 27%; /*圖片位置*/
+	margin: 0 5px;
+	border-radius: 10px;
+	width: calc(100% - 10px); /* ✅ 保留左右各 5px 空間 */
+}
+
+@media (max-width: 956px) {
+	.responsive-banner {
+		max-height: 200px; /* 手機上的最大高度 */
+		object-position: center 27%; /*圖片位置*/
+  }
+}
