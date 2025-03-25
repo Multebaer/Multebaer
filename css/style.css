@@ -124,7 +124,9 @@ header { /*導覽列設計*/
   }
 }
 
-
+.spacer {
+  height: 1em; /* 控制空白行高度 */
+}
 
 /*首頁About*/
 .about-section {
