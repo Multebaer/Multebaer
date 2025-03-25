@@ -138,6 +138,7 @@ header { /*導覽列設計*/
 }
 
 .about-text {
+	align-self: flex-start;
 	flex: 1;
 	min-width: 280px;
 	padding: 20px;
@@ -189,6 +190,7 @@ header { /*導覽列設計*/
 	max-height: 500px; /* 電腦預設最大高度 */
 	position: relative;
 	top: -150px; /* 圖片往上拉 */
+	align-self: flex-start;
 	z-index: 2; /* 確保圖層浮在上面 */
 }
 

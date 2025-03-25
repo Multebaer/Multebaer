@@ -50,10 +50,11 @@
 
   // iframe 自動調整高度用
   window.addEventListener("message", function (event) {
-    if (event.data.type === "setHeight" && event.data.height) {
-      const iframe = document.getElementById("content-frame");
-      iframe.style.height = event.data.height + "px";
-    }
+	  if (event.data.type === "setHeight" &&
+		  vent.data.height) {
+		  const iframe = document.getElementById("content-frame");
+		  iframe.style.height = event.data.height + "px";
+	  }
   });
 </script>
 	
