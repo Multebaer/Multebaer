@@ -252,8 +252,8 @@ header { /*導覽列設計*/
 	text-align: center;
 	max-height: 500px; /* 電腦預設最大高度 */
 	position: absolute;
-	top: -185px; /* 圖片往上拉 */
-	left: 0;
+	top: -205px; /* 圖片往上拉 */
+	left: -20px;
 	align-self: flex-start;
 	z-index: 2; /* 確保圖層浮在上面 */
 }
@@ -265,7 +265,7 @@ header { /*導覽列設計*/
 }
 
 .about-image-2 img {
-  max-width: 600px;
+  max-width: 650px;
   height: auto;
   border-radius: 20px;
 }
