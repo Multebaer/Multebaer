@@ -444,8 +444,16 @@ header { /*導覽列設計*/
 
 .submit-wrap {
   text-align: right;
-  margin-top: -2.5em;
+/*  margin-top: -2.5em;*/ /*有附加檔案的時候再啟用*/
 }
+
+.sumbit-remind {
+	display: block;
+	font-size: 0.8em;
+	margin-top: 0.5em;
+	color: #999;
+}
+
 @media (max-width: 768px){
 	.submit-wrap {
 		margin-right: 5px;
