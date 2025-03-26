@@ -406,17 +406,23 @@ header { /*導覽列設計*/
 
 .contact-textbar input:focus,
 .contact-textbar textarea:focus {
-  border-color: #ffb6b6; /* 點進輸入框，外圈顯示的顏色 */
-  box-shadow: 0 0 5px rgba(255, 182, 182, 0.8); 
-  outline: none;
+	border-color: #ffb6b6; /* 點進輸入框，外圈顯示的顏色 */
+	box-shadow: 0 0 5px rgba(255, 182, 182, 0.8); 
+	outline: none;
 }
 
 .contact-text {
 	font-size: 0.95em;
 	line-height: 3;
 	padding: 0.5em;
+	
 }
 
+.contact-text-file {
+	margin-left: 0.2em;
+	font-size: 0.9em;
+	padding:0;
+}
 .submit-button {
 /*	justify-content: center;*/
 	background: #FFF9DB;
