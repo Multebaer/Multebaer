@@ -543,6 +543,12 @@ blockquote { /*引用*/
   margin-right: 0.6em;
 }
 
+/*標題跟首頁分開不要斜體*/
+.about-box h1.dreams-h1{
+	font-style: normal;
+}
+
+
 /* 左側圖片 */
 .side-image {
   width: 100%;
