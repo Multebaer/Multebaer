@@ -6,6 +6,11 @@ body {
 	line-height: 1.6;
 }
 
+input,
+textarea {
+  font-family: "微軟正黑體", sans-serif;
+}
+
 .background-overlay {
   position: fixed;
   top: 0;
@@ -180,12 +185,12 @@ header { /*導覽列設計*/
 .about-text-2 {
 	align-self: flex-start;
 	flex: 1;
-	min-width: 280px;
+	min-width: 230px;
 	width:500px;
 	padding: 20px;
 	margin-top: -20px;
 	margin-left: 550px; /* 如果後面覺得克勞德擋住內容可以調大*/
-	margin-right: 50px;
+	margin-right: 50px ;
 }
 .about-text p,
 .about-text-2 p {
@@ -253,19 +258,19 @@ header { /*導覽列設計*/
 	max-height: 500px; /* 電腦預設最大高度 */
 	position: absolute;
 	top: -205px; /* 圖片往上拉 */
-	left: -20px;
+	left: -40px;
 	align-self: flex-start;
 	z-index: 2; /* 確保圖層浮在上面 */
 }
 
 .about-image img {
-  max-width: 350px;
+  max-width: 320px;
   height: auto;
   border-radius: 20px;
 }
 
 .about-image-2 img {
-  max-width: 650px;
+  max-width: 610px;
   height: auto;
   border-radius: 20px;
 }
@@ -367,6 +372,31 @@ header { /*導覽列設計*/
   background-color: #F5F5F5;
 }
 
+/*contact email設計*/
+.contact-textbar {
+	display: flex;
+	direction: var(--direction);
+	/*display: var(--display);*/
+	flex-direction: column;
+	min-height: 25px;
+	position: relative;
+	text-align: var(--align, start)
+}
+
+.send-button {
+  background: #e0e0f0;
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: #333;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.send-button:hover {
+  background: #cdd6ff;
+}
 
 
 footer { /*網頁設計©內容造型*/
