@@ -163,6 +163,7 @@ header { /*導覽列設計*/
 	padding-left: 50px;
   border-bottom: 3px solid #ccc;
   padding-bottom: 10px;
+	font-style: italic;
 }
 
 .about-box h1.about-box-right-align {
