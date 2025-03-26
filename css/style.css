@@ -436,7 +436,7 @@ header { /*導覽列設計*/
 	width: fit-content;
 	word-spacing: 20px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);	
-	letter-spacing: 0.5em;
+	letter-spacing: 0.2em;
 	font-size: 1.5em;
 	font-weight: bold;
 	
