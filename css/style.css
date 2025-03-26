@@ -222,6 +222,9 @@ header { /*導覽列設計*/
 	gap: 10px;
 	max-width: max-content;
 	grid-template-columns: repeat(2, 1fr);
+	font-family: 'Margarine', sans-serif;
+	letter-spacing: 0.2em;	
+	text-align: center;
 	
 }
 
@@ -232,7 +235,7 @@ header { /*導覽列設計*/
   padding: 8px 14px;
   border-radius: 10px;
   text-decoration: none;
-  color: #333;
+  color: #5c4033;
   font-weight: bold;
   font-size: 0.9em;
   transition: all 0.3s ease;
@@ -425,21 +428,19 @@ header { /*導覽列設計*/
 }
 .submit-button {
 /*	justify-content: center;*/
-	background: #FFF9DB;
+	font-family: 'Margarine', sans-serif;
+	background: #fff9db;
 	padding: 6px 6px;
 	border-radius: 10px;
-	color: #FFB300;
-	font-size: 1em;
+	color: #5c4033;	
+	font-size: 1.5em;
 	transition: all 0.3s ease;
 	border: none;
 	cursor: pointer;
 	width: fit-content;
 	word-spacing: 20px;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);	
-	letter-spacing: 0.2em;
-	font-size: 1.5em;
-	font-weight: bold;
-	
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	letter-spacing: 0.2em;	
 }
 
 .submit-button:hover {
@@ -447,7 +448,7 @@ header { /*導覽列設計*/
 }
 
 .sumbit-text {
-	padding-left: 0.5em;
+	padding-left: 0.3em;
 }
 
 .submit-wrap {
