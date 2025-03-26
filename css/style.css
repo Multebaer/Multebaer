@@ -157,11 +157,17 @@ header { /*導覽列設計*/
 }
 
 .about-box h1 {
-  text-align: center;
+  text-align: left;
   font-size: 2em;
   margin-bottom: 30px;
+	padding-left: 50px;
   border-bottom: 3px solid #ccc;
   padding-bottom: 10px;
+}
+
+.about-box h1.about-box-right-align {
+	text-align: right;
+	padding-right: 50px;
 }
 
 .about-content {
@@ -215,11 +221,13 @@ header { /*導覽列設計*/
 	gap: 10px;
 	max-width: max-content;
 	grid-template-columns: repeat(2, 1fr);
+	
 }
 
 .about-text .social-links a,
 .about-text-2 .social-links a {
-  background: #e0e0f0;
+  background: #FFF9DB;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
   padding: 8px 14px;
   border-radius: 10px;
   text-decoration: none;
@@ -232,7 +240,7 @@ header { /*導覽列設計*/
 
 .about-text .social-links a:hover,
 .about-text-2 .social-links a:hover {
-  background: #cdd6ff;
+  background: #FFF2B9;
 }
 
 .about-wrapper {
@@ -257,7 +265,7 @@ header { /*導覽列設計*/
 	text-align: center;
 	max-height: 500px; /* 電腦預設最大高度 */
 	position: absolute;
-	top: -205px; /* 圖片往上拉 */
+	top: -90px; /* 圖片往上拉 */
 	left: -40px;
 	align-self: flex-start;
 	z-index: 2; /* 確保圖層浮在上面 */
@@ -270,7 +278,7 @@ header { /*導覽列設計*/
 }
 
 .about-image-2 img {
-  max-width: 610px;
+  max-width: 620px;
   height: auto;
   border-radius: 20px;
 }
@@ -313,11 +321,11 @@ header { /*導覽列設計*/
   }
 
   .about-image img{
-    max-width: 70%; /* 縮小圖片 */
+    max-width: 65%; /* 縮小圖片 */
     border-radius: 15px;
   }
 	.about-image-2 img{
-		max-width: 120%;
+		max-width: 130%;
 		height: auto;
   display: block;
 	}
@@ -375,27 +383,66 @@ header { /*導覽列設計*/
 /*contact email設計*/
 .contact-textbar {
 	display: flex;
-	direction: var(--direction);
-	/*display: var(--display);*/
 	flex-direction: column;
 	min-height: 25px;
 	position: relative;
-	text-align: var(--align, start)
+	text-align: left;
 }
 
-.send-button {
-  background: #e0e0f0;
-  padding: 8px 14px;
+.contact-textbar input,
+.contact-textbar textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #FFF2B9;
   border-radius: 10px;
-  color: #333;
+  font-family: "微軟正黑體", sans-serif;
   font-size: 1em;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-.send-button:hover {
-  background: #cdd6ff;
+.contact-textbar input:focus,
+.contact-textbar textarea:focus {
+  border-color: #ffb6b6; /* 點進輸入框，外圈顯示的顏色 */
+  box-shadow: 0 0 5px rgba(255, 182, 182, 0.8); 
+  outline: none;
+}
+
+.contact-text {
+	font-size: 0.95em;
+	line-height: 3;
+	padding: 0.5em;
+}
+
+.submit-button {
+/*	justify-content: center;*/
+	background: #FFF9DB;
+	padding: 8px 14px;
+	border-radius: 10px;
+	color: #333;
+	font-size: 1em;
+	transition: all 0.3s ease;
+	border: none;
+	cursor: pointer;
+	width: fit-content;
+	word-spacing: 20px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.submit-button:hover {
+  background: #FFF2B9;
+}
+
+.submit-wrap {
+  text-align: right;
+  margin-top: -2.5em;
+}
+@media (max-width: 768px){
+	.submit-wrap {
+		margin-right: 5px;
+	}
 }
 
 

@@ -38,6 +38,7 @@
 					<details class="notion-fold">
 						<summary>更新日誌</summary>
 						<div class="fold-body">
+							<p>@2025年3月26日 新增聯絡我</p>
 							<p>@2025年3月25日 修改版面設計</p>
 							<p>@2025年3月23日 架站</p>
 						</div>
@@ -54,38 +55,32 @@
 	<div class="spacer"></div>
 	
 	<div class="about-box">
-      <h1>CONTACT ME</h1>
+      <h1 class="about-box-right-align">CONTACT ME</h1>
 		<div class="about-wrapper">
 			<div class="about-content">
 				<div class="about-text-2">
-					<p><strong>這裡要改成EMAIL等等聯繫的地方</strong></p>
-					<form action="https://formspree.io/f/xdkedyrn" method="POST">
+					<form action="https://formspree.io/f/xdkedyrn" method="POST" enctype="multipart/form-data">
   <label>
-    我該如何稱呼您*<br>
+	  <span class="contact-text">我該如何稱呼您*</span><br>
     <div class="contact-textbar"><input type="text" name="name" placeholder="暱稱" required></div>
   </label><br>
   <label>
-    電子信箱*<br>
+    <span class="contact-text">電子信箱*</span><br>
     <div class="contact-textbar"><input type="email" name="email" placeholder="e-mail" required></div>
   </label><br>
   <label>
-    主旨<br>
+    <span class="contact-text">主旨</span><br>
     <div class="contact-textbar"><input type="text" name="subject" placeholder="subject" required></div>
   </label><br>
   <label>
-    內文<br>
+    <span class="contact-text">內文</span><br>
     <div class="contact-textbar"><textarea name="message" rows="10" placeholder="message" required></textarea></div>
   </label><br>
-
-  <div class="social-links"><button type="submit" class="send-button">送出</button></div>
+					<label for="file" class="contact-text">附加檔案（10MB內）</label><br>
+  <input type="file" name="attachment" id="file">
+  <div class="submit-wrap"><button type="submit" class="submit-button">送　　出
+</button></div>
 </form>
-					<h4>文字內容　｜　TEXT</h4>
-					<div class="social-links">
-						<a href="https://x.com/Multebaer_" target="_blank" rel="noopener">Button</a>
-						<a href="https://plurk.com/shikkaku619" target="_blank" rel="noopener">Button</a>
-						<a href="https://www.facebook.com/liyuan.715/" target="_blank" rel="noopener">Button</a>
-						<a href="#">Button</a>
-					</div>
 				</div>
 				<div class="about-image-2">
 					<!--			<div class="character-shadow"></div>-->
