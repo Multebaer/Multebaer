@@ -426,20 +426,28 @@ header { /*導覽列設計*/
 .submit-button {
 /*	justify-content: center;*/
 	background: #FFF9DB;
-	padding: 8px 14px;
+	padding: 6px 6px;
 	border-radius: 10px;
-	color: #333;
+	color: #FFB300;
 	font-size: 1em;
 	transition: all 0.3s ease;
 	border: none;
 	cursor: pointer;
 	width: fit-content;
 	word-spacing: 20px;
-	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);	
+	letter-spacing: 0.5em;
+	font-size: 1.5em;
+	font-weight: bold;
+	
 }
 
 .submit-button:hover {
   background: #FFF2B9;
+}
+
+.sumbit-text {
+	padding-left: 0.5em;
 }
 
 .submit-wrap {
