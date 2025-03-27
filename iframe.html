@@ -97,15 +97,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="footer-container"></div>
 	</main>
-	<script>
-    fetch("/footer.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("footer-container").innerHTML = html;
-      });
-  </script>
+
 	 <script>
     fetch("/navbar.html")
       .then(res => res.text())
