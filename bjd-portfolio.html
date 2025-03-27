@@ -11,5 +11,12 @@
   <div id="navbar-container"></div>
 <body class="iframe-body main-page">
 	<div class="background-overlay"></div>
+	<script>
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>
