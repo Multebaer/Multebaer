@@ -26,7 +26,19 @@
   });
 </script>
 	<div class="background-overlay"></div>
-	<div id="navbar-container"></div>
+	
+  <!-- 共用選單 -->
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
+        <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
+        <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
+        <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
+        <li><button onclick="loadPage('contact')">Contact</button></li>
+      </ul>
+    </nav>
+  </header>
 
 
    <!-- 內容顯示區 -->
@@ -56,19 +68,7 @@
   });
 </script>-->
 	
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch("/navbar.html")
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById("navbar-container");
-        container.innerHTML = html;
 
-        // 強制觸發一次 style 應用（有些時候需要）
-        void container.offsetHeight;
-      });
-  });
-</script>
 <script>
 	
   function navigateTo(page, event) {

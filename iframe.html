@@ -1,4 +1,4 @@
-<!--<!doctype html>
+<!doctype html>
 
 <html lang="zh-TW">
 <head>
@@ -13,6 +13,8 @@
 </head>
 <body class="iframe-body">
   <!-- 首頁內容 -->
+	 <!-- ✅ Navbar 動態載入 -->
+  <div id="navbar-container"></div>
 
 <main class="about-section">
     <div class="about-box">
@@ -95,7 +97,13 @@
 		</div>
 	</div>
 		</main>
-	
+	 <script>
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  </script>
 <!--
 <script>
   window.parent.postMessage({
@@ -125,5 +133,5 @@
     });
   });
 </script>-->
-<!--</body>
-</html>-->
+</body>
+</html>
