@@ -56,13 +56,19 @@
   });
 </script>-->
 	
-	  <script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
     fetch("/navbar.html")
       .then(res => res.text())
       .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
+        const container = document.getElementById("navbar-container");
+        container.innerHTML = html;
+
+        // 強制觸發一次 style 應用（有些時候需要）
+        void container.offsetHeight;
       });
-  </script>
+  });
+</script>
 <script>
 	
   function navigateTo(page, event) {
