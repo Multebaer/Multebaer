@@ -1,5 +1,9 @@
   {
     "rewrites": [
-      { "source": "/(.)*", "destination": "/index.html" }
+      { "source": "/art-portfolio", "destination": "/art-portfolio.html" },
+      { "source": "/bjd-portfolio", "destination": "/bjd-portfolio.html" },
+      { "source": "/dreams", "destination": "/dreams.html" },
+      { "source": "/contact", "destination": "/contact.html" },
+      { "source": "/", "destination": "/iframe.html" }
     ]
   }
