@@ -43,7 +43,7 @@
   <header>
     <nav class="navbar">
       <ul>
-        <li><a href="/" onclick="navigateTo('iframe.html', event)">Home</a></li>
+        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
         <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
         <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
         <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
@@ -82,15 +82,14 @@
 	
 
 <script>
+  // ✅ 頁面切換（動態載入）
   function navigateTo(page, event) {
     if (event) event.preventDefault();
 
-    // ✅ 讓首頁 iframe 不露餡
     const isHome = page === "iframe.html";
-    const cleanUrl = isHome ? "/" : '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
-    const htmlPath = '/' + page.replace(/^\/+/, '');
+    const cleanUrl = isHome ? "/" : "/" + page.replace(/\.html$/, '').replace(/^\/+/, '');
+    const htmlPath = "/" + page.replace(/^\/+/, '');
 
-    // ✅ 避免重複 push 相同頁面
     if (location.pathname === cleanUrl) return;
 
     history.pushState({}, "", cleanUrl);
@@ -104,19 +103,22 @@
         document.getElementById("content-container").innerHTML = html;
       })
       .catch(err => {
-        console.error("載入失敗", htmlPath);
         document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
       });
   }
 
-  // ✅ 網站首次載入時，根據網址決定載入內容
-  window.addEventListener("DOMContentLoaded", () => {
+  // ✅ 確保 DOM 完全就緒再載入首頁內容
+  window.addEventListener("load", () => {
     const path = location.pathname;
     const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-    navigateTo(page);
+    fetch("/" + page)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      });
   });
 
-  // ✅ 使用者點返回 / 前進 時載入對應內容
+  // ✅ 處理返回 / 前進按鈕
   window.addEventListener("popstate", () => {
     const path = location.pathname;
     const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
@@ -128,6 +130,7 @@
       });
   });
 </script>
+
 
 
 
