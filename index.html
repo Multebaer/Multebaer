@@ -55,12 +55,16 @@
 	  }
   });
 </script>-->
-<script>
-	fetch("navbar.html")
+	
+	  <script>
+    fetch("/navbar.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("navbar-container").innerHTML = html;
       });
+  </script>
+<script>
+	
   function navigateTo(page, event) {
     if (event) event.preventDefault(); // ← 加個判斷，不然自動觸發時會報錯
 
