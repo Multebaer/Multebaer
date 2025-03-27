@@ -31,7 +31,7 @@
   <header>
     <nav class="navbar">
       <ul>
-        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
+        <li><a href="/" onclick="navigateTo('iframe.html', event)">Home</a></li>
         <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
         <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
         <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
@@ -85,6 +85,27 @@ function navigateTo(page, event) {
       document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
     });
 }
+		 window.addEventListener("DOMContentLoaded", () => {
+    const path = location.pathname;
+    if (path === "/" || path === "") {
+      navigateTo("iframe.html");
+    } else {
+      // ✅ 如果是像 /art-portfolio 這種直接進子頁面，也能處理
+      const realPath = path.slice(1) + ".html";
+      navigateTo(realPath);
+    }
+  });
+
+  // ✅ 按「返回鍵」時重新抓對應頁面
+  window.addEventListener("popstate", () => {
+    const path = location.pathname;
+    const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+    fetch("/" + realPath)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      });
+  });
   </script>
 
 </body>
