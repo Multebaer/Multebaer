@@ -79,6 +79,7 @@ body.iframe-body {
 header { /*導覽列設計*/
   background-color: #fff;
   border-bottom: 1px solid #ccc;
+	opacity: 0.5;
 }
 
 .navbar ul { /*導覽列*/
