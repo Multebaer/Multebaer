@@ -26,19 +26,8 @@
   });
 </script>
 	<div class="background-overlay"></div>
-	
-  <!-- 共用選單 -->
-  <header>
-    <nav class="navbar">
-      <ul>
-        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
-        <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
-        <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
-        <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
-        <li><button onclick="loadPage('contact')">Contact</button></li>
-      </ul>
-    </nav>
-  </header>
+	<div id="navbar-container"></div>
+
 
    <!-- 內容顯示區 -->
 	
@@ -67,6 +56,11 @@
   });
 </script>-->
 <script>
+	fetch("/components/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
   function navigateTo(page, event) {
     if (event) event.preventDefault(); // ← 加個判斷，不然自動觸發時會報錯
 
