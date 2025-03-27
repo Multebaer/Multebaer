@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/art-portfolio", "destination": "/art-portfolio/art-portfolio.html" }
+  ]
+}
