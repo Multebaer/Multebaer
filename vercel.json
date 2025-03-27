@@ -1,9 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/art-portfolio", "destination": "/art-portfolio.html" },
-    { "source": "/bjd-portfolio", "destination": "/bjd-portfolio.html" },
-    { "source": "/dreams", "destination": "/dreams.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/iframe", "destination": "/iframe.html" }  // 如果你首頁不是 index.html
-  ]
-}
