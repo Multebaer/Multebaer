@@ -91,14 +91,20 @@
 
   // ✅ 當一打開頁面時（首頁 or 任一分頁）
   window.addEventListener("DOMContentLoaded", () => {
-    const path = location.pathname;
-    if (path === "/" || path === "") {
-      navigateTo("iframe.html");
-    } else {
-      const realPath = path.slice(1) + ".html";
-      navigateTo(realPath);
-    }
-  });
+  const path = location.pathname;
+
+  if (path === "/" || path === "") {
+    // ✅ 不 push URL，只 fetch 頁面
+    fetch("/iframe.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      });
+  } else {
+    const realPath = path.slice(1) + ".html";
+    navigateTo(realPath);
+  }
+});
 
   // ✅ 返回鍵事件
   window.addEventListener("popstate", () => {
