@@ -82,12 +82,16 @@
 	
 
 <script>
-	
   function navigateTo(page, event) {
-    if (event) event.preventDefault(); 
+    if (event) event.preventDefault();
 
-    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
+    // ✅ 讓首頁 iframe 不露餡
+    const isHome = page === "iframe.html";
+    const cleanUrl = isHome ? "/" : '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
     const htmlPath = '/' + page.replace(/^\/+/, '');
+
+    // ✅ 避免重複 push 相同頁面
+    if (location.pathname === cleanUrl) return;
 
     history.pushState({}, "", cleanUrl);
 
@@ -104,12 +108,15 @@
         document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
       });
   }
- 
-window.addEventListener("DOMContentLoaded", () => {
-  const path = location.pathname;
-  const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-  navigateTo(page);
-});
+
+  // ✅ 網站首次載入時，根據網址決定載入內容
+  window.addEventListener("DOMContentLoaded", () => {
+    const path = location.pathname;
+    const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+    navigateTo(page);
+  });
+
+  // ✅ 使用者點返回 / 前進 時載入對應內容
   window.addEventListener("popstate", () => {
     const path = location.pathname;
     const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
@@ -121,6 +128,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
   });
 </script>
+
 
 
 
