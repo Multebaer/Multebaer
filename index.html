@@ -89,12 +89,7 @@ function navigateTo(page, event) {
     const path = location.pathname;
     if (path === "/" || path === "") {
       navigateTo("iframe.html");
-    } else {
-      // ✅ 如果是像 /art-portfolio 這種直接進子頁面，也能處理
-      const realPath = path.slice(1) + ".html";
-      navigateTo(realPath);
     }
-  });
 
   // ✅ 按「返回鍵」時重新抓對應頁面
   window.addEventListener("popstate", () => {
