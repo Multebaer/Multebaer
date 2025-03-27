@@ -31,7 +31,7 @@
   <header>
     <nav class="navbar">
       <ul>
-        <li><a href="/" onclick="navigateTo('iframe.html', event)">Home</a></li>
+        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
         <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
         <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
         <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
@@ -42,10 +42,13 @@
 
    <!-- 內容顯示區 -->
 	
-	<div id="content-container">
+	<main id="content-container">
   <!-- 子頁面內容會被動態載入進來 -->
-</div>
+</main>
 	
+	<footer>
+		<p>© 2025 離淵. All rights reserved.</p>
+	</footer>
 <!--  <iframe id="content-frame" src="iframe.html" frameborder="0" style="width:100%; height:100px; border: none;"></iframe>
 
 <script>
@@ -84,12 +87,18 @@ function navigateTo(page, event) {
       console.error("載入失敗", htmlPath);
       document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
     });
-}
-		 window.addEventListener("DOMContentLoaded", () => {
+	
+	  // ✅ 當第一次載入首頁，網址是 /，就自動載入 iframe.html
+  window.addEventListener("DOMContentLoaded", () => {
     const path = location.pathname;
     if (path === "/" || path === "") {
       navigateTo("iframe.html");
+    } else {
+      // ✅ 如果是像 /art-portfolio 這種直接進子頁面，也能處理
+      const realPath = path.slice(1) + ".html";
+      navigateTo(realPath);
     }
+  });
 
   // ✅ 按「返回鍵」時重新抓對應頁面
   window.addEventListener("popstate", () => {
@@ -101,6 +110,8 @@ function navigateTo(page, event) {
         document.getElementById("content-container").innerHTML = html;
       });
   });
+}
+		
   </script>
 
 </body>
