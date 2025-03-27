@@ -19,7 +19,35 @@
   </div>
 	
 	<audio id="bgm" src="audio/來自遠方的風.mp3" loop></audio>
-<script>
+	
+	<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const agreed = localStorage.getItem("agreedToEnter");
+
+    if (!agreed) {
+      document.getElementById('entrance-modal').style.display = 'flex';
+    } else {
+      document.getElementById('entrance-modal').style.display = 'none';
+
+      // ✅ 如果第一次點過，進站自動播音樂
+      const bgm = document.getElementById('bgm');
+      if (bgm && bgm.paused) {
+        bgm.play().catch(() => {});
+      }
+    }
+
+    document.getElementById('enter-site').addEventListener('click', function () {
+      document.getElementById('entrance-modal').style.display = 'none';
+      localStorage.setItem("agreedToEnter", "yes");
+
+      const bgm = document.getElementById('bgm');
+      if (bgm && bgm.paused) {
+        bgm.play().catch(() => {});
+      }
+    });
+  });
+</script>
+<!--<script>
   window.addEventListener("DOMContentLoaded", function () {
     // 檢查是否已經進站過
     const agreed = localStorage.getItem("agreedToEnter");
@@ -36,7 +64,7 @@
       document.getElementById('bgm')?.play(); // ✅ 有音樂再播放
     });
   });
-</script>
+</script>-->
 	<div class="background-overlay"></div>
 	
   <!-- 共用選單 -->
