@@ -18,8 +18,10 @@
   function navigateTo(page, event) {
     if (event) event.preventDefault(); 
 
-    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
-    const htmlPath = '/' + page.replace(/^\/+/, '');
+      const cleanUrl = page === "iframe.html" ? "/" : "/" + page.replace(/\.html$/, '').replace(/^\/+/, '');
+
+  // ✅ fetch 路徑一定要用絕對路徑，避免在子目錄錯抓相對路徑
+  const htmlPath = '/' + page.replace(/^\/+/, '');
 
     history.pushState({}, "", cleanUrl);
 
