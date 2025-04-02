@@ -5,6 +5,7 @@
       { "source": "/dreams", "destination": "/dreams.html" },
       { "source": "/contact", "destination": "/contact.html" },
       { "source": "/", "destination": "/iframe.html" },
-      { "source": "/dreams/charater-setting", "destination": "/dreams/charater-setting.html" }
+      { "source": "/dreams/charater-setting", "destination": "/dreams/charater-setting.html" },
+      { "source": "/dreams/branch", "destination": "/dreams/branch.html" }
     ]
   }

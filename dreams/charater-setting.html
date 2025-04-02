@@ -16,7 +16,6 @@
   <!-- 首頁內容 -->
 	 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
-	<p>test</p>
 	
   <table>
     <tr>
@@ -24,8 +23,8 @@
       <th class="novel-th">作者</th>
     </tr>
     <tr>
-      <td class="novel-td"><span class="article-link" onclick="loadArticle('article-a.html')">小說 A</span></td>
-      <td class="novel-td">小王</td>
+      <td class="novel-td"><span class="article-link" onclick="loadArticle('branch/SPWhenDisobedient.html')">不聽話就打屁股</span></td>
+      <td class="novel-td">DORA</td>
     </tr>
     <tr>
       <td class="novel-td"><span class="article-link" onclick="loadArticle('article-b.html')">小說 B</span></td>
@@ -53,13 +52,12 @@
     }
   </script>
 
-	<script>
-	
+<script>
   function navigateTo(page, event) {
-    if (event) event.preventDefault(); 
+    if (event) event.preventDefault();
 
     const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
-    const htmlPath = '/' + page.replace(/^\/+/, '');
+    const htmlPath = page.replace(/^\/+/, '');
 
     history.pushState({}, "", cleanUrl);
 
@@ -76,23 +74,35 @@
         document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
       });
   }
- 
-window.addEventListener("DOMContentLoaded", () => {
-  const path = location.pathname;
-  const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-  navigateTo(page);
-});
-  window.addEventListener("popstate", () => {
-    const path = location.pathname;
-    const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
 
-    fetch("/" + realPath)
-      .then(res => res.text())
+  function getHtmlPathFromUrl(urlPath) {
+    const trimmed = urlPath.replace(/^\/+/, '').replace(/\/$/, '');
+    return trimmed === '' ? 'iframe.html' : trimmed + '.html';
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const page = getHtmlPathFromUrl(location.pathname);
+    navigateTo(page);
+  });
+
+  window.addEventListener("popstate", () => {
+    const page = getHtmlPathFromUrl(location.pathname);
+
+    fetch(page)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + page);
+        return res.text();
+      })
       .then(html => {
         document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        console.error("載入失敗", page);
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
       });
   });
 </script>
+
 	
 	<script>
   function loadArticle(filename) {
