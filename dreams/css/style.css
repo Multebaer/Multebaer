@@ -50,18 +50,20 @@ table {
     }
 
     .preview-panel {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 40%;
-      height: 100%;
-      background-color: #fff;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-      padding: 20px;
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-    }
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto; /* ⬅️ 加這行，讓內容可以滾動 */
+  z-index: 1000;
+}
+
 
     .preview-panel.active {
       display: flex;
