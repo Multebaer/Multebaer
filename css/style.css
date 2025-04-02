@@ -588,3 +588,65 @@ blockquote { /*引用*/
 	border-radius: 8px;
 	margin-top: 30px
 }
+
+/*文章格式區*/
+  .novel-body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+  .novel-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+  .novel-td, .novel-th {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .preview-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 40%;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    .preview-panel.active {
+      display: flex;
+    }
+
+    .close-btn {
+      align-self: flex-end;
+      cursor: pointer;
+      color: red;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .article-link {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
