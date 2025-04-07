@@ -652,12 +652,18 @@ blockquote { /*引用*/
     }
 
  /* art-portfolio輪播區 */
- .swiper {
-	 width: 100%;
-        max-width: 300px;
-	 margin: 40px auto;
-	 overflow: visible;
-    }
+
+.swiper-container {
+  position: relative;
+  width: fit-content;
+  margin: 40px auto;
+}
+
+.swiper {
+  width: 50%;
+  max-width: 600px;
+	overflow: visible;
+}
     .swiper-slide {
 		width: 100%;
         text-align: center;
@@ -666,39 +672,20 @@ blockquote { /*引用*/
         justify-content: center;
         align-items: center;
     }
+
 .swiper-slide img{
 	width: 100%;
 	height: auto;
-	border-radius: 10px;		
+	border-radius: 10px;
+  display: block;		
 }
-.swiper-button-prev,
-.swiper-button-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 44px;
-  height: 44px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  box-shadow: 0 0 4px rgba(0,0,0,0.2);
-  cursor: pointer;
-}
-
-/* 按鈕箭頭圖示（swiper 自帶的） */
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  font-size: 20px;
-  color: #333;
-}
-
-/* 推出圖片外側 */
-.swiper-button-prev {
-  left: -50px;
+.swiper-button-prev  {
+  transform: translateX(-44px);
+	
 }
 
 .swiper-button-next {
-  right: -50px;
+  transform: translateX(44px);
 }
 
 
