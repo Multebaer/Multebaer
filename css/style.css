@@ -654,21 +654,24 @@ blockquote { /*引用*/
  /* art-portfolio輪播區 */
 .swiper {
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 40px auto;
-	display: flex;
+}
+
+.swiper-wrapper {
+  display: flex;
 }
 
 .swiper-slide {
-	width: 30%;
+  width: auto;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .swiper-slide img {
-	display: flex;
-  width: 10%;
+  width: 240px;
   height: auto;
   border-radius: 10px;
 }
