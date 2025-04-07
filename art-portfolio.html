@@ -41,23 +41,19 @@
       "/images/cloudhead.webp",
       "/images/beriahead.webp"
     ];
-    let currentIndex = 0;
-
-    function changeSlide(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) currentIndex = images.length - 1;
-      if (currentIndex >= images.length) currentIndex = 0;
-      document.getElementById("slider-image").src = images[currentIndex];
-    }
-
-    function showLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
-    }
-
-    function hideLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
+	  let currentIndex = 0;
+	  function changeSlide(direction) {
+		  currentIndex = (currentIndex + direction + images.length) % images.length;
+		  const slider = document.getElementById("slider-image");
+		  console.log("切換至：", images[currentIndex]);
+		  slider.src = images[currentIndex];
+		  function showLightbox(src) {
+			  document.getElementById('lightbox-img').src = src;
+			  document.getElementById('lightbox').style.display = 'flex';
+		  }
+		  function hideLightbox() {
+			  document.getElementById('lightbox').style.display = 'none';
+		  }
   </script>
 
 
