@@ -14,14 +14,10 @@
 	<div class="background-overlay"></div>
 	
 	<!-- Swiper 輪播區 -->
- <div class="swiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="/images/banner.webp" alt="圖片1"></div>
-      <div class="swiper-slide"><img src="/images/banner.webp" alt="圖片2"></div>
-      <div class="swiper-slide"><img src="/images/banner.webp" alt="圖片3"></div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+ <div class="simple-slider">
+    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+    <img id="slider-image" src="/images/banner.webp" alt="輪播圖片">
+    <button class="next" onclick="changeSlide(1)">&#10095;</button>
   </div>
 
   <!-- 圖片方格 -->
@@ -39,19 +35,20 @@
     <img id="lightbox-img" src="" alt="">
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script>
-    new Swiper('.swiper', {
-      loop: true,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-      initialSlide: 0,
-    });
+    const images = [
+      "/images/banner.webp",
+      "/images/cloudhead.webp",
+      "/images/beriahead.webp"
+    ];
+    let currentIndex = 0;
+
+    function changeSlide(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+      document.getElementById("slider-image").src = images[currentIndex];
+    }
 
     function showLightbox(src) {
       document.getElementById('lightbox-img').src = src;
@@ -62,6 +59,8 @@
       document.getElementById('lightbox').style.display = 'none';
     }
   </script>
+
+
 	
 	<!--navbar-->
 		 <script>
