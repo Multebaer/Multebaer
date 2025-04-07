@@ -652,35 +652,26 @@ blockquote { /*引用*/
     }
 
  /* art-portfolio輪播區 */
-.simple-slider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin: 40px auto;
-  max-width: 800px;
+ .swiper {
+	 width: 100%;
+        max-width: 300px;
+	 margin: 40px auto;
+    }
+    .swiper-slide {
+		width: 100%;
+        text-align: center;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+.swiper-slide img{
+	width: 100%;
+	height: auto;
+	border-radius: 10px;		
 }
 
-.simple-slider img {
-  max-width: 100%;
-  max-height: 400px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
 
-.simple-slider button {
-  background-color: transparent;
-  border: none;
-  font-size: 32px;
-  color: #555;
-  cursor: pointer;
-  padding: 10px;
-  transition: color 0.2s ease;
-}
-
-.simple-slider button:hover {
-  color: #000;
-}
 
 .gallery {
   display: grid;

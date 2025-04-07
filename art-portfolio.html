@@ -7,6 +7,7 @@
   <title>心の星｜Multebaer</title>
   <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
@@ -14,11 +15,16 @@
 	<div class="background-overlay"></div>
 	
 	<!-- Swiper 輪播區 -->
- <div class="simple-slider">
-    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-    <img id="slider-image" src="/images/banner.webp" alt="輪播圖片">
-    <button class="next" onclick="changeSlide(1)">&#10095;</button>
-  </div>
+ <div class="swiper"> <!-- swiper class 會被 new Swiper('.swiper' 使用 -->
+        <div class="swiper-wrapper"> <!-- 讓Swiper知道要輪播的內容位置必須為 swiper-wrapper -->
+            <div class="swiper-slide"><img src="/images/banner.webp" alt="圖A"></div>
+            <div class="swiper-slide"><img src="/images/cloudhead.webp" alt="圖B"></div>
+            <div class="swiper-slide"><img src="/images/beriahead.webp" alt="圖C"></div>
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
 
   <!-- 圖片方格 -->
   <div class="gallery">
@@ -34,21 +40,18 @@
   <div id="lightbox" class="lightbox" onclick="hideLightbox()">
     <img id="lightbox-img" src="" alt="">
   </div>
+	
+	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', { // 創建一個輪播
+            navigation: { // 前一張、下一張按鈕
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
 
   <script>
-    const images = [
-      "/images/banner.webp?nocache=1",
-      "/images/CloudHead.webp?nocache=2,
-      "/images/BeriaHead.webp?nocache=3
-    ];
-	  let currentIndex = 0;
-	  function changeSlide(direction) {
-		  currentIndex = (currentIndex + direction + images.length) % images.length;
-		  const slider = document.getElementById("slider-image");
-		  console.log("切換至：", images[currentIndex]);
-		  slider.src = images[currentIndex];
-	  }
-	  
 		  function showLightbox(src) {
 			  document.getElementById('lightbox-img').src = src;
 			  document.getElementById('lightbox').style.display = 'flex';
