@@ -29,11 +29,10 @@
   <!-- 圖片方格 -->
   <div class="gallery">
     <img src="/images/banner.webp" alt="圖A" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" alt="圖B" onclick="showLightbox(this.src)">
+    <img src="/images/CloudStrife.webp" alt="圖B" onclick="showLightbox(this.src)">
     <img src="/images/banner.webp" alt="圖C" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" alt="圖D" onclick="showLightbox(this.src)">
+    <img src="/images/BeriaKenelm.webp" alt="圖D" onclick="showLightbox(this.src)">
     <img src="/images/banner.webp" alt="圖E" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" alt="圖F" onclick="showLightbox(this.src)">
   </div>
 
   <!-- 點圖放大（lightbox） -->
@@ -43,22 +42,24 @@
 	
 	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper('.swiper', { // 創建一個輪播
-            navigation: { // 前一張、下一張按鈕
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    </script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+    });
 
-  <script>
-		  function showLightbox(src) {
-			  document.getElementById('lightbox-img').src = src;
-			  document.getElementById('lightbox').style.display = 'flex';
-		  }
-		  function hideLightbox() {
-			  document.getElementById('lightbox').style.display = 'none';
-		  }
+    function showLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function hideLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
   </script>
 
 
