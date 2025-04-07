@@ -258,7 +258,7 @@ blockquote { /*引用*/
 }
 
 /*摺疊內容*/
-.notion-fold .fold-body {
+.notion-fold .fold-body .details-body{
   padding: 0 1em;
 }
 
@@ -266,6 +266,11 @@ blockquote { /*引用*/
 	margin-top: 1em;
 	font-size: 14px;
 }
+
+.details-body {
+	margin-left: 0.9em;
+}
+
 
 /*基本設定*/
 .no-border-table th,
@@ -292,10 +297,44 @@ blockquote { /*引用*/
   background-color: #e9e9e9;
 }
 td img {
-  max-width: 70%;
+  max-width: 100%;
   height: auto;
   display: block;	
   margin-left: auto;
   margin-right: auto;
 }
 
+.setting-table th:nth-child(1),
+.setting-table td:nth-child(1) {
+  width: 45%;	
+	}
+.setting-table th:nth-child(2),
+.setting-table td:nth-child(2) {
+  width: 10%;
+}
+.setting-table th:nth-child(3),
+.setting-table td:nth-child(3) {
+  width: 45%;
+}
+
+.relation table,
+.relation th,
+.relation td {
+	border: 1px solid #ccc;
+}
+
+.name-table-2 th:nth-child(1),
+.name-table-2 td:nth-child(1) {
+  width: 25%;	
+	font-size:14px;
+	}
+.name-table-2 th:nth-child(2),
+.name-table-2 td:nth-child(2) {
+  width: 37.5%;
+	font-size:14px;
+}
+.name-table-2 th:nth-child(3),
+.name-table-2 td:nth-child(3) {
+  width: 37.5%;
+	font-size:14px;
+}
