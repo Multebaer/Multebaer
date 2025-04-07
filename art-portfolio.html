@@ -16,9 +16,9 @@
 	<!-- Swiper 輪播區 -->
   <div class="swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="/images/banner.webp"></div>
-      <div class="swiper-slide"><img src="/images/banner.webp"></div>
-      <div class="swiper-slide"><img src="/images/banner.webp"></div>
+      <div class="swiper-slide"><img src="/images/banner.webp" alt="圖片1"></div>
+      <div class="swiper-slide"><img src="/images/banner.webp" alt="圖片2"></div>
+      <div class="swiper-slide"><img src="/images/banner.webp" alt="圖片3"></div>
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -26,12 +26,12 @@
 
   <!-- 圖片方格 -->
   <div class="gallery">
-    <img src="/images/banner.webp" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" onclick="showLightbox(this.src)">
-    <img src="/images/banner.webp" onclick="showLightbox(this.src)">
+    <img src="/images/banner.webp" alt="圖A" onclick="showLightbox(this.src)">
+    <img src="/images/banner.webp" alt="圖B" onclick="showLightbox(this.src)">
+    <img src="/images/banner.webp" alt="圖C" onclick="showLightbox(this.src)">
+    <img src="/images/banner.webp" alt="圖D" onclick="showLightbox(this.src)">
+    <img src="/images/banner.webp" alt="圖E" onclick="showLightbox(this.src)">
+    <img src="/images/banner.webp" alt="圖F" onclick="showLightbox(this.src)">
   </div>
 
   <!-- 點圖放大（lightbox） -->
@@ -44,12 +44,13 @@
     new Swiper('.swiper', {
       loop: true,
       centeredSlides: true,
-      slidesPerView: 3,
+      slidesPerView: 'auto',
       spaceBetween: 20,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
+      initialSlide: 0,
     });
 
     function showLightbox(src) {
