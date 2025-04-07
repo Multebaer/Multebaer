@@ -61,21 +61,7 @@
     slideChange: function () {
       console.log('目前切換到第', this.realIndex + 1, '張圖');
     }
-	  const prev = document.querySelector('.swiper-button-prev');
-const next = document.querySelector('.swiper-button-next');
-
-console.log('← 是否存在：', !!prev);
-console.log('→ 是否存在：', !!next);
-
-if (prev) {
-  const prevStyle = window.getComputedStyle(prev);
-  console.log('← display:', prevStyle.display, 'visibility:', prevStyle.visibility, 'opacity:', prevStyle.opacity, 'position:', prevStyle.position, 'transform:', prevStyle.transform);
-}
-
-if (next) {
-  const nextStyle = window.getComputedStyle(next);
-  console.log('→ display:', nextStyle.display, 'visibility:', nextStyle.visibility, 'opacity:', nextStyle.opacity, 'position:', nextStyle.position, 'transform:', nextStyle.transform);
-}
+	  
   }
 });
 
