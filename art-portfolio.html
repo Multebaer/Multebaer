@@ -43,14 +43,20 @@
 	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
     const swiper = new Swiper('.swiper', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 10,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      },
-    });
+  loop: true,
+  slidesPerView: 1,
+  spaceBetween: 10,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  },
+  on: {
+    slideChange: function () {
+      console.log('目前切換到第', this.realIndex + 1, '張圖');
+    }
+  }
+});
+
 
     function showLightbox(src) {
       document.getElementById('lightbox-img').src = src;
