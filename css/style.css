@@ -656,6 +656,7 @@ blockquote { /*引用*/
   width: 100%;
   max-width: 600px;
   margin: 40px auto;
+	display: flex;
 }
 
 .swiper-slide {
@@ -666,6 +667,7 @@ blockquote { /*引用*/
 }
 
 .swiper-slide img {
+	display: flex;
   width: 10%;
   height: auto;
   border-radius: 10px;
