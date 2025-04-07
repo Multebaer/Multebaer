@@ -65,6 +65,7 @@ table {
 }
 
 
+
     .preview-panel.active {
       display: flex;
     }
@@ -91,7 +92,7 @@ table {
     }
 
     .article-link {
-      color: blue;
+      color: #333;
       cursor: pointer;
       text-decoration: underline;
     }
