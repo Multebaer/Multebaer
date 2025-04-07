@@ -6,11 +6,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心の星｜Multebaer</title>
   <link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 </head>
 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
 <body class="iframe-body main-page">
 	<div class="background-overlay"></div>
+	
+	<div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="/images/banner.webp" alt="1"></div>
+      <div class="swiper-slide"><img src="/images/banner.webp" alt="1"></div>
+      <div class="swiper-slide"><img src="/images/banner.webp" alt="1"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <!-- 圖片方格 -->
+  <div class="gallery">
+    <img src="/images/banner.webp" onclick="showLightbox(this.src)" alt="1">
+    <img src="/images/banner.webp" onclick="showLightbox(this.src)" alt="1">
+    <img src="/images/banner.webp" onclick="showLightbox(this.src)" alt="1">
+    <img src="/images/banner.webp" onclick="showLightbox(this.src)" alt="1">
+    <img src="/images/banner.webp" onclick="showLightbox(this.src)" alt="1">
+    <img src="/images/banner.webp" onclick="showLightbox(this.src)" alt="1">
+  </div>
+
+  <!-- 點圖放大（lightbox） -->
+  <div class="lightbox" onclick="hideLightbox()">
+    <img class="lightbox-img" src="/images/banner.webp" alt="1">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper', {
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: 3,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+    });
+
+    function showLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function hideLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
+	
+	
+	
+	
+	
 	<script>
     fetch("/navbar.html")
       .then(res => res.text())
