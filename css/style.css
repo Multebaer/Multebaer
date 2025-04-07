@@ -659,14 +659,14 @@ blockquote { /*引用*/
 }
 
 .swiper-slide {
-	width: 80%;
+	width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .swiper-slide img {
-  width: 50%;
+  width: 10%;
   height: auto;
   border-radius: 10px;
 }
