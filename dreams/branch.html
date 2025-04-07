@@ -16,19 +16,44 @@
   <!-- 首頁內容 -->
 	 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
-	
-  <table>
+	<main class="about-section">
+    <div class="about-box">
+  <table class="custom-table">
     <tr>
-      <th class="novel-th">標題</th>
-      <th class="novel-th">作者</th>
+      <th>Name</th>
+      <th>Item</th>
+		<th>Author</th>
+		<th>TAG</th>
     </tr>
     <tr>
-      <td class="novel-td"><span class="article-link" onclick="loadArticle('branch/SPWhenDisobedient.html')">不聽話就打屁股</span></td>
-      <td class="novel-td">DORA</td>
+      <td><span class="article-link" onclick="loadArticle('branch/SPWhenDisobedient.html')">不聽話就打屁股</span></td>
+      <td>文字委託</td>
+		<td>DORA</td>
+		<td>C｜咬｜ＳＰ</td>
     </tr>
     <tr>
-      <td class="novel-td"><span class="article-link" onclick="loadArticle('article-b.html')">小說 B</span></td>
-      <td class="novel-td">小李</td>
+      <td><span class="article-link" onclick="loadArticle('branch/Hamster')">倉鼠</span></td>
+      <td>一團雲</td>
+		<td>文字委託</td>
+		<td>C｜倉鼠擬人</td>
+    </tr>
+	  <tr>
+      <td><span class="article-link" onclick="loadArticle('branch/swallow-cum')">飲精日</span></td>
+      <td>一團雲</td>
+		<td>文字委託</td>
+		<td>C｜咬</td>
+    </tr>
+	  <tr>
+      <td><span class="article-link" onclick="loadArticle('branch/網址')">小說標題</span></td>
+      <td>作者ID</td>
+		<td>文字委託</td>
+		<td>標籤</td>
+    </tr>
+	  <tr>
+      <td><span class="article-link" onclick="loadArticle('branch/網址')">小說標題</span></td>
+      <td>作者ID</td>
+		<td>文字委託</td>
+		<td>標籤</td>
     </tr>
   </table>
 
@@ -38,6 +63,9 @@
     <div class="close-btn" onclick="closePreview()">✕</div>
     <div id="preview-content"></div>
   </div>
+		</div>
+		</main>
+		
 
   <script>
     function showPreview(content) {
