@@ -37,9 +37,9 @@
 
   <script>
     const images = [
-      "/images/banner.webp",
-      "/images/cloudhead.webp",
-      "/images/beriahead.webp"
+      "/images/banner.webp?nocache=1",
+      "/images/CloudHead.webp?nocache=2,
+      "/images/BeriaHead.webp?nocache=3
     ];
 	  let currentIndex = 0;
 	  function changeSlide(direction) {
@@ -48,6 +48,7 @@
 		  console.log("切換至：", images[currentIndex]);
 		  slider.src = images[currentIndex];
 	  }
+	  
 		  function showLightbox(src) {
 			  document.getElementById('lightbox-img').src = src;
 			  document.getElementById('lightbox').style.display = 'flex';
