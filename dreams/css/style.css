@@ -244,6 +244,7 @@ header { /*導覽列設計*/
 table {
   table-layout: fixed; /* ✅ 固定欄寬 */
   width: 100%;
+	color:#333;
 }
 .custom-table th:nth-child(1),
 .custom-table td:nth-child(1) {
