@@ -64,7 +64,60 @@ table {
   z-index: 1000;
 }
 
+/*導覽列*/
+header { /*導覽列設計*/
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+	opacity: 0.5;
+}
 
+.navbar ul { /*導覽列*/
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 10px 20px;
+  justify-content: center;
+}
+
+.navbar li { /*導覽列List間距*/
+  margin: 0 15px;
+}
+
+/*導覽列滑鼠未靠近顯示*/
+.navbar a ,
+.navbar button {
+	background: none;
+	border: none;
+	font-family: inherit;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	all: unset;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+
+.navbar a:hover { /*導覽列滑鼠靠近顯示*/
+  color: #0077cc;
+}
+/*導覽列手機端設定*/
+@media (max-width: 480px) {
+  .navbar ul {
+    flex-wrap: nowrap;
+    justify-content: space-center;
+    padding: 12px 10px;
+  }
+
+  .navbar li {
+    margin: 0 10px;
+  }
+
+  .navbar a {
+    font-size: 0.85em;
+  }
+}
 
     .preview-panel.active {
       display: flex;
