@@ -23,8 +23,8 @@
             <div class="swiper-slide"><img src="/images/BeriaHead.webp" alt="圖C"></div>
         </div>
 
-        <div class="swiper-button-prev"></div>
-	 <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev">&#10094;</div>
+<div class="swiper-button-next">&#10095;</div>
     </div>
 		</div>
 
@@ -49,20 +49,21 @@
 	
 	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-    const swiper = new Swiper('swiper-container', {
+    const swiper = new Swiper(".swiper", {
   loop: true,
   slidesPerView: 1,
-  spaceBetween: 10,
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
   },
-  on: {
-    slideChange: function () {
-      console.log('目前切換到第', this.realIndex + 1, '張圖');
+  injectStyles: [
+    `
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      content: none !important;
     }
-	  
-  }
+    `
+  ]
 });
 
 

@@ -679,13 +679,37 @@ blockquote { /*引用*/
 	border-radius: 10px;
   display: block;		
 }
-.swiper-button-prev  {
-  transform: translateX(-44px);
-	
-}
-
+.swiper-button-prev,
 .swiper-button-next {
-  transform: translateX(44px);
+  all: unset;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  z-index: 99;
+  cursor: pointer;
+  font-size: 36px;
+  font-weight: bold;
+  color: black;
+  display: block;
+  width: auto;
+  height: auto;
+  text-indent: 0 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: none !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+.swiper-button-prev {
+  transform: translateY(-50%) translateX(-44px);
+}
+.swiper-button-next {
+  transform: translateY(-50%) translateX(44px);
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  content: none !important;
 }
 
 
