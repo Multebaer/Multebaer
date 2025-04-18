@@ -120,6 +120,7 @@
 	
 	<!--放大動畫+側邊彈出動畫-->
 		<script>
+			let currentArticleFile = null;
 			function toggleFullscreen() {
   const panel = document.getElementById('preview');
   const fullscreen = panel.classList.toggle('fullscreen');
@@ -135,6 +136,7 @@ function closePreview() {
 }
 
 function loadArticle(filename) {
+	currentArticleFile = filename;
   fetch(filename)
     .then(res => res.text())
     .then(html => {
@@ -145,37 +147,17 @@ function loadArticle(filename) {
       
       document.body.style.overflow = 'hidden';
     });
-}
+} function openInNewTab() {
+    if (currentArticleFile) {
+      const url = window.location.origin + '/' + currentArticleFile;
+      window.open(url, '_blank');
+    } else {
+      alert("目前沒有載入任何文章！");
+    }
+  }
 
 	</script>
 	
-	<!--文章開新視窗-->
-	<script>let currentArticleFile = null;
-
-function loadArticle(filename) {
-  currentArticleFile = filename;
-
-  fetch(filename)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('preview-content').innerHTML = html;
-      const panel = document.getElementById('preview');
-      panel.classList.add('active');
-      document.getElementById('overlay')?.classList.add('active');
-      if (wasFullscreen) panel.classList.add('fullscreen');
-      document.body.style.overflow = 'hidden';
-    });
-}
-
-function openInNewTab() {
-  if (currentArticleFile) {
-    const url = window.location.origin + '/' + currentArticleFile;
-    window.open(url, '_blank');
-  } else {
-    alert("目前沒有載入任何文章！");
-  }
-}
-</script>
 	<!--側邊彈出動畫
 	<script>
 		function showPreview(content) {
