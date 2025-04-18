@@ -166,7 +166,8 @@ function loadArticle(filename) {
   console.log("開啟文章：", currentArticleFile); // ⬅️ Debug 用，可以保留
 
   if (currentArticleFile) {
-    const url = window.location.origin + '/' + currentArticleFile;
+    const currentFolder = window.location.pathname.replace(/\/[^\/]*$/, "/");
+	  const url = window.location.origin + currentFolder + currentArticleFile;
     const win = window.open(url, '_blank');
     if (!win) {
       alert("瀏覽器封鎖了彈出視窗，請允許本站開啟新分頁！");
