@@ -45,7 +45,7 @@ table {
   grid-template-columns: auto 1fr;
   gap: 8px 12px;
   margin-bottom: 20px;
-  font-size: 0.95em;
+  /*font-size: 0.95em;*/
   color: #444;
   align-items: start;
 }
@@ -64,7 +64,7 @@ table {
 
 .novel-content {
   line-height: 1.8;
-  font-size: 1em;
+  /*font-size: 1em;*/
   color: #333;
 }
 
