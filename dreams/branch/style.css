@@ -10,11 +10,7 @@ input,
 textarea {
   font-family: "微軟正黑體", sans-serif;
 }
-@media (max-width: 480px) {
-	p{
-		font-size:26px;
-	}
-}
+
 
 /*表格*/
 table {
@@ -45,7 +41,7 @@ table {
   grid-template-columns: auto 1fr;
   gap: 8px 12px;
   margin-bottom: 20px;
-  /*font-size: 0.95em;*/
+  font-size: 0.95em;
   color: #444;
   align-items: start;
 }
@@ -64,11 +60,17 @@ table {
 
 .novel-content {
   line-height: 1.8;
-  /*font-size: 1em;*/
+  font-size: 1em;
   color: #333;
 }
 
 .novel-content p {
   margin-bottom: 1em;
   text-align: justify;
+}
+
+@media (max-width: 480px) {
+	.novel-content p{
+		font-size:26px;
+	}
 }
