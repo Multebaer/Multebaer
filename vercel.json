@@ -8,6 +8,6 @@
       { "source": "/dreams/charater-setting", "destination": "/dreams/charater-setting.html" },
       { "source": "/dreams/branch", "destination": "/dreams/branch.html" },
       { "source": "/dreams/main-line", "destination": "/dreams/main-line.html" },
-      { "source": "/dreams/NSFW", "destination": "/dreams/NSFW.html" },
+      { "source": "/dreams/NSFW", "destination": "/dreams/NSFW.html" }
     ]
   }
