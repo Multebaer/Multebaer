@@ -3,7 +3,8 @@ body {
 	margin: 0;
 	padding: 2em;
 	line-height: 1.6;
-	font-size: 0.95em;
+	max-width: 800px;
+	margin:auto;
 }
 
 input,
@@ -61,7 +62,11 @@ hr {
   white-space: nowrap;
 	font-size:14px;
 }
-
+.meta-label.emoji::before {
+  content: "☰　";
+  margin-right: 6px;
+  opacity: 0.6;
+}
 .meta-title{
 	font-size:14px;
 }

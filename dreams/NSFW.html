@@ -121,20 +121,18 @@
 	  
     <div class="close-btn" onclick="closePreview()">≫</div>
     <div class="fullscreen-btn" onclick="toggleFullscreen()">⛶</div>
+  <div class="open-new-btn" onclick="openInNewTab()">🔗</div>
   </div>
   <div id="preview-content"></div>
 </div></div>
-		</div>
+		</div></div>
 		</main>
 	
 	<!--放大動畫+側邊彈出動畫-->
 		<script>
-			let wasFullscreen = false;
-
-function toggleFullscreen() {
+			function toggleFullscreen() {
   const panel = document.getElementById('preview');
   const fullscreen = panel.classList.toggle('fullscreen');
-  wasFullscreen = fullscreen; // ✅ 記住目前是否是全螢幕
   document.body.style.overflow = fullscreen ? 'hidden' : '';
 }
 
@@ -145,21 +143,50 @@ function closePreview() {
   document.getElementById('overlay').classList.remove('active');
   document.body.style.overflow = '';
 }
+		let currentArticleFile = null;
 
 function loadArticle(filename) {
+  currentArticleFile = filename;
+
   fetch(filename)
     .then(res => res.text())
     .then(html => {
       const panel = document.getElementById('preview');
-      document.getElementById('preview-content').innerHTML = html;
-      panel.classList.add('active');
-      document.getElementById('overlay').classList.add('active');
-      if (wasFullscreen) {
-        panel.classList.add('fullscreen'); // ✅ 如果上次是全螢幕，開啟時自動加上
+      const content = document.getElementById('preview-content');
+      const overlay = document.getElementById('overlay');
+
+      if (!panel || !content || !overlay) {
+        console.error("找不到 preview 或 overlay 結構！");
+        return;
       }
+
+      content.innerHTML = html;
+      panel.classList.add('active');
+      overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      panel.scrollTop = 0;
+      content.scrollTop = 0;
+    })
+    .catch(err => {
+      console.error("文章載入失敗：", err);
     });
 }
+			function openInNewTab() {
+  console.log("開啟文章：", currentArticleFile); // ⬅️ Debug 用，可以保留
+
+  if (currentArticleFile) {
+    const currentFolder = window.location.pathname.replace(/\/[^\/]*$/, "/");
+	  const url = window.location.origin + currentFolder + currentArticleFile;
+    const win = window.open(url, '_blank');
+    if (!win) {
+      alert("瀏覽器封鎖了彈出視窗，請允許本站開啟新分頁！");
+    }
+  } else {
+    alert("目前沒有載入任何文章！");
+  }
+}
+
 
 	</script>
 
@@ -216,18 +243,6 @@ function loadArticle(filename) {
   });
 </script>
 
-	
-	<script>
-  function loadArticle(filename) {
-    fetch(filename)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('preview-content').innerHTML = html;
-        document.getElementById('preview').classList.add('active');
-        document.getElementById('overlay').classList.add('active');
-      });
-  }
-</script>
 	<script>
     fetch("../navbar.html")
       .then(res => res.text())

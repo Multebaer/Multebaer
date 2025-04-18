@@ -106,7 +106,7 @@ header { /*導覽列設計*/
 
 
 #preview-content {
-  padding: 50px 50px 20px 50px; /* 上右下左 */
+  padding: 50px 50px 50px 50px; /* 上右下左 */
 }
 .preview-panel {
   position: fixed;
@@ -232,6 +232,9 @@ header { /*導覽列設計*/
 	.close-btn {
 		left:10px;
 	}
+	#preview-content {
+  padding: 20px 10px 50px 10px; /* 上右下左 */
+}
 	
 }
 
