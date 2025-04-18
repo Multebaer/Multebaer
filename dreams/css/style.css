@@ -112,7 +112,7 @@ header { /*導覽列設計*/
   position: fixed;
   top: 0;
   right: 0;
-  width: 40%;
+  width: 60%;
   height: 100vh;
   background: rgba(255, 255, 255, 1);
   overflow-y: auto;
@@ -138,14 +138,12 @@ header { /*導覽列設計*/
 
 /* 放大樣式只給 .fullscreen 時觸發 */
 .preview-panel.fullscreen {
-  width: 100vw;
+  max-width: 1200px;
   height: 100vh;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  border-radius: 0;
-  box-shadow: none;
+	transform: scale(0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+	margin:auto;
 }
 
 .preview-panel.fullscreen .preview-wrapper {
