@@ -120,7 +120,6 @@
 	
 	<!--放大動畫+側邊彈出動畫-->
 		<script>
-			let currentArticleFile = null;
 			function toggleFullscreen() {
   const panel = document.getElementById('preview');
   const fullscreen = panel.classList.toggle('fullscreen');
@@ -134,30 +133,51 @@ function closePreview() {
   document.getElementById('overlay').classList.remove('active');
   document.body.style.overflow = '';
 }
+		let currentArticleFile = null;
 
 function loadArticle(filename) {
-	currentArticleFile = filename;
+  currentArticleFile = filename;
+
   fetch(filename)
     .then(res => res.text())
     .then(html => {
       const panel = document.getElementById('preview');
-      document.getElementById('preview-content').innerHTML = html;
+      const content = document.getElementById('preview-content');
+      const overlay = document.getElementById('overlay');
+
+      if (!panel || !content || !overlay) {
+        console.error("找不到 preview 或 overlay 結構！");
+        return;
+      }
+
+      content.innerHTML = html;
       panel.classList.add('active');
-      document.getElementById('overlay').classList.add('active');
-      
+      overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
+
+      panel.scrollTop = 0;
+      content.scrollTop = 0;
+    })
+    .catch(err => {
+      console.error("文章載入失敗：", err);
     });
-} function openInNewTab() {
-	console.log('目前載入的是：', currentArticleFile);
-    if (currentArticleFile) {
-      const url = window.location.origin + '/' + currentArticleFile;
-      window.open(url, '_blank');
-    } else {
-      alert("目前沒有載入任何文章！");
-    }
-  }
+}
 
 	</script>
+	
+	<!--<script>
+  function loadArticle(filename) {
+    fetch(filename)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('preview-content').innerHTML = html;
+        document.getElementById('preview').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+		preview.scrollTop = 0;
+        content.scrollTop = 0;
+      });
+  }
+</script>-->
 	
 	<!--側邊彈出動畫
 	<script>
@@ -220,19 +240,6 @@ function loadArticle(filename) {
 </script>
 
 	
-	<script>
-  function loadArticle(filename) {
-    fetch(filename)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('preview-content').innerHTML = html;
-        document.getElementById('preview').classList.add('active');
-        document.getElementById('overlay').classList.add('active');
-		preview.scrollTop = 0;
-        content.scrollTop = 0;
-      });
-  }
-</script>
 	<script>
     fetch("../navbar.html")
       .then(res => res.text())
