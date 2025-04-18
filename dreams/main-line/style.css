@@ -50,11 +50,12 @@ table {
 }
 
 .meta-label {
-  font-weight: bold;
-  color: #333;
+  color: #A4A4A4;
   white-space: nowrap;
 }
-
+.meta-title{
+	font-size:14px;
+}
 
 .novel-content {
   line-height: 1.8;
@@ -66,3 +67,4 @@ table {
   margin-bottom: 1em;
   text-align: justify;
 }
+
