@@ -69,8 +69,8 @@ table {
   text-align: justify;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 	.novel-content p{
-		font-size:26px;!important
+		font-size:26px!important;
 	}
 }
