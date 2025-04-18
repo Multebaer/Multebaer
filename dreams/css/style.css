@@ -49,26 +49,24 @@ table {
       padding: 5px;
     }
 
-    .preview-panel {
+.preview-panel {
   position: fixed;
   top: 0;
   right: 0;
   width: 40%;
   height: 100vh;
-  background-color: #fff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-		transform: translateX(100%);
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
-  padding: 20px;
-  display: none;
-  flex-direction: column;
-  overflow-y: auto; /* ⬅️ 加這行，讓內容可以滾動 */
-  z-index: 10000;
+  z-index: 9999;
 }
 
 .preview-panel.active {
   transform: translateX(0);
 }
+
 
 /*導覽列*/
 header { /*導覽列設計*/

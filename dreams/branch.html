@@ -184,10 +184,10 @@
       .then(res => res.text())
       .then(html => {
         document.getElementById('preview-content').innerHTML = html;
-		document.getElementById('preview').scrollTop = 0;
-
         document.getElementById('preview').classList.add('active');
         document.getElementById('overlay').classList.add('active');
+		preview.scrollTop = 0;
+        content.scrollTop = 0;
       });
   }
 </script>
