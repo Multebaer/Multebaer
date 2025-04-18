@@ -148,6 +148,7 @@ function loadArticle(filename) {
       document.body.style.overflow = 'hidden';
     });
 } function openInNewTab() {
+	console.log('目前載入的是：', currentArticleFile);
     if (currentArticleFile) {
       const url = window.location.origin + '/' + currentArticleFile;
       window.open(url, '_blank');
