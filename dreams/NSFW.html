@@ -124,20 +124,10 @@
 		</div>
 		</main>
 		
-	  <script>
-    function checkPassword() {
-      const input = document.getElementById("page-password").value;
-      const correct = "(AGSZC)"; // ← 你自己設定的密碼（可改）
+	  <script src="validate.js"></script>
 
-      if (input === correct) {
-        document.getElementById("password-gate").style.display = "none";
-        document.getElementById("secret-content").style.display = "block";
-      } else {
-        document.getElementById("error-msg").style.display = "block";
-      }
-    }
 
-    // 載入 navbar（如果有）
+		 <script>
     fetch("/navbar.html")
       .then(res => res.text())
       .then(html => {
