@@ -71,6 +71,6 @@ table {
 
 @media (max-width: 480px) {
 	.novel-content p{
-		font-size:26px;
+		font-size:26px;!important
 	}
 }
