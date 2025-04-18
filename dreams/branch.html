@@ -106,13 +106,45 @@
   <div id="overlay" class="overlay" onclick="closePreview()"></div>
 
   <div id="preview" class="preview-panel">
+	  <div class="preview-wrapper">
+  <div class="top-buttons">
+	  
     <div class="close-btn" onclick="closePreview()">≫</div>
-    <div id="preview-content"></div>
+    <div class="fullscreen-btn" onclick="toggleFullscreen()">⛶</div>
   </div>
+  <div id="preview-content"></div>
+</div></div>
 		</div>
 		</main>
-		
+	
+	<!--放大動畫-->
+		<script>
+  function toggleFullscreen() {
+    const panel = document.getElementById('preview');
+    panel.classList.toggle('fullscreen');
+    document.body.style.overflow = panel.classList.contains('fullscreen') ? 'hidden' : '';
+  }
 
+  function closePreview() {
+    const panel = document.getElementById('preview');
+    panel.classList.remove('active');
+    panel.classList.remove('fullscreen');
+    document.body.style.overflow = '';
+  }
+
+  function loadArticle(filename) {
+    fetch(filename)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('preview-content').innerHTML = html;
+        const panel = document.getElementById('preview');
+        panel.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+  }
+</script>
+
+<!--側邊彈出動畫-->
   <script>
     function showPreview(content) {
       document.getElementById('preview-content').innerText = content;

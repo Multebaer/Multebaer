@@ -77,7 +77,12 @@ hr {
 }
 
 @media (max-width: 480px) {
-	.novel-content p{
-		font-size: 50px;
+	h2{
+		padding-left:20px;
+		padding-right:20px;
+	}
+	.novel-meta,.novel-content {
+		padding-left:20px;
+		padding-right:20px;
 	}
 }
