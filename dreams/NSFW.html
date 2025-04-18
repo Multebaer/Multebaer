@@ -1,0 +1,232 @@
+<!doctype html>
+
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心の星｜Multebaer</title>
+  <link rel="stylesheet" href="../dreams/css/style.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+</head>
+<body class="iframe-body main-page novel-body">
+	<div class="background-overlay"></div>
+  <!-- 首頁內容 -->
+	 <!-- ✅ Navbar 動態載入 -->
+  <div id="navbar-container"></div>
+	<main class="about-section">
+		<div id="password-gate">
+			<div class="gate-box">
+      <h2>這是混邪私人專區</h2>
+      <p class="password">請輸入密碼以瀏覽內容：</p>
+      <input type="password" id="page-password" />
+      <button onclick="checkPassword()">進入</button>
+      <p id="error-msg" style="color:red; display:none;">密碼錯誤！</p>
+				</div
+    </div>
+
+    <div id="secret-content" style="display:none;">   
+    <div class="about-box">
+		<h2>NSFW</h2>
+		<p style="margin-top:-1.5em;font-size:14px">重口味群Ｐ大雜燴。</p>
+  <table class="custom-table" style="
+		color: #6E6E6E">
+    <tr>
+      <th>Name</th>
+      <th>Item</th>
+		<th>Author</th>
+		<th>TAG</th>
+    </tr>
+    
+    <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/Psalm.html')">詩</span></td>
+      <td>其他&nbsp;</td>
+		<td>寶寶&nbsp;</td>
+		<td>Ｇ｜咬</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/PsalmAfterword.html')">詩 - 續篇</span></td>
+      <td>其他</td>
+		<td>寶寶</td>
+		<td>Ｇ｜尿道Ｐｌａｙ｜聖水｜把尿</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/ShinraMB-01.html')">神羅軍妓 01</span></td>
+      <td>文字委託</td>
+		<td>一團雲</td>
+		<td>ＡＧＺ｜雙穴｜咬</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/ShinraMB-02.html')">神羅軍妓 02</span></td>
+      <td>文字委託</td>
+		<td>一團雲</td>
+		<td>Ｓ｜咬</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/ShinraMB-03.html')">神羅軍妓 03</span></td>
+      <td>文字委託</td>
+		<td>一團雲</td>
+		<td>Ｇ｜發燒｜雙穴</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/ShinraMB-04.html')">神羅軍妓 04</span></td>
+      <td>文字委託</td>
+		<td>Dora</td>
+		<td>Ｃ｜</td>
+    </tr>
+	   <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/Taste.html')">味覺</span></td>
+      <td>文字委託</td>
+		<td>一團雲</td>
+		<td>Ｃ｜糕叉</td>
+    </tr>
+	   <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/Kiss.html')">吻</span></td>
+      <td>文字委託</td>
+		<td>川江</td>
+		<td>Ｃ｜里垢少女</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/Unmasked.html')">掉馬的下場是？</span></td>
+      <td>文字委託</td>
+		<td>ALiar</td>
+		<td>Ｃ｜里垢少女｜咬</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/SPWhenDisobedient.html')">不聽話就打屁股</span></td>
+      <td>文字委託</td>
+		<td>DORA</td>
+		<td>Ｃ｜咬｜ＳＰ</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/網址.html')">小說標題</span></td>
+      <td>文字委託</td>
+		<td>作者</td>
+		<td>標籤</td>
+    </tr>
+	  <tr>
+      <td>📄 <span class="article-link" onclick="loadArticle('NSFW/網址.html')">小說標題</span></td>
+      <td>文字委託</td>
+		<td>作者</td>
+		<td>標籤</td>
+    </tr>
+  </table>
+
+  <div id="overlay" class="overlay" onclick="closePreview()"></div>
+
+  <div id="preview" class="preview-panel">
+    <div class="close-btn" onclick="closePreview()">✕</div>
+    <div id="preview-content"></div>
+  </div>
+		</div>
+		</div>
+		</main>
+		
+	  <script>
+    function checkPassword() {
+      const input = document.getElementById("page-password").value;
+      const correct = "(AGSZC)"; // ← 你自己設定的密碼（可改）
+
+      if (input === correct) {
+        document.getElementById("password-gate").style.display = "none";
+        document.getElementById("secret-content").style.display = "block";
+      } else {
+        document.getElementById("error-msg").style.display = "block";
+      }
+    }
+
+    // 載入 navbar（如果有）
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  </script>
+
+  <script>
+    function showPreview(content) {
+      document.getElementById('preview-content').innerText = content;
+      document.getElementById('preview').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+    }
+
+    function closePreview() {
+      document.getElementById('preview').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    }
+  </script>
+
+<script>
+  function navigateTo(page, event) {
+    if (event) event.preventDefault();
+
+    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
+    const htmlPath = page.replace(/^\/+/, '');
+
+    history.pushState({}, "", cleanUrl);
+
+    fetch(htmlPath)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + htmlPath);
+        return res.text();
+      })
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        console.error("載入失敗", htmlPath);
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
+      });
+  }
+
+  function getHtmlPathFromUrl(urlPath) {
+    const trimmed = urlPath.replace(/^\/+/, '').replace(/\/$/, '');
+    return trimmed === '' ? 'iframe.html' : trimmed + '.html';
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const page = getHtmlPathFromUrl(location.pathname);
+    navigateTo(page);
+  });
+
+  window.addEventListener("popstate", () => {
+    const page = getHtmlPathFromUrl(location.pathname);
+
+    fetch(page)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + page);
+        return res.text();
+      })
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        console.error("載入失敗", page);
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
+      });
+  });
+</script>
+
+	
+	<script>
+  function loadArticle(filename) {
+    fetch(filename)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('preview-content').innerHTML = html;
+        document.getElementById('preview').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+      });
+  }
+</script>
+	<script>
+    fetch("../navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  </script>
+</body>
+</html>
