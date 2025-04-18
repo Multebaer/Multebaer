@@ -57,11 +57,17 @@ table {
   height: 100vh;
   background-color: #fff;
   box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+		transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
   padding: 20px;
   display: none;
   flex-direction: column;
   overflow-y: auto; /* ⬅️ 加這行，讓內容可以滾動 */
-  z-index: 1000;
+  z-index: 10000;
+}
+
+.preview-panel.active {
+  transform: translateX(0);
 }
 
 /*導覽列*/
@@ -433,4 +439,43 @@ td img {
 .password {
 	margin-top: -1.1em;
 	font-size: 14px;
+}
+
+hr {
+	border: none;
+	height: 1px;
+	background-color:#C3C3C3;
+}
+
+/*分頁css*/
+.novel-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 12px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  color: #444;
+  align-items: start;
+}
+
+.novel-meta div {
+  display: contents;
+}
+
+.meta-label {
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
+
+.novel-content {
+  line-height: 1.8;
+  font-size: 1em;
+  color: #333;
+}
+
+.novel-content p {
+  margin-bottom: 1em;
+  text-align: justify;
 }

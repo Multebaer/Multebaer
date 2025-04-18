@@ -1,0 +1,68 @@
+body {
+	font-family: 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	line-height: 1.6;
+}
+
+input,
+textarea {
+  font-family: "微軟正黑體", sans-serif;
+}
+
+
+/*表格*/
+table {
+  table-layout: fixed; /* ✅ 固定欄寬 */
+  width: 100%;
+}
+.custom-table th:nth-child(1),
+.custom-table td:nth-child(1) {
+  width: 30%;
+}
+
+.custom-table th:nth-child(2),
+.custom-table td:nth-child(2) {
+  width: 20%;
+}
+
+.custom-table th:nth-child(3),
+.custom-table td:nth-child(3) {
+	width: 20%;}
+	.custom-table th:nth-child(4),
+		.custom-table td:nth-child(4) {
+  width: 35%;
+}
+
+/*分頁css*/
+.novel-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 12px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  color: #444;
+  align-items: start;
+}
+
+.novel-meta div {
+  display: contents;
+}
+
+.meta-label {
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
+
+.novel-content {
+  line-height: 1.8;
+  font-size: 1em;
+  color: #333;
+}
+
+.novel-content p {
+  margin-bottom: 1em;
+  text-align: justify;
+}
