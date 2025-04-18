@@ -263,6 +263,7 @@ header { /*導覽列設計*/
   opacity: 0.6;
 }
 
+
 /*導覽列*/
 header { /*導覽列設計*/
   background-color: #fff;
@@ -381,12 +382,25 @@ table {
 .custom-table td:nth-child(1) {
   width: 20%;
 }
-
+.custom-table td:nth-child(1)::before {
+		content: "☰";
+  margin-right: 0.8em;
+  opacity: 0.6;
+}
+.custom-table th:nth-child(1)::before {
+		content: "Aa";
+  margin-right: 0.5em;
+  opacity: 0.6;
+}
 .custom-table th:nth-child(2),
 .custom-table td:nth-child(2) {
   width: 15%;
 }
-
+.custom-table th:nth-child(2)::before {
+		content: "☱";
+  margin-right: 0.5em;
+  opacity: 0.6;
+}
 .custom-table th:nth-child(3),
 .custom-table td:nth-child(3) {
 	width: 15%;}
@@ -395,7 +409,14 @@ table {
   width: 50%;
 }
 .custom-table td{
+	padding-left:1em;
 	font-size: 15px;
+	color:black;
+}
+.custom-table th{
+	font-weight: normal;
+	text-align: left;
+	padding-left:0.8em;
 }
 
 /*角色設定*/
@@ -580,8 +601,8 @@ hr {
 
 
 .meta-label.emoji::before {
-  content: "☰　";
-  margin-right: 6px;
+  content: "☰";
+  margin-right: 1em;
   opacity: 0.6;
 }
 .novel-content {

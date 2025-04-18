@@ -63,8 +63,8 @@ hr {
 	font-size:14px;
 }
 .meta-label.emoji::before {
-  content: "☰　";
-  margin-right: 6px;
+  content: "☰";
+  margin-right: 2em;
   opacity: 0.6;
 }
 .meta-title{
