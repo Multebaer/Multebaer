@@ -112,7 +112,7 @@ header { /*導覽列設計*/
   position: fixed;
   top: 0;
   right: 0;
-  width: 40%;
+  width: 60%;
   height: 100vh;
   background: rgba(255, 255, 255, 1);
   overflow-y: auto;
@@ -204,6 +204,7 @@ header { /*導覽列設計*/
   box-sizing: border-box;
 }
 .open-new-btn {
+	position: absolute;
   cursor: pointer;
   font-size: 18px;
   padding: 4px 8px;

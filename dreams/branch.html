@@ -150,32 +150,32 @@ function loadArticle(filename) {
 	</script>
 	
 	<!--文章開新視窗-->
-	<script>
-		let currentArticleFile = null;
+	<script>let currentArticleFile = null;
 
 function loadArticle(filename) {
-  currentArticleFile = filename; // ✅ 記錄目前文章路徑
+  currentArticleFile = filename;
 
   fetch(filename)
     .then(res => res.text())
     .then(html => {
       document.getElementById('preview-content').innerHTML = html;
-      document.getElementById('preview').classList.add('active');
-      document.getElementById('overlay').classList.add('active');
-      if (wasFullscreen) document.getElementById('preview').classList.add('fullscreen');
+      const panel = document.getElementById('preview');
+      panel.classList.add('active');
+      document.getElementById('overlay')?.classList.add('active');
+      if (wasFullscreen) panel.classList.add('fullscreen');
       document.body.style.overflow = 'hidden';
     });
 }
 
 function openInNewTab() {
   if (currentArticleFile) {
-    window.open(currentArticleFile, '_blank');
+    const url = window.location.origin + '/' + currentArticleFile;
+    window.open(url, '_blank');
   } else {
     alert("目前沒有載入任何文章！");
   }
 }
-
-	</script>
+</script>
 	<!--側邊彈出動畫
 	<script>
 		function showPreview(content) {
