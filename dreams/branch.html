@@ -111,6 +111,7 @@
 	  
     <div class="close-btn" onclick="closePreview()">≫</div>
     <div class="fullscreen-btn" onclick="toggleFullscreen()">⛶</div>
+  <div class="open-new-btn" onclick="openInNewTab()">🔗</div>
   </div>
   <div id="preview-content"></div>
 </div></div>
@@ -119,12 +120,9 @@
 	
 	<!--放大動畫+側邊彈出動畫-->
 		<script>
-			let wasFullscreen = false;
-
-function toggleFullscreen() {
+			function toggleFullscreen() {
   const panel = document.getElementById('preview');
   const fullscreen = panel.classList.toggle('fullscreen');
-  wasFullscreen = fullscreen; // ✅ 記住目前是否是全螢幕
   document.body.style.overflow = fullscreen ? 'hidden' : '';
 }
 
@@ -144,11 +142,37 @@ function loadArticle(filename) {
       document.getElementById('preview-content').innerHTML = html;
       panel.classList.add('active');
       document.getElementById('overlay').classList.add('active');
-      if (wasFullscreen) {
-        panel.classList.add('fullscreen'); // ✅ 如果上次是全螢幕，開啟時自動加上
-      }
+      
       document.body.style.overflow = 'hidden';
     });
+}
+
+	</script>
+	
+	<!--文章開新視窗-->
+	<script>
+		let currentArticleFile = null;
+
+function loadArticle(filename) {
+  currentArticleFile = filename; // ✅ 記錄目前文章路徑
+
+  fetch(filename)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('preview-content').innerHTML = html;
+      document.getElementById('preview').classList.add('active');
+      document.getElementById('overlay').classList.add('active');
+      if (wasFullscreen) document.getElementById('preview').classList.add('fullscreen');
+      document.body.style.overflow = 'hidden';
+    });
+}
+
+function openInNewTab() {
+  if (currentArticleFile) {
+    window.open(currentArticleFile, '_blank');
+  } else {
+    alert("目前沒有載入任何文章！");
+  }
 }
 
 	</script>

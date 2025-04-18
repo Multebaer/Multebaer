@@ -116,37 +116,55 @@
   <div id="overlay" class="overlay" onclick="closePreview()"></div>
 
   <div id="preview" class="preview-panel">
+	  <div class="preview-wrapper">
+  <div class="top-buttons">
+	  
     <div class="close-btn" onclick="closePreview()">≫</div>
-    <div id="preview-content"></div>
+    <div class="fullscreen-btn" onclick="toggleFullscreen()">⛶</div>
   </div>
-		</div>
+  <div id="preview-content"></div>
+</div></div>
 		</div>
 		</main>
-		
-	  <script src="validate.js"></script>
+	
+	<!--放大動畫+側邊彈出動畫-->
+		<script>
+			let wasFullscreen = false;
 
+function toggleFullscreen() {
+  const panel = document.getElementById('preview');
+  const fullscreen = panel.classList.toggle('fullscreen');
+  wasFullscreen = fullscreen; // ✅ 記住目前是否是全螢幕
+  document.body.style.overflow = fullscreen ? 'hidden' : '';
+}
 
-		 <script>
-    fetch("/navbar.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
-      });
-  </script>
+function closePreview() {
+  const panel = document.getElementById('preview');
+  panel.classList.remove('active');
+  panel.classList.remove('fullscreen');
+  document.getElementById('overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
 
-  <script>
-    function showPreview(content) {
-      document.getElementById('preview-content').innerText = content;
-      document.getElementById('preview').classList.add('active');
+function loadArticle(filename) {
+  fetch(filename)
+    .then(res => res.text())
+    .then(html => {
+      const panel = document.getElementById('preview');
+      document.getElementById('preview-content').innerHTML = html;
+      panel.classList.add('active');
       document.getElementById('overlay').classList.add('active');
-    }
+      if (wasFullscreen) {
+        panel.classList.add('fullscreen'); // ✅ 如果上次是全螢幕，開啟時自動加上
+      }
+      document.body.style.overflow = 'hidden';
+    });
+}
 
-    function closePreview() {
-      document.getElementById('preview').classList.remove('active');
-      document.getElementById('overlay').classList.remove('active');
-    }
-  </script>
+	</script>
 
+	<!--passwordjs-->
+	<script src="validate.js"></script>
 <script>
   function navigateTo(page, event) {
     if (event) event.preventDefault();

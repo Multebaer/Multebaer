@@ -112,7 +112,7 @@ header { /*導覽列設計*/
   position: fixed;
   top: 0;
   right: 0;
-  width: 60%;
+  width: 40%;
   height: 100vh;
   background: rgba(255, 255, 255, 1);
   overflow-y: auto;
@@ -181,8 +181,7 @@ header { /*導覽列設計*/
   cursor: pointer;
   font-size: 18px;
   padding: 4px 8px;
-  border-radius: 6px;
-	
+  border-radius: 6px;	
 		margin-left:50px;
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -204,16 +203,35 @@ header { /*導覽列設計*/
   padding: 20px;
   box-sizing: border-box;
 }
-@media (max-width: 768px) {	
+.open-new-btn {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: 6px;	
+		margin-left:100px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: background 0.2s ease;
+}
+.open-new-btn:hover {
+  background: #eee;
+}
+
+
+@media (max-width: 768px) {
 	.preview-panel{
 		width:100%;
 	}
-	.fullscreen-btn {
+	.fullscreen-btn{
+		display:none;
+	}
+	.open-new-btn {
     display: none;
   }
 	.close-btn {
 		left:10px;
 	}
+	
 }
 
     .overlay {
