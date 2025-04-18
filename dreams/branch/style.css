@@ -70,7 +70,7 @@ table {
 }
 
 @media (max-width: 480px) {
-	.novel-content p{
+	.novel-content {
 		font-size: 2em;
 	}
 }
