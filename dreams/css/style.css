@@ -211,6 +211,9 @@ header { /*導覽列設計*/
 	.fullscreen-btn {
     display: none;
   }
+	.close-btn {
+		left:10px;
+	}
 }
 
     .overlay {
