@@ -380,6 +380,9 @@ header { /*導覽列設計*/
 .notion-fold .fold-body {
   padding: 0 1.15em;
 }
+.notion-fold .fold-body p{
+		line-height: 16px;
+}
 
 /* ✅ 展開時：整塊有底色（包含 summary） */
 .notion-fold[open] {

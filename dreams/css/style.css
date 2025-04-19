@@ -42,12 +42,18 @@ body.iframe-body {
 table {
       width: 100%;
       border-collapse: collapse;
+	min-width: 600px;/*表格擴展橫向移動*/
     }
 
     td, th {
       border: 1px solid #ccc;
       padding: 5px;
     }
+/*手機版表格*/
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
 /*導覽列*/
 header { /*導覽列設計*/
