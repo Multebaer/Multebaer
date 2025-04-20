@@ -3,7 +3,7 @@
 <header>
   <nav class="navbar">
     <ul>
-      <li><a href="/iframe">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="/art-portfolio">Gallery</a></li>
       <li><a href="/bjd-portfolio">BJD相關</a></li>
       <li><a href="/dreams">夢向相關</a></li>
@@ -15,26 +15,33 @@
 <script>
 	
   function navigateTo(page, event) {
-    if (event) event.preventDefault(); 
+  if (event) event.preventDefault();
 
-    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
-    const htmlPath = '/' + page.replace(/^\/+/, '');
+  const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
+  const htmlPath = '/' + page.replace(/^\/+/, '');
 
-    history.pushState({}, "", cleanUrl);
+  history.pushState({}, "", cleanUrl);
 
-    fetch(htmlPath)
-      .then(res => {
-        if (!res.ok) throw new Error("Page not found: " + htmlPath);
-        return res.text();
-      })
-      .then(html => {
-        document.getElementById("content-container").innerHTML = html;
-      })
-      .catch(err => {
-        console.error("載入失敗", htmlPath);
-        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
-      });
-  }
+  const container = document.getElementById("content-container");
+  container.innerHTML = ""; // 🔥 清空舊內容，防止首頁插入殘體 HTML 結構
+
+  fetch(htmlPath)
+    .then(res => {
+      if (!res.ok) throw new Error("Page not found: " + htmlPath);
+      return res.text();
+    })
+    .then(html => {
+      container.innerHTML = html;
+
+      // ✅ 如果是 art-portfolio 頁面，主動重新執行瀑布流排版
+      if (page.includes("art-portfolio")) {
+        const tryCascade = () => {
+          const images = document.querySelectorAll('.photo img');
+          const allLoaded = Array.from(images).every(img => img.complete && img.naturalHeight > 0);
+          if (allLoaded) {
+            setTimeout(() => {
+              if
+
  
 window.addEventListener("DOMContentLoaded", () => {
   const path = location.pathname;
