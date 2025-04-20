@@ -125,27 +125,18 @@
 
 <script>
   window.addEventListener("DOMContentLoaded", function () {
-    const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
     const agreed = localStorage.getItem("agreedToEnter");
-    const modal = document.getElementById("entrance-modal");
 
-    if (fromInternal && agreed === "yes") {
-      modal.style.display = 'none';
-
-      setTimeout(() => {
-        sessionStorage.removeItem("fromInternal");
-      }, 1000);
+    if (!agreed) {
+      document.getElementById('entrance-modal').style.display = 'flex';
     } else {
-      modal.style.display = 'flex';
-    }
+      document.getElementById('entrance-modal').style.display = 'none';
 
-    const btn = document.getElementById('enter-site');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        modal.style.display = 'none';
-        localStorage.setItem("agreedToEnter", "yes");
-      });
-    }
+    document.getElementById('enter-site').addEventListener('click', function () {
+      document.getElementById('entrance-modal').style.display = 'none';
+      localStorage.setItem("agreedToEnter", "yes");
+
+    });
   });
 </script>
 
