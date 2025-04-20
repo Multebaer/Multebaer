@@ -1,12 +1,13 @@
 <!doctype html>
+
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心の星｜Multebaer</title>
-  <link rel="stylesheet" href="backup/css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="iframe-body main-page">
+<body class="main-page">
 	  <!-- 🔒 燈箱 -->
   <div id="entrance-modal" class="modal">
     <div class="modal-content">
@@ -17,7 +18,7 @@
     </div>
   </div>
 	
-	<audio id="bgm" src="backup/audio/來自遠方的風.mp3" loop></audio>
+	<audio id="bgm" src="audio/來自遠方的風.mp3" loop></audio>
 	
 	<script>
   window.addEventListener("DOMContentLoaded", function () {
@@ -111,28 +112,46 @@
 <script>
   // ✅ 頁面切換（動態載入）
   function navigateTo(page, event) {
-    if (event) event.preventDefault();
+  if (event) event.preventDefault();
 
-    const isHome = page === "iframe.html";
-    const cleanUrl = isHome ? "/" : "/" + page.replace(/\.html$/, '').replace(/^\/+/, '');
-    const htmlPath = "/" + page.replace(/^\/+/, '');
+  const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
+  const htmlPath = '/' + page.replace(/^\/+/, '');
 
-    if (location.pathname === cleanUrl) return;
+  history.pushState({}, "", cleanUrl);
 
-    history.pushState({}, "", cleanUrl);
+  const container = document.getElementById("content-container");
+  container.innerHTML = ""; // 🔥 清空舊內容，防止首頁插入殘體 HTML 結構
 
-    fetch(htmlPath)
-      .then(res => {
-        if (!res.ok) throw new Error("Page not found: " + htmlPath);
-        return res.text();
-      })
-      .then(html => {
-        document.getElementById("content-container").innerHTML = html;
-      })
-      .catch(err => {
-        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
-      });
-  }
+  fetch(htmlPath)
+    .then(res => {
+      if (!res.ok) throw new Error("Page not found: " + htmlPath);
+      return res.text();
+    })
+    .then(html => {
+      container.innerHTML = html;
+
+      // ✅ 如果是 art-portfolio 頁面，主動重新執行瀑布流排版
+      if (page.includes("art-portfolio")) {
+        const tryCascade = () => {
+          const images = document.querySelectorAll('.photo img');
+          const allLoaded = Array.from(images).every(img => img.complete && img.naturalHeight > 0);
+          if (allLoaded) {
+            setTimeout(() => {
+              if (typeof cascadeDisplay === 'function') cascadeDisplay();
+            }, 100);
+          } else {
+            setTimeout(tryCascade, 100);
+          }
+        };
+        tryCascade();
+      }
+    })
+    .catch(err => {
+      console.error("載入失敗", htmlPath);
+      container.innerHTML = "<h2>頁面載入失敗</h2>";
+    });
+}
+
 
   // ✅ 確保 DOM 完全就緒再載入首頁內容
   window.addEventListener("load", () => {
