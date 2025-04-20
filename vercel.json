@@ -4,7 +4,7 @@
       { "source": "/bjd-portfolio", "destination": "/bjd-portfolio.html" },
       { "source": "/dreams", "destination": "/dreams.html" },
       { "source": "/contact", "destination": "/contact.html" },
-      { "source": "/", "destination": "/iframe.html" },
+      { "source": "/", "destination": "/index.html" },
       { "source": "/dreams/charater-setting", "destination": "/dreams/charater-setting.html" },
       { "source": "/dreams/branch", "destination": "/dreams/branch.html" },
       { "source": "/dreams/main-line", "destination": "/dreams/main-line.html" },

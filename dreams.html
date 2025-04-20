@@ -66,64 +66,14 @@
 </script>
 -->
 	
-	 <script>
+	 	<!--navbar-->
+<script>
     fetch("/navbar.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("navbar-container").innerHTML = html;
       });
   </script>
-	
-	<script>
-  function navigateTo(page, event) {
-    if (event) event.preventDefault();
-
-    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
-    const htmlPath = page.replace(/^\/+/, '');
-
-    history.pushState({}, "", cleanUrl);
-
-    fetch(htmlPath)
-      .then(res => {
-        if (!res.ok) throw new Error("Page not found: " + htmlPath);
-        return res.text();
-      })
-      .then(html => {
-        document.getElementById("content-container").innerHTML = html;
-      })
-      .catch(err => {
-        console.error("載入失敗", htmlPath);
-        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
-      });
-  }
-
-  function getHtmlPathFromUrl(urlPath) {
-    const trimmed = urlPath.replace(/^\/+/, '').replace(/\/$/, '');
-    return trimmed === '' ? 'iframe.html' : trimmed + '.html';
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const page = getHtmlPathFromUrl(location.pathname);
-    navigateTo(page);
-  });
-
-  window.addEventListener("popstate", () => {
-    const page = getHtmlPathFromUrl(location.pathname);
-
-    fetch(page)
-      .then(res => {
-        if (!res.ok) throw new Error("Page not found: " + page);
-        return res.text();
-      })
-      .then(html => {
-        document.getElementById("content-container").innerHTML = html;
-      })
-      .catch(err => {
-        console.error("載入失敗", page);
-        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
-      });
-  });
-</script>
 
 </body>
 </html>
