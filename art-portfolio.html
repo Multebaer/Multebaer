@@ -16,8 +16,7 @@
 	<div class="gallery-box">
   <!-- 圖片瀑布流 -->
 	    <div id="photos__container">
-      <div class="photo">
-    <img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)"></div>
@@ -26,8 +25,7 @@
     <div class="photo"><img src="/images/Akiko001.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="photo"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)">
-  </div>
+    <div class="photo"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)"></div>
 	</div>
 		</div>
 <!-- 點圖放大（lightbox） -->
@@ -87,91 +85,6 @@ lightbox.addEventListener('click', e => {
 })
 
   </script>
-
-<script>
-const gap = 14
-const photosContainer = document.getElementById('photos__container')
-const photos = document.getElementsByClassName('photo')
-
-// 核心排列邏輯
-function cascadeDisplay() {
-  const photosContainerWidth = photosContainer.offsetWidth
-  const photoWidth = photos[0].offsetWidth
-  const columnsCount = Math.floor(photosContainerWidth / (photoWidth + gap))
-  const firstRowHeights = []
-
-  for (let i = 0; i < photos.length; i++) {
-    const photo = photos[i]
-    if (i < columnsCount) {
-      photo.style.top = '0px'
-      photo.style.left = (photoWidth + gap) * i + 'px'
-      firstRowHeights[i] = photo.offsetHeight
-    } else {
-      const minHeight = Math.min(...firstRowHeights)
-      const index = firstRowHeights.indexOf(minHeight)
-      photo.style.top = (minHeight + gap) + 'px'
-      photo.style.left = photos[index].offsetLeft + 'px'
-      firstRowHeights[index] += photo.offsetHeight + gap
-    }
-  }
-}
-
-// 🧠 等待圖片 + 高度渲染穩定
-function waitForImagesAndHeights(callback, retry = 0) {
-  const images = document.querySelectorAll('.photo img')
-  const total = images.length
-  let loaded = 0
-
-  const allReady = () =>
-    Array.from(images).every(img =>
-      img.complete && img.naturalHeight > 0 && img.offsetHeight > 10
-    )
-
-  const checkAndRun = () => {
-    if (allReady()) {
-      callback()
-    } else if (retry < 10) {
-      // 每 200ms 重試一次，最多 10 次（總等待 2 秒）
-      setTimeout(() => waitForImagesAndHeights(callback, retry + 1), 200)
-    } else {
-      // 就算再不行，也強行排版一次
-      callback()
-    }
-  }
-
-  images.forEach(img => {
-    if (img.complete && img.naturalHeight > 0) {
-      loaded++
-    } else {
-      img.onload = () => {
-        loaded++
-        if (loaded === total) checkAndRun()
-      }
-      img.onerror = () => {
-        loaded++
-        if (loaded === total) checkAndRun()
-      }
-    }
-  })
-
-  if (loaded === total) {
-    checkAndRun()
-  }
-}
-
-// 首次畫面載入
-document.addEventListener("DOMContentLoaded", () => {
-  waitForImagesAndHeights(() => {
-    cascadeDisplay()
-    setTimeout(cascadeDisplay, 500) // 最後保底補一次
-  })
-})
-
-// 視窗尺寸變動
-window.addEventListener("resize", () => {
-  setTimeout(cascadeDisplay, 200)
-})
-</script>
 
 	
 <script>const gap = 14
