@@ -125,29 +125,30 @@
 
 <script>
   window.addEventListener("DOMContentLoaded", function () {
+    const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
+    const agreed = localStorage.getItem("agreedToEnter");
+    const modal = document.getElementById("entrance-modal");
 
-    setTimeout(() => {
-      const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
-      const agreed = localStorage.getItem("agreedToEnter");
-      const modal = document.getElementById("entrance-modal");
+    if (fromInternal && agreed === "yes") {
+      modal.style.display = 'none';
 
-      if (fromInternal && agreed === "yes") {
-        modal.style.display = 'none';
+      setTimeout(() => {
         sessionStorage.removeItem("fromInternal");
-      } else {
-        modal.style.display = 'flex';
-      }
+      }, 1000);
+    } else {
+      modal.style.display = 'flex';
+    }
 
-      const button = document.getElementById('enter-site');
-      if (button) {
-        button.addEventListener('click', function () {
-          modal.style.display = 'none';
-          localStorage.setItem("agreedToEnter", "yes");
-        });
-      }
-    }, 10); 
+    const btn = document.getElementById('enter-site');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        modal.style.display = 'none';
+        localStorage.setItem("agreedToEnter", "yes");
+      });
+    }
   });
 </script>
+
 
 
 
