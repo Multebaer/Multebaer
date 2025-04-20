@@ -121,17 +121,23 @@
   </script>
 	
 	<!--燈箱-->
+	<script>
+  function markInternalReturn(event) {
+    event.preventDefault();
+    sessionStorage.setItem("fromInternal", "yes");
+    window.location.href = "/";
+  }
+</script>
+
 <script>
   window.addEventListener("DOMContentLoaded", function () {
-    const url = new URL(window.location.href);
-    const fromInternal = url.searchParams.get("from") === "internal";
-
+    const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
     const agreed = localStorage.getItem("agreedToEnter");
-
-    const modal = document.getElementById('entrance-modal');
+    const modal = document.getElementById("entrance-modal");
 
     if (fromInternal && agreed === "yes") {
       modal.style.display = 'none';
+      sessionStorage.removeItem("fromInternal");
     } else {
       modal.style.display = 'flex';
     }
@@ -142,6 +148,7 @@
     });
   });
 </script>
+
 
 
 </body>
