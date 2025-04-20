@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>首頁｜心の星</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="entrance-modal" class="modal">
+    <div class="modal-content">
+      <h2>進站須知</h2>
+      <p>本網站包含成人創作內容，請確認您點擊該內容時已滿18歲並願意瀏覽。</p>
+      <p class="tight">本人不承包精神損失費。</p>
+      <button id="enter-site">我已閱並且同意</button>
+    </div>
+  </div>
+
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
+        <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
+        <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
+        <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
+        <li><a href="#" onclick="navigateTo('contact.html', event)">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content-container"></main>
+
+  <script>
+    function navigateTo(page, event) {
+      if (event) event.preventDefault();
+
+      const isHome = page === "iframe.html";
+      const cleanUrl = isHome ? "/" : "/" + page.replace(/\.html$/, '').replace(/^\/+/, '');
+      const htmlPath = "/" + page.replace(/^\/+/, '');
+
+      history.pushState({}, "", cleanUrl);
+
+      fetch(htmlPath)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("content-container").innerHTML = html;
+        });
+    }
+
+    function loadInitialPage() {
+      const agreed = localStorage.getItem("agreedToEnter");
+      const path = location.pathname;
+      const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+
+      if (!agreed) {
+        document.getElementById("entrance-modal").style.display = 'flex';
+        document.getElementById("enter-site").addEventListener('click', function () {
+          document.getElementById("entrance-modal").style.display = 'none';
+          localStorage.setItem("agreedToEnter", "yes");
+          navigateTo("iframe.html");
+        });
+      } else {
+        document.getElementById("entrance-modal").style.display = 'none';
+        navigateTo(page);
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", loadInitialPage);
+
+    window.addEventListener("popstate", () => {
+      const path = location.pathname;
+      const realPage = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+      fetch("/" + realPage)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById("content-container").innerHTML = html;
+        });
+    });
+  </script>
+</body>
+</html>

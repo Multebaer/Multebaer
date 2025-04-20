@@ -1,3 +1,17 @@
+<!doctype html>
+
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心の星｜Multebaer</title>
+  <link rel="stylesheet" href="css/style.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
+</head>
+<body class="iframe-body main-page">
 	<div class="background-overlay"></div>
   <!-- 首頁內容 -->
 	 <!-- ✅ Navbar 動態載入 -->
@@ -87,3 +101,82 @@
 		</div>
 	</div>
 		</main>
+	 <script>
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  </script>
+<!--
+<script>
+  window.parent.postMessage({
+    type: "setHeight",
+    height: document.body.scrollHeight
+  }, "*");
+	
+</script>
+-->
+	
+	<!-- iframe切分頁的代碼<script>
+  function reportHeight() {
+    window.parent.postMessage({
+      type: "setHeight",
+      height: document.body.scrollHeight
+    }, "*");
+  }
+
+  // 初次載入時通報一次高度
+  window.addEventListener("load", reportHeight);
+
+  // 監聽所有 <details> 元素的開關，重新通報高度
+  document.addEventListener("DOMContentLoaded", function () {
+    const detailsList = document.querySelectorAll("details");
+    detailsList.forEach(detail => {
+      detail.addEventListener("toggle", reportHeight);
+    });
+  });
+</script>-->
+	
+	<script>
+	
+  function navigateTo(page, event) {
+    if (event) event.preventDefault(); 
+
+    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
+    const htmlPath = '/' + page.replace(/^\/+/, '');
+
+    history.pushState({}, "", cleanUrl);
+
+    fetch(htmlPath)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + htmlPath);
+        return res.text();
+      })
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        console.error("載入失敗", htmlPath);
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
+      });
+  }
+ 
+window.addEventListener("DOMContentLoaded", () => {
+  const path = location.pathname;
+  const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+  navigateTo(page);
+});
+  window.addEventListener("popstate", () => {
+    const path = location.pathname;
+    const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+
+    fetch("/" + realPath)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      });
+  });
+</script>
+</body>
+</html>
