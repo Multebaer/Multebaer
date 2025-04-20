@@ -14,24 +14,22 @@
 <body class="iframe-body main-page">
 	<div class="background-overlay"></div>
 	
-  <!-- 圖片方格 -->
-	<div class="gallery-container">
-	 <div class="waterfall">
-		 <div class="gallery">
+  <!-- 圖片瀑布流 -->
+	    <div id="photos__container">
+      <div class="photo">
     <img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Alice001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Gogol001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Akiko001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)">
+    <div class="photo"><img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Alice001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Gogol001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Akiko001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)">
   </div>
 	</div>
-</div>
-  <!-- 點圖放大（lightbox） -->
+<!-- 點圖放大（lightbox） -->
   <div id="lightbox" class="lightbox" onclick="hideLightbox()">
     <img id="lightbox-img" src="" alt="">
   </div>
@@ -66,26 +64,50 @@
     }
   </script>
 
-<script>
-	const grid = document.querySelector(".gallery-container");
-const style = window.getComputedStyle(grid);
-const allItems = document.querySelectorAll(".waterfall");
+<script>const gap = 14
+const photosContainer= document.getElementById('photos__container')
+const photos = document.getElementsByClassName('photo')
 
-const resizeGridItem = (item) => {
-    rowHeight = parseInt(style.getPropertyValue("grid-auto-rows"));
-    rowGap = parseInt(style.getPropertyValue("grid-row-gap"));
-    rowSpan = Math.ceil((item.querySelector(".gallery").getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-    item.style.gridRowEnd = `span ${rowSpan}`;
+function cascadeDisplay() {
+  const photosContainerWidth = photosContainer.offsetWidth
+  const photoWidth = photos[0].offsetWidth
+  // 計算一列最多有幾欄
+  const columnsCount = parseInt((photosContainerWidth) / ( photoWidth + gap ))
+  const fistRowPhotosHeightArray = []
+  // 進行照片排序
+  for (let i = 0; i < photos.length; i++) {
+    // 放上第一列的照片
+    if (i < columnsCount) {
+      photos[i].style.top = 0
+      photos[i].style.left = (photoWidth + gap) * i + 'px'
+      // 紀錄第一列的照片高
+      fistRowPhotosHeightArray.push(photos[i].offsetHeight)
+    } else {
+      // 放上第二列開始的照片
+      // 找出第一列的最小高度
+      let minHeight = Math.min(...fistRowPhotosHeightArray)
+      // 紀錄最小高度的index，以取得對應到第一列的位置，來決定left要移動多少
+      let index = fistRowPhotosHeightArray.indexOf(minHeight)
+      // 調整接續的photo位置，放到目前最小高度的地方
+      photos[i].style.top = minHeight + gap + 'px'
+      // 取得對應到第一列photo的left位置
+      photos[i].style.left = photos[index].offsetLeft + 'px'
+      // 最後!!再把原本儲存在陣列裡面為最小高度的值，更新上最新的高度(原本的高度+新的高度+間隔)
+      fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
+    }
+  }
+
 }
 
-const resizeAllGridItems = () => {
-    allItems.forEach(ele => {
-        resizeGridItem(ele);
-    });
+// 畫面一進來
+window.onload = function() {
+  cascadeDisplay()
 }
 
-window.onload = resizeAllGridItems();
-window.addEventListener("resize", resizeAllGridItems);
+// 畫面寬度有變動
+window.onresize = function() {
+  cascadeDisplay()
+}
 	</script>
 	
 	<!--navbar-->
