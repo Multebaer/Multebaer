@@ -94,7 +94,7 @@ const gap = 14
 const photosContainer = document.getElementById('photos__container')
 const photos = document.getElementsByClassName('photo')
 
-// 核心瀑布流排版函數
+// 瀑布流排列邏輯
 function cascadeDisplay() {
   const photosContainerWidth = photosContainer.offsetWidth
   const photoWidth = photos[0].offsetWidth
@@ -117,47 +117,63 @@ function cascadeDisplay() {
   }
 }
 
-// 等圖片真的載入完
-function waitUntilAllImagesReady(callback) {
+// 等所有圖片真的顯示完畢（強化版）
+function waitUntilAllImagesReallyReady(callback) {
   const images = document.querySelectorAll('.photo img')
-  let total = images.length
+  const total = images.length
   let loaded = 0
 
-  if (total === 0) {
-    callback()
-    return
+  const checkAll = () => {
+    const allReady = Array.from(images).every(img =>
+      img.complete &&
+      img.naturalHeight > 0 &&
+      img.offsetHeight > 0
+    )
+    if (allReady) {
+      callback()
+    } else {
+      setTimeout(checkAll, 100)
+    }
   }
 
   images.forEach(img => {
-    const check = () => {
+    img.onload = () => {
       loaded++
       if (loaded === total) {
-        setTimeout(callback, 100) // 等圖片 render 完再執行
+        setTimeout(checkAll, 100)
+      }
+    }
+    img.onerror = () => {
+      loaded++
+      if (loaded === total) {
+        setTimeout(checkAll, 100)
       }
     }
 
-    if (img.complete && img.naturalHeight !== 0) {
-      check()
-    } else {
-      img.onload = check
-      img.onerror = check
+    if (img.complete && img.naturalHeight > 0) {
+      loaded++
     }
   })
+
+  if (loaded === total) {
+    setTimeout(checkAll, 100)
+  }
 }
 
-// 畫面初次進入
+// 首次進入畫面
 document.addEventListener("DOMContentLoaded", () => {
-  waitUntilAllImagesReady(cascadeDisplay)
-
-  // 以防萬一再補一槍排版（Safari 保底用）
-  setTimeout(cascadeDisplay, 1500)
+  waitUntilAllImagesReallyReady(() => {
+    cascadeDisplay()
+    setTimeout(cascadeDisplay, 500) // Safari 保底補一次
+  })
 })
 
-// 視窗變動時重新排列
+// 視窗尺寸變動時
 window.addEventListener("resize", () => {
   setTimeout(cascadeDisplay, 200)
 })
 </script>
+
 
 	
 	<!--navbar-->
