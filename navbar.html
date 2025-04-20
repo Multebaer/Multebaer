@@ -3,8 +3,7 @@
 <header>
   <nav class="navbar">
     <ul>
-      <li><a href="/">Home</a>
-</li>
+      <li><a href="/">Home</a></li>
       <li><a href="/art-portfolio">Gallery</a></li>
       <li><a href="/bjd-portfolio">BJD相關</a></li>
       <li><a href="/dreams">夢向相關</a></li>
@@ -14,9 +13,8 @@
 </header>
 
 <script>
-	
   function navigateTo(page, event) {
-    if (event) event.preventDefault(); 
+    if (event) event.preventDefault();
 
     const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
     const htmlPath = '/' + page.replace(/^\/+/, '');
@@ -30,18 +28,39 @@
       })
       .then(html => {
         document.getElementById("content-container").innerHTML = html;
+
+        // ✅ 如果是瀑布流頁面，等圖片出現再執行 cascadeDisplay()
+        if (page === "art-portfolio" || page === "art-portfolio.html") {
+          const checkImages = () => {
+            const images = document.querySelectorAll(".photo img");
+            const allLoaded = Array.from(images).every(img => img.complete && img.naturalHeight > 0);
+            if (allLoaded) {
+              setTimeout(() => {
+                if (typeof cascadeDisplay === "function") {
+                  cascadeDisplay();
+                }
+              }, 100);
+            } else {
+              setTimeout(checkImages, 100);
+            }
+          };
+          checkImages();
+        }
       })
       .catch(err => {
         console.error("載入失敗", htmlPath);
         document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
       });
   }
- 
-window.addEventListener("DOMContentLoaded", () => {
-  const path = location.pathname;
-  const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-  navigateTo(page);
-});
+
+  // ✅ 首次載入頁面（含首頁自動顯示 iframe.html）
+  window.addEventListener("DOMContentLoaded", () => {
+    const path = location.pathname;
+    const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+    navigateTo(page);
+  });
+
+  // ✅ 支援瀏覽器前進/後退按鈕
   window.addEventListener("popstate", () => {
     const path = location.pathname;
     const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
@@ -50,6 +69,24 @@ window.addEventListener("DOMContentLoaded", () => {
       .then(res => res.text())
       .then(html => {
         document.getElementById("content-container").innerHTML = html;
+
+        // 再補一次瀑布流處理
+        if (realPath === "art-portfolio.html") {
+          const checkImages = () => {
+            const images = document.querySelectorAll(".photo img");
+            const allLoaded = Array.from(images).every(img => img.complete && img.naturalHeight > 0);
+            if (allLoaded) {
+              setTimeout(() => {
+                if (typeof cascadeDisplay === "function") {
+                  cascadeDisplay();
+                }
+              }, 100);
+            } else {
+              setTimeout(checkImages, 100);
+            }
+          };
+          checkImages();
+        }
       });
   });
 </script>
