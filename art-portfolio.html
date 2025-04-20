@@ -123,9 +123,9 @@ function cascadeDisplay() {
 }
 
 // 畫面一進來
-window.onload = function() {
-  cascadeDisplay()
-}
+window.addEventListener('load', () => {
+  setTimeout(cascadeDisplay, 300)
+})
 
 // 畫面寬度有變動
 window.onresize = function() {
