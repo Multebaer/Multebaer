@@ -42,9 +42,9 @@ body.iframe-body {
 table {
       width: 100%;
       border-collapse: collapse;
-	min-width: 600px;/*表格擴展橫向移動*/
+  table-layout: fixed; /* ✅ 固定欄寬 */
+	color:#333;
     }
-
     td, th {
       border: 1px solid #ccc;
       padding: 5px;
@@ -378,11 +378,7 @@ header { /*導覽列設計*/
 }
 
 /*表格*/
-table {
-  table-layout: fixed; /* ✅ 固定欄寬 */
-  width: 100%;
-	color:#333;
-}
+
 
 .custom-table th:nth-child(1),
 .custom-table td:nth-child(1) {
@@ -424,6 +420,11 @@ table {
 	text-align: left;
 	padding-left:0.8em;
 }
+
+.custom-table {	
+	min-width: 800px;/*表格擴展橫向移動*/	
+}
+
 
 /*角色設定*/
 blockquote { /*引用*/
@@ -627,7 +628,13 @@ audio { /*音訊寬度設定*/
 	margin-bottom: 1em;
   box-sizing: border-box;
 }
+.only-desktop { display: block; }
+.only-mobile { display: none; }
 
-@media (max-width:480px) {
+@media (max-width: 768px) {
+  .only-desktop { display: none; }
+  .only-mobile { display: block; }
+		audio{
 	width:100%;
+}
 }
