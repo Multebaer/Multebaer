@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>瀑布流範例</title>
+  <style>
+  #photos__container {
+  position: relative;
+  width: 100%;
+}
+.photo {
+  width: 250px;
+  height: auto;
+  position: absolute;
+}
+.photo img {
+  width: 100%;
+  display: block;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 30%);
+}
+
+.gallery-box {
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+#lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox-content {
+  max-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox-img {
+  height: 70vh;
+  width: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10000;
+}
+.lightbox-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+}
+.lightbox-btn.left {
+  left: 30px;
+}
+.lightbox-btn.right {
+  right: 30px;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+  </style>
+</head>
+<body>
+<div class="gallery-box">
+  <!-- 圖片瀑布流 -->
+	    <div id="photos__container">
+    <div class="photo"><img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Alice001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Gogol001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Akiko001.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)"></div>
+    <div class="photo"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)"></div>
+	</div>
+		</div>
+<!-- 點圖放大（lightbox） -->
+	<div id="lightbox" style="display: none;">
+  <div class="lightbox-content">
+    <span class="lightbox-btn left" id="lightbox-prev">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="lightbox-btn right" id="lightbox-next">&#10095;</span>
+  </div>
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+</div>
+<script>
+<script>const gap = 14
+const photosContainer= document.getElementById('photos__container')
+const photos = document.getElementsByClassName('photo')
+
+function cascadeDisplay() {
+  const photosContainerWidth = photosContainer.offsetWidth
+  const photoWidth = photos[0].offsetWidth
+  // 計算一列最多有幾欄
+  const columnsCount = parseInt((photosContainerWidth) / ( photoWidth + gap ))
+  const fistRowPhotosHeightArray = []
+  // 進行照片排序
+  for (let i = 0; i < photos.length; i++) {
+    // 放上第一列的照片
+    if (i < columnsCount) {
+      photos[i].style.top = 0
+      photos[i].style.left = (photoWidth + gap) * i + 'px'
+      // 紀錄第一列的照片高
+      fistRowPhotosHeightArray.push(photos[i].offsetHeight)
+    } else {
+      // 放上第二列開始的照片
+      // 找出第一列的最小高度
+      let minHeight = Math.min(...fistRowPhotosHeightArray)
+      // 紀錄最小高度的index，以取得對應到第一列的位置，來決定left要移動多少
+      let index = fistRowPhotosHeightArray.indexOf(minHeight)
+      // 調整接續的photo位置，放到目前最小高度的地方
+      photos[i].style.top = minHeight + gap + 'px'
+      // 取得對應到第一列photo的left位置
+      photos[i].style.left = photos[index].offsetLeft + 'px'
+      // 最後!!再把原本儲存在陣列裡面為最小高度的值，更新上最新的高度(原本的高度+新的高度+間隔)
+      fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
+    }
+  }
+
+}
+
+// 畫面一進來
+window.onload = function() {
+  cascadeDisplay()
+}
+
+// 畫面寬度有變動
+window.onresize = function() {
+  cascadeDisplay()
+}
+</script>
+
+<script>let currentIndex = 0
+const lightbox = document.getElementById('lightbox')
+const lightboxImg = document.getElementById('lightbox-img')
+const lightboxClose = document.getElementById('lightbox-close')
+const lightboxPrev = document.getElementById('lightbox-prev')
+const lightboxNext = document.getElementById('lightbox-next')
+
+const photoImages = document.querySelectorAll('.photo img')
+
+function showLightbox(src) {
+  lightbox.style.display = 'flex'
+  lightboxImg.src = src
+  currentIndex = Array.from(photoImages).findIndex(img => img.src === src)
+}
+
+// 關閉燈箱
+lightboxClose.onclick = () => {
+  lightbox.style.display = 'none'
+}
+
+// 左右切換
+function showImageAt(index) {
+  if (index >= 0 && index < photoImages.length) {
+    lightboxImg.src = photoImages[index].src
+    currentIndex = index
+  }
+}
+
+lightboxPrev.onclick = () => showImageAt((currentIndex - 1 + photoImages.length) % photoImages.length)
+lightboxNext.onclick = () => showImageAt((currentIndex + 1) % photoImages.length)
+
+document.addEventListener('keydown', e => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'ArrowLeft') lightboxPrev.onclick()
+    if (e.key === 'ArrowRight') lightboxNext.onclick()
+    if (e.key === 'Escape') lightboxClose.onclick()
+  }
+})
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) {
+    lightbox.style.display = 'none'
+  }
+})
+
+  </script>
+</script>
+</body>
+</html>
