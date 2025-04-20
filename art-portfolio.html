@@ -175,89 +175,50 @@ window.addEventListener("resize", () => {
 </script>
 
 	
-<script>
-const gap = 14
-const photosContainer = document.getElementById('photos__container')
+<script>const gap = 14
+const photosContainer= document.getElementById('photos__container')
 const photos = document.getElementsByClassName('photo')
 
-// 核心排列邏輯
 function cascadeDisplay() {
   const photosContainerWidth = photosContainer.offsetWidth
   const photoWidth = photos[0].offsetWidth
-  const columnsCount = Math.floor(photosContainerWidth / (photoWidth + gap))
-  const firstRowHeights = []
-
+  // 計算一列最多有幾欄
+  const columnsCount = parseInt((photosContainerWidth) / ( photoWidth + gap ))
+  const fistRowPhotosHeightArray = []
+  // 進行照片排序
   for (let i = 0; i < photos.length; i++) {
-    const photo = photos[i]
+    // 放上第一列的照片
     if (i < columnsCount) {
-      photo.style.top = '0px'
-      photo.style.left = (photoWidth + gap) * i + 'px'
-      firstRowHeights[i] = photo.offsetHeight
+      photos[i].style.top = 0
+      photos[i].style.left = (photoWidth + gap) * i + 'px'
+      // 紀錄第一列的照片高
+      fistRowPhotosHeightArray.push(photos[i].offsetHeight)
     } else {
-      const minHeight = Math.min(...firstRowHeights)
-      const index = firstRowHeights.indexOf(minHeight)
-      photo.style.top = (minHeight + gap) + 'px'
-      photo.style.left = photos[index].offsetLeft + 'px'
-      firstRowHeights[index] += photo.offsetHeight + gap
+      // 放上第二列開始的照片
+      // 找出第一列的最小高度
+      let minHeight = Math.min(...fistRowPhotosHeightArray)
+      // 紀錄最小高度的index，以取得對應到第一列的位置，來決定left要移動多少
+      let index = fistRowPhotosHeightArray.indexOf(minHeight)
+      // 調整接續的photo位置，放到目前最小高度的地方
+      photos[i].style.top = minHeight + gap + 'px'
+      // 取得對應到第一列photo的left位置
+      photos[i].style.left = photos[index].offsetLeft + 'px'
+      // 最後!!再把原本儲存在陣列裡面為最小高度的值，更新上最新的高度(原本的高度+新的高度+間隔)
+      fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
     }
   }
+
 }
 
-// 🧠 等待圖片 + 高度渲染穩定
-function waitForImagesAndHeights(callback, retry = 0) {
-  const images = document.querySelectorAll('.photo img')
-  const total = images.length
-  let loaded = 0
-
-  const allReady = () =>
-    Array.from(images).every(img =>
-      img.complete && img.naturalHeight > 0 && img.offsetHeight > 10
-    )
-
-  const checkAndRun = () => {
-    if (allReady()) {
-      callback()
-    } else if (retry < 10) {
-      // 每 200ms 重試一次，最多 10 次（總等待 2 秒）
-      setTimeout(() => waitForImagesAndHeights(callback, retry + 1), 200)
-    } else {
-      // 就算再不行，也強行排版一次
-      callback()
-    }
-  }
-
-  images.forEach(img => {
-    if (img.complete && img.naturalHeight > 0) {
-      loaded++
-    } else {
-      img.onload = () => {
-        loaded++
-        if (loaded === total) checkAndRun()
-      }
-      img.onerror = () => {
-        loaded++
-        if (loaded === total) checkAndRun()
-      }
-    }
-  })
-
-  if (loaded === total) {
-    checkAndRun()
-  }
+// 畫面一進來
+window.onload = function() {
+  cascadeDisplay()
 }
 
-// 首次畫面載入
-document.addEventListener("DOMContentLoaded", () => {
-  waitForImagesAndHeights(() => {
-    cascadeDisplay()
-    setTimeout(cascadeDisplay, 500) // 最後保底補一次
-  })
-})
-
-// 視窗尺寸變動
-window.addEventListener("resize", () => {
-  setTimeout(cascadeDisplay, 200)
-})
+// 畫面寬度有變動
+window.onresize = function() {
+  cascadeDisplay()
+}
 </script>
 <script>
     fetch("/navbar.html")
