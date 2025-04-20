@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-	<link href="https://www.jqueryscript.net/demo/Responsive-Touch-enabled-jQuery-Image-Lightbox-Plugin/dist/simple-lightbox.min.css" rel="stylesheet" type="text/css">
 </head>
 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
@@ -37,52 +36,34 @@
   </div>
 	
 	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://www.jqueryscript.net/demo/Responsive-Touch-enabled-jQuery-Image-Lightbox-Plugin/dist/simple-lightbox.jquery.min.js"></script>
-<script>
-window.onload = function() {
-  create($("#zoomwall"));
-  function create(blocks){
-    resize(blocks.children().children());
-  }
-  function resize(blocks){
-    var row = [];
-    var top = -1;
-    for (var c = 0; c < blocks.length; c++) {
-      var block = blocks[c];
-      if (block) {
-        if (top == -1) {
-          top = block.offsetTop;
-        } else if (block.offsetTop != top) {
-          resizeRow(row, calcRowWidth(row));
-          row = [];
-          top = block.offsetTop;
-        }
-        row.push(block);
-      }
+    <script>
+    const swiper = new Swiper(".swiper", {
+  loop: true,
+  slidesPerView: 1,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  injectStyles: [
+    `
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      content: none !important;
     }
-    resizeRow(row, calcRowWidth(row));
-  }
-  function resizeRow(row, width){
-    if (row && row.length > 1) {
-      for (var i in row) {
-        row[i].style.width = (parseInt(window.getComputedStyle(row[i]).width, 10) / width * 100) + '%';
-        row[i].style.height = 'auto';
-      }
-    }
-  }
-  function calcRowWidth(row){
-    var width = 0;
-    for (var i in row) {
-      width += parseInt(window.getComputedStyle(row[i]).width, 10);
-    }
-    return width;
-  }
-};
-$(function(){
-  var gallery = $('.gallery a').simpleLightbox({navText:    ['&lsaquo;','&rsaquo;']});
+    `
+  ]
 });
-</script>
+
+
+    function showLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function hideLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+  </script>
 
 <script>const gap = 14
 const photosContainer= document.getElementById('photos__container')
