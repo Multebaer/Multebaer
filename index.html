@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>首頁｜心の星</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>心の星｜Multebaer</title>
+  <link rel="stylesheet" href="backup/css/style.css" />
 </head>
 <body class="iframe-body main-page">
 	  <!-- 🔒 燈箱 -->
@@ -16,7 +16,57 @@
       <button id="enter-site">我已閱並且同意</button>
     </div>
   </div>
+	
+	<audio id="bgm" src="backup/audio/來自遠方的風.mp3" loop></audio>
+	
+	<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const agreed = localStorage.getItem("agreedToEnter");
 
+    if (!agreed) {
+      document.getElementById('entrance-modal').style.display = 'flex';
+    } else {
+      document.getElementById('entrance-modal').style.display = 'none';
+
+      // ✅ 如果第一次點過，進站自動播音樂
+      const bgm = document.getElementById('bgm');
+      if (bgm && bgm.paused) {
+        bgm.play().catch(() => {});
+      }
+    }
+
+    document.getElementById('enter-site').addEventListener('click', function () {
+      document.getElementById('entrance-modal').style.display = 'none';
+      localStorage.setItem("agreedToEnter", "yes");
+
+      const bgm = document.getElementById('bgm');
+      if (bgm && bgm.paused) {
+        bgm.play().catch(() => {});
+      }
+    });
+  });
+</script>
+<!--<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    // 檢查是否已經進站過
+    const agreed = localStorage.getItem("agreedToEnter");
+
+    if (!agreed) {
+      document.getElementById('entrance-modal').style.display = 'flex';
+    } else {
+      document.getElementById('entrance-modal').style.display = 'none';
+    }
+
+    document.getElementById('enter-site').addEventListener('click', function () {
+      document.getElementById('entrance-modal').style.display = 'none';
+      localStorage.setItem("agreedToEnter", "yes"); // ✅ 存進站狀態
+      document.getElementById('bgm')?.play(); // ✅ 有音樂再播放
+    });
+  });
+</script>-->
+	<div class="background-overlay"></div>
+	
+  <!-- 共用選單 -->
   <header>
     <nav class="navbar">
       <ul>
@@ -24,59 +74,93 @@
         <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
         <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
         <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
-        <li><a href="#" onclick="navigateTo('contact.html', event)">Contact</a></li>
+        <li><button onclick="loadPage('contact')">Contact</button></li>
       </ul>
     </nav>
   </header>
 
-  <main id="content-container"></main>
 
-  <script>
-    function navigateTo(page, event) {
-      if (event) event.preventDefault();
+   <!-- 內容顯示區 -->
+	
+	<div id="content-container">
+  <!-- 子頁面內容會被動態載入進來 -->
+</div>
+	
+	<footer>
+		<p>© 2025 離淵. All rights reserved.</p>
+	</footer>
+<!--  <iframe id="content-frame" src="iframe.html" frameborder="0" style="width:100%; height:100px; border: none;"></iframe>
 
-      const isHome = page === "iframe.html";
-      const cleanUrl = isHome ? "/" : "/" + page.replace(/\.html$/, '').replace(/^\/+/, '');
-      const htmlPath = "/" + page.replace(/^\/+/, '');
+<script>
+  // iframe 切換子頁用
+  function loadPage(page) {
+    document.getElementById('content-frame').src = page;
+  }
 
-      history.pushState({}, "", cleanUrl);
+  // iframe 自動調整高度用
+  window.addEventListener("message", function (event) {
+	  if (event.data.type === "setHeight" &&
+		  event.data.height) {
+		  const iframe = document.getElementById("content-frame");
+		  iframe.style.height = event.data.height + "px";
+	  }
+  });
+</script>-->
+	
 
-      fetch(htmlPath)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("content-container").innerHTML = html;
-        });
-    }
+<script>
+  // ✅ 頁面切換（動態載入）
+  function navigateTo(page, event) {
+    if (event) event.preventDefault();
 
-    function loadInitialPage() {
-      const agreed = localStorage.getItem("agreedToEnter");
-      const path = location.pathname;
-      const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+    const isHome = page === "iframe.html";
+    const cleanUrl = isHome ? "/" : "/" + page.replace(/\.html$/, '').replace(/^\/+/, '');
+    const htmlPath = "/" + page.replace(/^\/+/, '');
 
-      if (!agreed) {
-        document.getElementById("entrance-modal").style.display = 'flex';
-        document.getElementById("enter-site").addEventListener('click', function () {
-          document.getElementById("entrance-modal").style.display = 'none';
-          localStorage.setItem("agreedToEnter", "yes");
-          navigateTo("iframe.html");
-        });
-      } else {
-        document.getElementById("entrance-modal").style.display = 'none';
-        navigateTo(page);
-      }
-    }
+    if (location.pathname === cleanUrl) return;
 
-    window.addEventListener("DOMContentLoaded", loadInitialPage);
+    history.pushState({}, "", cleanUrl);
 
-    window.addEventListener("popstate", () => {
-      const path = location.pathname;
-      const realPage = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-      fetch("/" + realPage)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("content-container").innerHTML = html;
-        });
-    });
-  </script>
+    fetch(htmlPath)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + htmlPath);
+        return res.text();
+      })
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
+      });
+  }
+
+  // ✅ 確保 DOM 完全就緒再載入首頁內容
+  window.addEventListener("load", () => {
+    const path = location.pathname;
+    const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+    fetch("/" + page)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      });
+  });
+
+  // ✅ 處理返回 / 前進按鈕
+  window.addEventListener("popstate", () => {
+    const path = location.pathname;
+    const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
+
+    fetch("/" + realPath)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      });
+  });
+</script>
+
+
+
+
+
 </body>
 </html>
