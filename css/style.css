@@ -765,6 +765,14 @@ blockquote { /*引用*/
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   z-index: 1;
 }
+.lightbox-image-wrapper {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .lightbox-btn {
   position: absolute;
