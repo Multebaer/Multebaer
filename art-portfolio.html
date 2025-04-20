@@ -15,6 +15,7 @@
 	<div class="background-overlay"></div>
 	
   <!-- 圖片方格 -->
+	<div class="gallery-container">
 	 <div class="waterfall">
 		 <div class="gallery">
     <img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
@@ -29,7 +30,7 @@
     <div class="gallery"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)">
   </div>
 	</div>
-
+</div>
   <!-- 點圖放大（lightbox） -->
   <div id="lightbox" class="lightbox" onclick="hideLightbox()">
     <img id="lightbox-img" src="" alt="">
@@ -65,7 +66,27 @@
     }
   </script>
 
+<script>
+	const grid = document.querySelector(".gallery-container");
+const style = window.getComputedStyle(grid);
+const allItems = document.querySelectorAll(".waterfall");
 
+const resizeGridItem = (item) => {
+    rowHeight = parseInt(style.getPropertyValue("grid-auto-rows"));
+    rowGap = parseInt(style.getPropertyValue("grid-row-gap"));
+    rowSpan = Math.ceil((item.querySelector(".gallery").getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+    item.style.gridRowEnd = `span ${rowSpan}`;
+}
+
+const resizeAllGridItems = () => {
+    allItems.forEach(ele => {
+        resizeGridItem(ele);
+    });
+}
+
+window.onload = resizeAllGridItems();
+window.addEventListener("resize", resizeAllGridItems);
+	</script>
 	
 	<!--navbar-->
 		 <script>

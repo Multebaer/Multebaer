@@ -716,28 +716,17 @@ blockquote { /*引用*/
 }
 
 
+.gallery-container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-auto-rows: 1rem;}
+
 .gallery {
-        background-color: lightgrey;
-        text-align: center;
-        padding: 5px;
-        box-sizing: border-box;
-        margin: 0 auto 5px;
-        break-inside: avoid;
+  padding: 1rem;
 }
 .gallery img{
-	
-        width: 100%;
-        object-fit: cover;
-        object-position: 50% 50%;
-  }
-
-.waterfall {
-        width: 100%;
-        margin: 0px auto;
-        column-count: 5;
-        /*欄數*/
-        column-gap: 10px;
-        /*每欄間隔*/
+	width:150%;
 }
 
 .lightbox {
