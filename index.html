@@ -121,33 +121,34 @@
   </script>
 	
 	<!--燈箱-->
-	<script>
-  function markInternalReturn(event) {
-    event.preventDefault();
-    sessionStorage.setItem("fromInternal", "yes");
-    window.location.href = "/";
-  }
-</script>
+
 
 <script>
   window.addEventListener("DOMContentLoaded", function () {
-    const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
-    const agreed = localStorage.getItem("agreedToEnter");
-    const modal = document.getElementById("entrance-modal");
 
-    if (fromInternal && agreed === "yes") {
-      modal.style.display = 'none';
-      sessionStorage.removeItem("fromInternal");
-    } else {
-      modal.style.display = 'flex';
-    }
+    setTimeout(() => {
+      const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
+      const agreed = localStorage.getItem("agreedToEnter");
+      const modal = document.getElementById("entrance-modal");
 
-    document.getElementById('enter-site').addEventListener('click', function () {
-      modal.style.display = 'none';
-      localStorage.setItem("agreedToEnter", "yes");
-    });
+      if (fromInternal && agreed === "yes") {
+        modal.style.display = 'none';
+        sessionStorage.removeItem("fromInternal");
+      } else {
+        modal.style.display = 'flex';
+      }
+
+      const button = document.getElementById('enter-site');
+      if (button) {
+        button.addEventListener('click', function () {
+          modal.style.display = 'none';
+          localStorage.setItem("agreedToEnter", "yes");
+        });
+      }
+    }, 10); 
   });
 </script>
+
 
 
 

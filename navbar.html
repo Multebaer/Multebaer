@@ -11,3 +11,10 @@
     </ul>
   </nav>
 </header>
+	<script>
+  function markInternalReturn(event) {
+    event.preventDefault();
+    sessionStorage.setItem("fromInternal", "yes");
+    window.location.href = "/";
+  }
+</script>
