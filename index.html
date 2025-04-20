@@ -120,9 +120,48 @@
       });
   </script>
 	
-	<!--燈箱-->
+	<!--一天後刷新測試用燈箱-->
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const agreed = localStorage.getItem("agreedToEnter");
+    const agreedTime = localStorage.getItem("agreedTime");
+    const fromInternal = sessionStorage.getItem("fromInternal") === "yes";
+    const modal = document.getElementById('entrance-modal');
+
+    const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
+
+    let showModal = false;
+
+    if (!agreed) {
+      showModal = true;
+    } else if (!agreedTime || now - parseInt(agreedTime) > oneDay) {
+      // 超過一天沒點過
+      showModal = true;
+    }
+
+    if (fromInternal && agreed === "yes" && !showModal) {
+      modal.style.display = 'none';
+      sessionStorage.removeItem("fromInternal");
+    } else if (showModal) {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+
+    const btn = document.getElementById('enter-site');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        modal.style.display = 'none';
+        localStorage.setItem("agreedToEnter", "yes");
+        localStorage.setItem("agreedTime", Date.now().toString());
+      });
+    }
+  });
+</script>
 
 
+<!--肯定能用的燈箱-->
 <script>
   window.addEventListener("DOMContentLoaded", function () {
     const agreed = localStorage.getItem("agreedToEnter");
