@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心の星｜Multebaer</title>
   <link rel="stylesheet" href="css/style.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
+
 </head>
-<body class="main-page">
-	  <!-- 🔒 燈箱 -->
-  <div id="entrance-modal" class="modal">
+<body class="iframe-body main-page">
+	
+	<div id="entrance-modal" class="modal">
     <div class="modal-content">
       <h2>進站須知</h2>
       <p>本網站包含成人創作內容，請確認您點擊該內容時已滿18歲並願意瀏覽。</p>
@@ -17,168 +21,127 @@
       <button id="enter-site">我已閱並且同意</button>
     </div>
   </div>
-	
-	<audio id="bgm" src="audio/來自遠方的風.mp3" loop></audio>
-	
-	<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const agreed = localStorage.getItem("agreedToEnter");
-
-    if (!agreed) {
-      document.getElementById('entrance-modal').style.display = 'flex';
-    } else {
-      document.getElementById('entrance-modal').style.display = 'none';
-
-      // ✅ 如果第一次點過，進站自動播音樂
-      const bgm = document.getElementById('bgm');
-      if (bgm && bgm.paused) {
-        bgm.play().catch(() => {});
-      }
-    }
-
-    document.getElementById('enter-site').addEventListener('click', function () {
-      document.getElementById('entrance-modal').style.display = 'none';
-      localStorage.setItem("agreedToEnter", "yes");
-
-      const bgm = document.getElementById('bgm');
-      if (bgm && bgm.paused) {
-        bgm.play().catch(() => {});
-      }
-    });
-  });
-</script>
-<!--<script>
-  window.addEventListener("DOMContentLoaded", function () {
-    // 檢查是否已經進站過
-    const agreed = localStorage.getItem("agreedToEnter");
-
-    if (!agreed) {
-      document.getElementById('entrance-modal').style.display = 'flex';
-    } else {
-      document.getElementById('entrance-modal').style.display = 'none';
-    }
-
-    document.getElementById('enter-site').addEventListener('click', function () {
-      document.getElementById('entrance-modal').style.display = 'none';
-      localStorage.setItem("agreedToEnter", "yes"); // ✅ 存進站狀態
-      document.getElementById('bgm')?.play(); // ✅ 有音樂再播放
-    });
-  });
-</script>-->
 	<div class="background-overlay"></div>
+  <!-- 首頁內容 -->
+	 <!-- ✅ Navbar 動態載入 -->
+  <div id="navbar-container"></div>
 	
-  <!-- 共用選單 -->
-  <header>
-    <nav class="navbar">
-      <ul>
-        <li><a href="#" onclick="navigateTo('iframe.html', event)">Home</a></li>
-        <li><a href="#" onclick="navigateTo('art-portfolio.html', event)">Gallery</a></li>
-        <li><a href="#" onclick="navigateTo('bjd-portfolio.html', event)">BJD相關</a></li>
-        <li><a href="#" onclick="navigateTo('dreams.html', event)">夢向相關</a></li>
-        <li><button onclick="loadPage('contact')">Contact</button></li>
-      </ul>
-    </nav>
-  </header>
-
-
-   <!-- 內容顯示區 -->
 	
-	<div id="content-container">
-  <!-- 子頁面內容會被動態載入進來 -->
-</div>
-	
-	<footer>
-		<p>© 2025 離淵. All rights reserved.</p>
-	</footer>
-<!--  <iframe id="content-frame" src="iframe.html" frameborder="0" style="width:100%; height:100px; border: none;"></iframe>
 
+<main class="about-section">
+    <div class="about-box">
+      <h1>ABOUT ME</h1>
+		<div class="about-wrapper">
+			<div class="about-content">
+				<div class="about-text">
+					<p><strong>離淵　｜　ART　｜　BJD MakeUp</strong></p>
+					<p><span>關於 ▸ Final Fantsy VII 克勞德夢女</span></p>
+					<p>創作 ▸ 繪畫、BJD建模與化妝、其他手工等</p>
+					<p><span>作品 ▸ <a href="/art-portfolio" target="_blank" rel="noopener">Gallery</a>　｜　▸ <a href="/bjd-portfolio" target="_blank" rel="noopener">BJD相關</a></span></p>
+					<hr>
+					<p>✖ 成年社畜，ＩＮＴＰ，稱呼隨意。</p>
+					<p>☑ 雷點基本無，遇到會自己避開，除此外注意網路禮儀</p>
+					<h4>社交平台　｜　Social Platform</h4>
+					<div class="social-links">
+						<a href="https://x.com/Multebaer_" target="_blank" rel="noopener">TWITTER</a>
+						<a href="https://plurk.com/shikkaku619" target="_blank" rel="noopener">PLURK</a>
+						<a href="https://www.facebook.com/liyuan.715/" target="_blank" rel="noopener">FACEBOOK</a>
+						<a href="#">MORE</a>
+					</div>
+					<details class="notion-fold">
+						<summary>相關連結</summary>
+						<div class="fold-body">
+							<p>暫時沒有。</p>
+						</div>
+					</details>
+					<details class="notion-fold">
+						<summary>更新日誌</summary>
+						<div class="fold-body">
+							<p>@2025年04月17日 新增NSFW區</p>
+							<p>@2025年04月07日 新增作品集相冊（待編修）</p>
+							<p>@2025年04月02日 新增夢向文章分支</p>
+							<p>@2025年03月26日 新增聯絡我</p>
+							<p>@2025年03月25日 修改版面設計</p>
+							<p>@2025年03月23日 架站</p>
+						</div>
+					</details>
+				</div>
+				<div class="about-image">
+					<!--			<div class="character-shadow"></div>-->
+					<img src="images/BeriaKenelm.webp" alt="角色立繪">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	
+	<div class="about-box">
+      <h1 class="about-box-right-align">CONTACT ME</h1>
+		<div class="about-wrapper">
+			<div class="about-content">
+				<div class="about-text-2">
+					<form action="https://formspree.io/f/xdkedyrn" method="POST" enctype="multipart/form-data">
+  <label>
+	  <span class="contact-text">我該如何稱呼您*</span><br>
+    <div class="contact-textbar"><input type="text" name="name" placeholder="暱稱" required></div>
+  </label><br>
+  <label>
+    <span class="contact-text">電子信箱*</span><br>
+    <div class="contact-textbar"><input type="email" name="email" placeholder="e-mail" required></div>
+  </label><br>
+  <label>
+    <span class="contact-text">主旨</span><br>
+    <div class="contact-textbar"><input type="text" name="subject" placeholder="subject" required></div>
+  </label><br>
+  <label>
+    <span class="contact-text">內文</span><br>
+    <div class="contact-textbar"><textarea name="message" rows="10" placeholder="message" required></textarea></div>
+  </label><br>
+					<!--<label for="file" class="contact-text-file" >附加檔案（10MB內）</label><br>
+  <input type="file" name="attachment" id="file"> -->
+  <div class="submit-wrap"><button type="submit" class="submit-button"><span class="sumbit-text">SEND</span>
+</button><br><p class="sumbit-remind">按一次即可，這東西跑比較慢。</p></div>
+</form>
+				</div>
+				<div class="about-image-2">
+					<!--			<div class="character-shadow"></div>-->
+					<img src="images/CloudStrife.webp" alt="角色立繪">
+				</div>
+			</div>
+		</div>
+	</div>
+		</main>
+	 <script>
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+  </script>
+	
+	<!--燈箱-->
 <script>
-  // iframe 切換子頁用
-  function loadPage(page) {
-    document.getElementById('content-frame').src = page;
-  }
+  window.addEventListener("DOMContentLoaded", function () {
+    const url = new URL(window.location.href);
+    const fromInternal = url.searchParams.get("from") === "internal";
 
-  // iframe 自動調整高度用
-  window.addEventListener("message", function (event) {
-	  if (event.data.type === "setHeight" &&
-		  event.data.height) {
-		  const iframe = document.getElementById("content-frame");
-		  iframe.style.height = event.data.height + "px";
-	  }
-  });
-</script>-->
-	
+    const agreed = localStorage.getItem("agreedToEnter");
 
-<script>
-  // ✅ 頁面切換（動態載入）
-  function navigateTo(page, event) {
-  if (event) event.preventDefault();
+    const modal = document.getElementById('entrance-modal');
 
-  const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
-  const htmlPath = '/' + page.replace(/^\/+/, '');
+    if (fromInternal && agreed === "yes") {
+      modal.style.display = 'none';
+    } else {
+      modal.style.display = 'flex';
+    }
 
-  history.pushState({}, "", cleanUrl);
-
-  const container = document.getElementById("content-container");
-  container.innerHTML = ""; // 🔥 清空舊內容，防止首頁插入殘體 HTML 結構
-
-  fetch(htmlPath)
-    .then(res => {
-      if (!res.ok) throw new Error("Page not found: " + htmlPath);
-      return res.text();
-    })
-    .then(html => {
-      container.innerHTML = html;
-
-      // ✅ 如果是 art-portfolio 頁面，主動重新執行瀑布流排版
-      if (page.includes("art-portfolio")) {
-        const tryCascade = () => {
-          const images = document.querySelectorAll('.photo img');
-          const allLoaded = Array.from(images).every(img => img.complete && img.naturalHeight > 0);
-          if (allLoaded) {
-            setTimeout(() => {
-              if (typeof cascadeDisplay === 'function') cascadeDisplay();
-            }, 100);
-          } else {
-            setTimeout(tryCascade, 100);
-          }
-        };
-        tryCascade();
-      }
-    })
-    .catch(err => {
-      console.error("載入失敗", htmlPath);
-      container.innerHTML = "<h2>頁面載入失敗</h2>";
+    document.getElementById('enter-site').addEventListener('click', function () {
+      modal.style.display = 'none';
+      localStorage.setItem("agreedToEnter", "yes");
     });
-}
-
-
-  // ✅ 確保 DOM 完全就緒再載入首頁內容
-  window.addEventListener("load", () => {
-    const path = location.pathname;
-    const page = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-    fetch("/" + page)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("content-container").innerHTML = html;
-      });
-  });
-
-  // ✅ 處理返回 / 前進按鈕
-  window.addEventListener("popstate", () => {
-    const path = location.pathname;
-    const realPath = path === "/" ? "iframe.html" : path.slice(1) + ".html";
-
-    fetch("/" + realPath)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("content-container").innerHTML = html;
-      });
   });
 </script>
-
-
-
 
 
 </body>
