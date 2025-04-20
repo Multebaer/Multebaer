@@ -39,55 +39,9 @@
 </div>
 
 	
-	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>let currentIndex = 0
-const lightbox = document.getElementById('lightbox')
-const lightboxImg = document.getElementById('lightbox-img')
-const lightboxClose = document.getElementById('lightbox-close')
-const lightboxPrev = document.getElementById('lightbox-prev')
-const lightboxNext = document.getElementById('lightbox-next')
-
-const photoImages = document.querySelectorAll('.photo img')
-
-function showLightbox(src) {
-  lightbox.style.display = 'flex'
-  lightboxImg.src = src
-  currentIndex = Array.from(photoImages).findIndex(img => img.src === src)
-}
-
-// 關閉燈箱
-lightboxClose.onclick = () => {
-  lightbox.style.display = 'none'
-}
-
-// 左右切換
-function showImageAt(index) {
-  if (index >= 0 && index < photoImages.length) {
-    lightboxImg.src = photoImages[index].src
-    currentIndex = index
-  }
-}
-
-lightboxPrev.onclick = () => showImageAt((currentIndex - 1 + photoImages.length) % photoImages.length)
-lightboxNext.onclick = () => showImageAt((currentIndex + 1) % photoImages.length)
-
-document.addEventListener('keydown', e => {
-  if (lightbox.style.display === 'flex') {
-    if (e.key === 'ArrowLeft') lightboxPrev.onclick()
-    if (e.key === 'ArrowRight') lightboxNext.onclick()
-    if (e.key === 'Escape') lightboxClose.onclick()
-  }
-})
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox) {
-    lightbox.style.display = 'none'
-  }
-})
-
-  </script>
-
+	    <!--<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>-->
 	
-<script>const gap = 14
+	<script>const gap = 14
 const photosContainer= document.getElementById('photos__container')
 const photos = document.getElementsByClassName('photo')
 
@@ -123,15 +77,16 @@ function cascadeDisplay() {
 }
 
 // 畫面一進來
-window.addEventListener('load', () => {
-  setTimeout(cascadeDisplay, 300)
-})
+window.onload = function() {
+  cascadeDisplay()
+}
 
 // 畫面寬度有變動
 window.onresize = function() {
   cascadeDisplay()
 }
 </script>
+	
 	<!--navbar-->
 		 <script>
     fetch("/navbar.html")
