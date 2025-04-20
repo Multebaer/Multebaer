@@ -745,7 +745,7 @@ blockquote { /*引用*/
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .lightbox img {
@@ -754,3 +754,27 @@ blockquote { /*引用*/
   border-radius: 12px;
 }
 
+.lightbox-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 60px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  padding: 10px;
+}
+
+.lightbox-btn.left { left: -60px; }
+.lightbox-btn.right { right: -60px; }
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+}
