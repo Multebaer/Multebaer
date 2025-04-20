@@ -126,13 +126,43 @@ function cascadeDisplay() {
 
 // 畫面一進來
 window.onload = function() {
-  cascadeDisplay()
+  waitForImages(cascadeDisplay)
 }
 
 // 畫面寬度有變動
 window.onresize = function() {
-  cascadeDisplay()
+  setTimeout(cascadeDisplay, 200)
 }
+function waitForImages(callback) {
+  const images = document.querySelectorAll('.photo img')
+  let loadedCount = 0
+  const total = images.length
+
+  images.forEach(img => {
+    if (img.complete) {
+      loadedCount++
+    } else {
+      img.onload = () => {
+        loadedCount++
+        if (loadedCount === total) {
+          callback()
+        }
+      }
+      img.onerror = () => {
+        loadedCount++
+        if (loadedCount === total) {
+          callback()
+        }
+      }
+    }
+  })
+
+  // 如果全部都已經載入了（快取情況）
+  if (loadedCount === total) {
+    callback()
+  }
+}
+
 	</script>
 	
 	<!--navbar-->
