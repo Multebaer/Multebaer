@@ -37,9 +37,54 @@
   </div>
   <span class="lightbox-close" id="lightbox-close">&times;</span>
 </div>
-	
-	<!--燈箱-->
-	<script>let currentIndex = 0
+	<!--瀑布流-->
+	<script>const gap = 14
+const photosContainer= document.getElementById('photos__container')
+const photos = document.getElementsByClassName('photo')
+
+function cascadeDisplay() {
+  const photosContainerWidth = photosContainer.offsetWidth
+  const photoWidth = photos[0].offsetWidth
+  // 計算一列最多有幾欄
+  const columnsCount = parseInt((photosContainerWidth) / ( photoWidth + gap ))
+  const fistRowPhotosHeightArray = []
+  // 進行照片排序
+  for (let i = 0; i < photos.length; i++) {
+    // 放上第一列的照片
+    if (i < columnsCount) {
+      photos[i].style.top = 0
+      photos[i].style.left = (photoWidth + gap) * i + 'px'
+      // 紀錄第一列的照片高
+      fistRowPhotosHeightArray.push(photos[i].offsetHeight)
+    } else {
+      // 放上第二列開始的照片
+      // 找出第一列的最小高度
+      let minHeight = Math.min(...fistRowPhotosHeightArray)
+      // 紀錄最小高度的index，以取得對應到第一列的位置，來決定left要移動多少
+      let index = fistRowPhotosHeightArray.indexOf(minHeight)
+      // 調整接續的photo位置，放到目前最小高度的地方
+      photos[i].style.top = minHeight + gap + 'px'
+      // 取得對應到第一列photo的left位置
+      photos[i].style.left = photos[index].offsetLeft + 'px'
+      // 最後!!再把原本儲存在陣列裡面為最小高度的值，更新上最新的高度(原本的高度+新的高度+間隔)
+      fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
+    }
+  }
+
+}
+
+// 畫面一進來
+window.onload = function() {
+  cascadeDisplay()
+}
+
+// 畫面寬度有變動
+window.onresize = function() {
+  cascadeDisplay()
+}
+</script>
+<!--燈箱-->
+<script>let currentIndex = 0
 const lightbox = document.getElementById('lightbox')
 const lightboxImg = document.getElementById('lightbox-img')
 const lightboxClose = document.getElementById('lightbox-close')
@@ -77,84 +122,16 @@ document.addEventListener('keydown', e => {
     if (e.key === 'Escape') lightboxClose.onclick()
   }
 })
-
-		lightbox.addEventListener('click', e => {
+lightbox.addEventListener('click', e => {
   if (e.target === lightbox) {
     lightbox.style.display = 'none'
   }
 })
-</script>
 
+  </script>
 	
-	    <!--<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>-->
 	
-	<script>
-const gap = 14
-const photosContainer = document.getElementById('photos__container')
-const photos = document.getElementsByClassName('photo')
-
-// 排版函數
-function cascadeDisplay() {
-  const containerWidth = photosContainer.offsetWidth
-  const photoWidth = photos[0].offsetWidth
-  const columnsCount = Math.floor(containerWidth / (photoWidth + gap))
-  const columnHeights = []
-
-  for (let i = 0; i < photos.length; i++) {
-    const photo = photos[i]
-    if (i < columnsCount) {
-      photo.style.top = '0px'
-      photo.style.left = (photoWidth + gap) * i + 'px'
-      columnHeights[i] = photo.offsetHeight
-    } else {
-      const minHeight = Math.min(...columnHeights)
-      const index = columnHeights.indexOf(minHeight)
-      photo.style.top = (minHeight + gap) + 'px'
-      photo.style.left = photos[index].offsetLeft + 'px'
-      columnHeights[index] += photo.offsetHeight + gap
-    }
-  }
-}
-
-// 確保每張圖片都載入完成再排版
-function waitForAllImages(callback) {
-  const images = document.querySelectorAll('.photo img')
-  let loaded = 0
-
-  images.forEach(img => {
-    if (img.complete && img.naturalHeight !== 0) {
-      loaded++
-    } else {
-      img.addEventListener('load', () => {
-        loaded++
-        if (loaded === images.length) {
-          setTimeout(callback, 100)
-        }
-      })
-      img.addEventListener('error', () => {
-        loaded++
-        if (loaded === images.length) {
-          setTimeout(callback, 100)
-        }
-      })
-    }
-  })
-
-  if (loaded === images.length) {
-    setTimeout(callback, 100)
-  }
-}
-
-// 初次載入
-document.addEventListener("DOMContentLoaded", () => {
-  waitForAllImages(cascadeDisplay)
-})
-
-// resize 時也重新排版
-window.addEventListener("resize", () => {
-  setTimeout(cascadeDisplay, 200)
-})
-</script>
+	
 
 	
 	<!--navbar-->
