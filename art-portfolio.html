@@ -31,38 +31,56 @@
 	</div>
 		</div>
 <!-- 點圖放大（lightbox） -->
-  <div id="lightbox" class="lightbox" onclick="hideLightbox()">
-    <img id="lightbox-img" src="" alt="">
-  </div>
+<!-- Lightbox 容器 -->
+<div id="lightbox" style="display:none;">
+  <span id="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="">
+  <div id="lightbox-prev">&#10094;</div>
+  <div id="lightbox-next">&#10095;</div>
+</div>
+
 	
 	    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-    const swiper = new Swiper(".swiper", {
-  loop: true,
-  slidesPerView: 1,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  injectStyles: [
-    `
-    .swiper-button-next::after,
-    .swiper-button-prev::after {
-      content: none !important;
-    }
-    `
-  ]
-});
+    <script>let currentIndex = 0
+const lightbox = document.getElementById('lightbox')
+const lightboxImg = document.getElementById('lightbox-img')
+const lightboxClose = document.getElementById('lightbox-close')
+const lightboxPrev = document.getElementById('lightbox-prev')
+const lightboxNext = document.getElementById('lightbox-next')
 
+// 取得所有圖片元素
+const photoImages = document.querySelectorAll('.photo img')
 
-    function showLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('lightbox').style.display = 'flex';
-    }
+function showLightbox(src) {
+  lightbox.style.display = 'flex'
+  lightboxImg.src = src
+  currentIndex = Array.from(photoImages).findIndex(img => img.src === src)
+}
 
-    function hideLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
+// 隱藏燈箱
+lightboxClose.onclick = () => lightbox.style.display = 'none'
+
+// 上一張
+lightboxPrev.onclick = () => {
+  currentIndex = (currentIndex - 1 + photoImages.length) % photoImages.length
+  lightboxImg.src = photoImages[currentIndex].src
+}
+
+// 下一張
+lightboxNext.onclick = () => {
+  currentIndex = (currentIndex + 1) % photoImages.length
+  lightboxImg.src = photoImages[currentIndex].src
+}
+
+// 鍵盤切換（← → Esc）
+document.addEventListener('keydown', e => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'ArrowLeft') lightboxPrev.onclick()
+    if (e.key === 'ArrowRight') lightboxNext.onclick()
+    if (e.key === 'Escape') lightboxClose.onclick()
+  }
+})
+
   </script>
 
 <script>const gap = 14
