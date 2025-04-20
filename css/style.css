@@ -722,7 +722,7 @@ blockquote { /*引用*/
   padding: 30px;
 }
 
-#photos__container {
+  #photos__container {
   position: relative;
   width: 100%;
 }
@@ -736,6 +736,13 @@ blockquote { /*引用*/
   display: block;
   border-radius: 15px;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 30%);
+}
+
+.gallery-box {
+  max-width: 1100px;
+  margin: auto;
+  border-radius: 20px;
+  padding: 30px;
 }
 
 #lightbox {
