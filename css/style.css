@@ -724,7 +724,7 @@ blockquote { /*引用*/
 
 #photos__container {
   position: relative;
-  width: 100vw;
+  width: 100%;
 }
 .photo {
   width: 250px;
