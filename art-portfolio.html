@@ -88,51 +88,80 @@ document.addEventListener('keydown', e => {
 	
 	    <!--<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>-->
 	
-	<script>const gap = 14
-const photosContainer= document.getElementById('photos__container')
+	<script>
+const gap = 14
+const photosContainer = document.getElementById('photos__container')
 const photos = document.getElementsByClassName('photo')
 
+// 1. 正常瀑布流排版函式
 function cascadeDisplay() {
-  const photosContainerWidth = photosContainer.offsetWidth
+  const containerWidth = photosContainer.offsetWidth
   const photoWidth = photos[0].offsetWidth
-  // 計算一列最多有幾欄
-  const columnsCount = parseInt((photosContainerWidth) / ( photoWidth + gap ))
-  const fistRowPhotosHeightArray = []
-  // 進行照片排序
+  const columnsCount = Math.floor(containerWidth / (photoWidth + gap))
+  const columnHeights = []
+
   for (let i = 0; i < photos.length; i++) {
-    // 放上第一列的照片
+    const photo = photos[i]
     if (i < columnsCount) {
-      photos[i].style.top = 0
-      photos[i].style.left = (photoWidth + gap) * i + 'px'
-      // 紀錄第一列的照片高
-      fistRowPhotosHeightArray.push(photos[i].offsetHeight)
+      photo.style.top = '0px'
+      photo.style.left = (photoWidth + gap) * i + 'px'
+      columnHeights[i] = photo.offsetHeight
     } else {
-      // 放上第二列開始的照片
-      // 找出第一列的最小高度
-      let minHeight = Math.min(...fistRowPhotosHeightArray)
-      // 紀錄最小高度的index，以取得對應到第一列的位置，來決定left要移動多少
-      let index = fistRowPhotosHeightArray.indexOf(minHeight)
-      // 調整接續的photo位置，放到目前最小高度的地方
-      photos[i].style.top = minHeight + gap + 'px'
-      // 取得對應到第一列photo的left位置
-      photos[i].style.left = photos[index].offsetLeft + 'px'
-      // 最後!!再把原本儲存在陣列裡面為最小高度的值，更新上最新的高度(原本的高度+新的高度+間隔)
-      fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
+      const minHeight = Math.min(...columnHeights)
+      const index = columnHeights.indexOf(minHeight)
+      photo.style.top = (minHeight + gap) + 'px'
+      photo.style.left = photos[index].offsetLeft + 'px'
+      columnHeights[index] += photo.offsetHeight + gap
+    }
+  }
+}
+
+// 2. 等待所有圖片真的載入完成並顯示
+function waitForAllImages(callback) {
+  const images = document.querySelectorAll('.photo img')
+  let loadedCount = 0
+
+  function tryRun() {
+    if (loadedCount === images.length) {
+      // 再等一點時間讓圖片 render 完才排
+      setTimeout(() => {
+        callback()
+      }, 100)
     }
   }
 
+  images.forEach(img => {
+    if (img.complete && img.naturalHeight !== 0) {
+      loadedCount++
+      tryRun()
+    } else {
+      img.onload = () => {
+        loadedCount++
+        tryRun()
+      }
+      img.onerror = () => {
+        loadedCount++
+        tryRun()
+      }
+    }
+  })
 }
 
-// 畫面一進來
-window.onload = function() {
-  cascadeDisplay()
-}
+// 3. 初始化：進入頁面時
+document.addEventListener("DOMContentLoaded", () => {
+  waitForAllImages(() => {
+    cascadeDisplay()
+  })
+})
 
-// 畫面寬度有變動
-window.onresize = function() {
-  cascadeDisplay()
-}
+// 4. resize 時也要重新排
+window.addEventListener("resize", () => {
+  setTimeout(() => {
+    cascadeDisplay()
+  }, 200)
+})
 </script>
+
 	
 	<!--navbar-->
 		 <script>
