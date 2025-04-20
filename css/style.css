@@ -722,8 +722,6 @@ blockquote { /*引用*/
   width: 250px;
   height: auto;
   position: absolute;
-	top: 0;
-  left: 0;
 }
 .photo img {
   width: 100%;
@@ -738,6 +736,7 @@ blockquote { /*引用*/
   border-radius: 20px;
   padding: 30px;
 }
+
 #lightbox {
   position: fixed;
   top: 0; left: 0;
