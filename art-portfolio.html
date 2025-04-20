@@ -89,12 +89,13 @@ lightbox.addEventListener('click', e => {
 
   </script>
 
+	<!--瀑布流網址：https://pink-learn-frontend.medium.com/%E5%89%8D%E7%AB%AF%E6%96%B0%E6%89%8B%E6%97%A5%E8%A8%98-%E7%80%91%E5%B8%83%E6%B5%81%E5%88%87%E7%89%88%E7%B7%B4%E7%BF%92-javascript-38adb80f443b-->
 <script>
 const gap = 14
 const photosContainer = document.getElementById('photos__container')
 const photos = document.getElementsByClassName('photo')
 
-// 瀑布流排列邏輯
+// 核心排列邏輯
 function cascadeDisplay() {
   const photosContainerWidth = photosContainer.offsetWidth
   const photoWidth = photos[0].offsetWidth
@@ -117,58 +118,58 @@ function cascadeDisplay() {
   }
 }
 
-// 等所有圖片真的顯示完畢（強化版）
-function waitUntilAllImagesReallyReady(callback) {
+// 🧠 等待圖片 + 高度渲染穩定
+function waitForImagesAndHeights(callback, retry = 0) {
   const images = document.querySelectorAll('.photo img')
   const total = images.length
   let loaded = 0
 
-  const checkAll = () => {
-    const allReady = Array.from(images).every(img =>
-      img.complete &&
-      img.naturalHeight > 0 &&
-      img.offsetHeight > 0
+  const allReady = () =>
+    Array.from(images).every(img =>
+      img.complete && img.naturalHeight > 0 && img.offsetHeight > 10
     )
-    if (allReady) {
+
+  const checkAndRun = () => {
+    if (allReady()) {
       callback()
+    } else if (retry < 10) {
+      // 每 200ms 重試一次，最多 10 次（總等待 2 秒）
+      setTimeout(() => waitForImagesAndHeights(callback, retry + 1), 200)
     } else {
-      setTimeout(checkAll, 100)
+      // 就算再不行，也強行排版一次
+      callback()
     }
   }
 
   images.forEach(img => {
-    img.onload = () => {
-      loaded++
-      if (loaded === total) {
-        setTimeout(checkAll, 100)
-      }
-    }
-    img.onerror = () => {
-      loaded++
-      if (loaded === total) {
-        setTimeout(checkAll, 100)
-      }
-    }
-
     if (img.complete && img.naturalHeight > 0) {
       loaded++
+    } else {
+      img.onload = () => {
+        loaded++
+        if (loaded === total) checkAndRun()
+      }
+      img.onerror = () => {
+        loaded++
+        if (loaded === total) checkAndRun()
+      }
     }
   })
 
   if (loaded === total) {
-    setTimeout(checkAll, 100)
+    checkAndRun()
   }
 }
 
-// 首次進入畫面
+// 首次畫面載入
 document.addEventListener("DOMContentLoaded", () => {
-  waitUntilAllImagesReallyReady(() => {
+  waitForImagesAndHeights(() => {
     cascadeDisplay()
-    setTimeout(cascadeDisplay, 500) // Safari 保底補一次
+    setTimeout(cascadeDisplay, 500) // 最後保底補一次
   })
 })
 
-// 視窗尺寸變動時
+// 視窗尺寸變動
 window.addEventListener("resize", () => {
   setTimeout(cascadeDisplay, 200)
 })
