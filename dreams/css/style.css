@@ -621,3 +621,9 @@ hr {
   margin-bottom: 1em;
   text-align: justify;
 }
+audio { /*音訊寬度設定*/
+  width: 50%;
+  display: block;
+	margin-bottom: 1em;
+  box-sizing: border-box;
+}
