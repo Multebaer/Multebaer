@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心の星｜Multebaer</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -14,21 +14,33 @@
 <body class="iframe-body main-page">
 	<div class="background-overlay"></div>
 	
+	<!-- Swiper 輪播區 -->
+	<div class="swiper-container">
+ <div class="swiper"> <!-- swiper class 會被 new Swiper('.swiper' 使用 -->
+        <div class="swiper-wrapper"> <!-- 讓Swiper知道要輪播的內容位置必須為 swiper-wrapper -->
+            <div class="swiper-slide"><img src="/images/banner.webp" alt="圖A"></div>
+            <div class="swiper-slide"><img src="/images/CloudHead.webp" alt="圖B"></div>
+            <div class="swiper-slide"><img src="/images/BeriaHead.webp" alt="圖C"></div>
+        </div>
+
+        <div class="swiper-button-prev">&#10094;</div>
+<div class="swiper-button-next">&#10095;</div>
+    </div>
+		</div>
+
   <!-- 圖片方格 -->
-	 <div class="waterfall">
-		 <div class="gallery">
-    <img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Alice001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Gogol001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Akiko001.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)"></div>
-    <div class="gallery"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)">
+  <div class="gallery">
+    <img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Alice001.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Gogol001.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Akiko001.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)">
+    <img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)">
   </div>
-	</div>
 
   <!-- 點圖放大（lightbox） -->
   <div id="lightbox" class="lightbox" onclick="hideLightbox()">

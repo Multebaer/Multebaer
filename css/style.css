@@ -717,23 +717,27 @@ blockquote { /*引用*/
 
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
+        background-color: lightgrey;
+        text-align: center;
+        padding: 5px;
+        box-sizing: border-box;
+        margin: 0 auto 5px;
+        break-inside: avoid;
 }
+.gallery img{
+	
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+  }
 
-.gallery img {
-  width: 100%;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
+.waterfall {
+        width: 100%;
+        margin: 0px auto;
+        column-count: 5;
+        /*欄數*/
+        column-gap: 10px;
+        /*每欄間隔*/
 }
 
 .lightbox {
@@ -753,41 +757,3 @@ blockquote { /*引用*/
   border-radius: 12px;
 }
 
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-.lightbox {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  display: none;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-}
