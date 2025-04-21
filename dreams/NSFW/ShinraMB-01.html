@@ -133,5 +133,13 @@
 <p>屋內一時間停止了情欲的躁動，只有那股濃烈的，屬於肉欲交合的氣息飄動著。貝利亞躺在床上喘息，渾身癱軟的滿是愛欲的痕跡，腹部被精液灌到有輕微的隆起，身上的痕跡在潮濕的汗水下像被泡開一樣，可憐地蜷縮在床上。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

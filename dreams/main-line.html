@@ -17,5 +17,18 @@
 	 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
 	<p>test</p>
+	<div id="footer-container"></div>
+	<script>
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

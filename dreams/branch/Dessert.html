@@ -52,5 +52,13 @@
 <p>高潮的餘韻讓身體顫慄著，貝利亞的眼睫被淚水沾得濕潤，她在克勞德的肩膀上留下了咬痕，而自己的脖子上也留有同樣的痕跡。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

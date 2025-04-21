@@ -60,5 +60,13 @@
 <p>她又想起之前克勞德的狀態似乎也不太對勁，所以詢問的話還是問了出來——然後看到了克勞德更加鬱悶的神情，甚至連帶著氣壓都低沉了下來。</p>
 <p>貝利亞眨了眨眼，從克勞德的懷裡艱難地伸出一隻手，安撫地摸了摸他的腦袋。克勞德感受著來自懷中的溫度，還有熟悉的氣溫和柔軟的觸碰，他神色放鬆了些，閉上眼靠在了貝利亞的肩膀上。</p>
 </div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

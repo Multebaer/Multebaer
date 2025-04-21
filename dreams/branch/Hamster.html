@@ -87,5 +87,13 @@
 <p>貝利亞看不到套在自己脖子上的項圈怎麼樣，只能伸手去觸摸，克勞德在禮物徹底送出去後安心地放鬆了下來，抱著貝利亞靠在她的肩膀上，聞著熟悉的氣味。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

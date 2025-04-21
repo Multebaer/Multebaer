@@ -116,5 +116,13 @@
 <p>性事超出了貝利亞的限度，可她也無法停下這一切，只能把所有的痕跡與愛意收進身體，讓愛液交融，讓快樂與痛苦交匯。在猛烈到讓人麻木的感受中，她終於失去意識。最後是如何結束的她已然忘卻，只是身上大小不一的青紫記錄了他們的荒唐。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

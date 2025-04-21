@@ -56,5 +56,13 @@
 <p>濕黏的軀體相貼，克勞德睜開眼睛，親吻著貝利亞的耳垂。平淡無味的食物在遇到貝利亞後就不再需要了，所以他貪心的，想要和貝利亞再親近一點，親近到對方不會離開自己的視線，在可控的範圍內能嗅到對方獨特的氣味。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

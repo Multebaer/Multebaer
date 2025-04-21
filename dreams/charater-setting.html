@@ -601,6 +601,7 @@
 		
 		</div>
 	</main>
+	<div id="footer-container"></div>
 	<script>
     function showPreview(content) {
       document.getElementById('preview-content').innerText = content;
@@ -678,10 +679,15 @@
   }
 </script>
 	<script>
-    fetch("../navbar.html")
+    fetch("/navbar.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("navbar-container").innerHTML = html;
+      });
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
       });
   </script>
 </body>

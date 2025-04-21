@@ -86,5 +86,13 @@
 <p>清晨的，在雨季中融化的情欲，貝利亞眼神變得渙散，和克勞德再次互換著親吻，似乎這樣才能徹底地交融在一起，顫抖著雙腿被清理穴腔裡的精液。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

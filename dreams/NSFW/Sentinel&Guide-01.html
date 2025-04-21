@@ -116,5 +116,13 @@
 <p>克勞德神色凝重地抿起了嘴，想著精神海內靠在芬里爾狼身上的身影，精神十足地抬起手敬禮，回應著賽菲羅斯。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

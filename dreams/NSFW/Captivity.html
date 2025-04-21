@@ -126,5 +126,13 @@
 <p>賽菲羅斯似乎熱衷於在貝利亞的身體上留下痕跡，這點他和克勞德都有著相同的執念。所以即使在性事結束後貝利亞還短暫地體驗了被口腔裹著吮吸和被牙齒碾磨的酸痛感。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

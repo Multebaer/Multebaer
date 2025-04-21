@@ -78,5 +78,13 @@
 <p>時間已經變得模糊不清，世界也變得遙遠，感官從遲鈍轉為麻木，她的意識依然困頓，在經歷過過分的性愛之後幾乎暈厥。發燒的症狀似乎加重了很多，她渾身發抖，皮膚滾燙，困得不行，連眼睛也睜不開，嘴裡時不時溢出幾句夢囈。賽菲羅斯難得發了善心，讓她躺在自己懷裡。她的身體裡仍然塞著那些東西，穴口的肌肉已經失去知覺，水液從縫隙流出，內裡被塞得過分得滿，她甚至懷疑它們真的把子宮也填滿了。可現下，她也無法顧及這些，只好沉沉睡去，祈禱著下一天能有好轉。</p>
 
 		</div>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>

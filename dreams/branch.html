@@ -104,6 +104,7 @@
     </tr>
   </table>
 		</div>
+	<div id="footer-container"></div>
 
   <div id="overlay" class="overlay" onclick="closePreview()"></div>
 
@@ -255,13 +256,11 @@ function loadArticle(filename) {
       });
   });
 </script>
-
-	
 	<script>
-    fetch("../navbar.html")
+	fetch("/footer.html")
       .then(res => res.text())
       .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
+        document.getElementById("footer-container").innerHTML = html;
       });
   </script>
 </body>

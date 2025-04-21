@@ -81,11 +81,23 @@
 <p>妳的眼睛快要闔上，他卻湊在妳耳邊，慢慢說：</p>
 <p>「小狗，睡吧。我不會碰妳……但如果妳在夢裡呻吟了，我可是會當成邀請。」</p>
 <p>「然後就在妳最放鬆的時候，從妳腿縫中間、從那穴裡，把我的詩寫進去。」</p>
-
-
-
-
-
 		</div>
+	
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
+	<div id="footer-container" style="color:#ccc;text-align: center"></div>
+	<script>
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
+      });
+  </script>
 </body>
 </html>
