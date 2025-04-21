@@ -720,6 +720,7 @@ blockquote { /*引用*/
   position: relative;
   width: 100%;
 	  align-items: center;
+	  padding-bottom: 100px;
 }
 .photo {
   width: 250px;
