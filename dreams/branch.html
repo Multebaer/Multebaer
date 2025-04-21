@@ -116,11 +116,11 @@
     <div class="fullscreen-btn" onclick="toggleFullscreen()">⛶</div>
   <div class="open-new-btn" onclick="openInNewTab()">⤢</div>
   </div>
-  <div id="preview-content"></div>
+  
 </div></div>
 		</div>
 		</main>
-	
+	<div id="preview-content"></div>
 	<!--放大動畫+側邊彈出動畫-->
 		<script>
 			function toggleFullscreen() {
@@ -257,6 +257,11 @@ function loadArticle(filename) {
   });
 </script>
 	<script>
+    fetch("/navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+      });
 	fetch("/footer.html")
       .then(res => res.text())
       .then(html => {
