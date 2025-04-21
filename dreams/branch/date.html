@@ -70,7 +70,7 @@
 		</div>
 	<div id="footer-container" style="color:#ccc;text-align: center"></div>
 	<script>
-	fetch("/footer.html")
+	fetch("../../footer.html")
       .then(res => res.text())
       .then(html => {
         document.getElementById("footer-container").innerHTML = html;
