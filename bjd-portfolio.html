@@ -15,9 +15,8 @@
 	<div class="background-overlay"></div>
 	<div class="gallery-box">
   <!-- 圖片瀑布流 -->
-	    <div id="photos__container">
-			<!--
-    <div class="photo"><img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
+	    <div id="photos__container">			
+    <!--<div class="photo"><img src="/images/Dazai005.webp" alt="" onclick="showLightbox(this.src)"></div><div class="photo"><img src="/images/Dazai001.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Dazai002.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Fleud001.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/OC001.webp" alt="" onclick="showLightbox(this.src)"></div>
@@ -27,8 +26,9 @@
     <div class="photo"><img src="/images/Dazai003.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Dazai004.webp" alt="" onclick="showLightbox(this.src)"></div>
     <div class="photo"><img src="/images/Gogol002.webp" alt="" onclick="showLightbox(this.src)"></div>
-	</div>-->
-		</div>
+	</div>
+		</div>-->
+	<div id="footer-container"></div>
 <!-- 點圖放大（lightbox） -->
 	<div id="lightbox" style="display: none;">
   <div class="lightbox-content">
@@ -71,7 +71,8 @@ function cascadeDisplay() {
       fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
     }
   }
-
+	const finalHeight = Math.max(...fistRowPhotosHeightArray) + 30
+  photosContainer.style.height = finalHeight + 'px'
 }
 
 // 畫面一進來
@@ -141,6 +142,11 @@ lightbox.addEventListener('click', e => {
       .then(res => res.text())
       .then(html => {
         document.getElementById("navbar-container").innerHTML = html;
+      });
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
       });
   </script>
 	
