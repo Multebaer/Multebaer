@@ -638,3 +638,9 @@ audio { /*音訊寬度設定*/
 	width:100%;
 }
 }
+footer { /*網頁設計©內容造型*/
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #999;
+}
