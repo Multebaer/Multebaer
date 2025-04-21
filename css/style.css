@@ -561,7 +561,12 @@ blockquote { /*引用*/
   color: #333;
   transition: background-color 0.2s;
 }
-
+.subpage-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-width: max-content+1em;
+}
 .subpage:hover {
   background-color: #f3f3f3;
 }
@@ -570,7 +575,6 @@ blockquote { /*引用*/
   font-size: 1.4em;
   margin-right: 0.6em;
 }
-
 /*標題跟首頁分開不要斜體*/
 .about-box h1.dreams-h1{
 	font-style: normal;
