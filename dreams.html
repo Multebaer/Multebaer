@@ -53,7 +53,7 @@
 						></iframe>
 			</div></div>
 		</div>
-		
+		<div id="footer-container"></div>
 </main>
 	
 <!--
@@ -72,6 +72,11 @@
       .then(res => res.text())
       .then(html => {
         document.getElementById("navbar-container").innerHTML = html;
+      });
+	fetch("/footer.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("footer-container").innerHTML = html;
       });
   </script>
 

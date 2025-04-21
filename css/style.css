@@ -715,16 +715,11 @@ blockquote { /*引用*/
   content: none !important;
 }
 
-.gallery-box {
-  max-width: 1100px;
-  margin: auto;
-  border-radius: 20px;
-  padding: 30px;
-}
 
   #photos__container {
   position: relative;
   width: 100%;
+	  align-items: center;
 }
 .photo {
   width: 250px;
