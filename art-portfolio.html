@@ -71,7 +71,8 @@ function cascadeDisplay() {
       fistRowPhotosHeightArray[index] = fistRowPhotosHeightArray[index] + photos[i].offsetHeight + gap
     }
   }
-
+	const finalHeight = Math.max(...fistRowPhotosHeightArray) + 30
+  photosContainer.style.height = finalHeight + 'px'
 }
 
 // 畫面一進來
