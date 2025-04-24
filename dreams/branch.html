@@ -7,6 +7,8 @@
   <title>心の星｜Multebaer</title>
   <link rel="stylesheet" href="../dreams/css/style.css" />
 	<!--<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@idotj/mastodon-embed-timeline@4.4.2/dist/mastodon-timeline.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@idotj/mastodon-embed-timeline@4.4.2/dist/mastodon-timeline.umd.js"></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
 	
@@ -17,8 +19,22 @@
 	 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
 	<main class="about-section">
-    <div class="about-box"><script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
-<div class="commonninja_component pid-6e210220-42cb-45d8-8875-1561dc5b0af1"></div>
+    <div class="about-box">
+		<div style="width: 100%; height: 700px; overflow-y: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+		<div id="mt-container" class="mt-container">
+  <div class="mt-body" role="feed">
+    <div class="mt-loading-spinner"></div>
+  </div>
+</div></div>
+		
+<script>
+  const myTimeline = new MastodonTimeline.Init({
+    instanceUrl: "https://mastodon.social/", // 你的 Mastodon 實例網址
+    timelineType: "profile",
+    userId: "114341510985273509", // 可透過 API 查詢
+    profileName: "@multebaer@mastodon.social"
+  });
+</script>
 			<br>
 		<details class="notion-fold">
 			<summary style="font-weight: bold;font-size:1.5em">色色的支線</summary>
