@@ -5,19 +5,209 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>心の星｜Multebaer</title>
-  <link rel="stylesheet" href="css/style.css" />
-	<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../dreams/css/style.css" />
+	<!--<link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@idotj/mastodon-embed-timeline@4.4.2/dist/mastodon-timeline.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@idotj/mastodon-embed-timeline@4.4.2/dist/mastodon-timeline.umd.js"></script>
 
 	<link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
-
+	
 </head>
-<body class="iframe-body main-page">
+<body class="iframe-body main-page novel-body">
 	<div class="background-overlay"></div>
   <!-- 首頁內容 -->
 	 <!-- ✅ Navbar 動態載入 -->
   <div id="navbar-container"></div>
-	<p>test</p>
+	<main class="about-section">
+    <div class="about-box">
+			<h2>主線</h2>
+		<p style="margin-top:-1.5em;font-size:14px">內我是……超級瑪麗蘇……</p>
+		<div class="table-wrapper">
+  <table class="custom-table" style="
+		color: #6E6E6E">
+    <tr>
+      <th>Name</th>
+      <th>Item</th>
+		<th>Author</th>
+		<th>協同作者</th>
+    </tr>
+    
+    <tr>
+      <td><span class="article-link" onclick="loadArticle('main-line/chapter01.html')">Chapter. 01</span></td>
+      <td>文字創作</td>
+		<td>Beria</td>
+		<td>一團雲</td>
+    </tr>
+	  <tr>
+      <td><span class="article-link" onclick="loadArticle('main-line/chapter02.html')">Chapter. 02</span></td>
+      <td>文字創作</td>
+		<td>Beria</td>
+		<td>一團雲</td>
+    </tr>
+	  <tr>
+      <td><span class="article-link" onclick="loadArticle('main-line/chapter03.html')">Chapter. 03</span></td>
+      <td>文字創作</td>
+		<td>Beria</td>
+		<td>一團雲</td>
+    </tr>
+	  <tr>
+      <td><span class="article-link" onclick="loadArticle('main-line/chapter04.html')">Chapter. 04</span></td>
+      <td>文字創作</td>
+		<td>Beria</td>
+		<td>一團雲</td>
+    </tr>
+  </table>
+
+  <div id="overlay" class="overlay" onclick="closePreview()"></div>
+
+  <div id="preview" class="preview-panel">
+	  <div class="preview-wrapper">
+  <div class="top-buttons">
+	  
+    <div class="close-btn" onclick="closePreview()">≫</div>
+    <div class="fullscreen-btn" onclick="toggleFullscreen()">⛶</div>
+  <div class="open-new-btn" onclick="openInNewTab()">⤢</div>
+  </div>
+  <div id="preview-content"></div>
+</div></div>
+		</div></div>
+		</main>	
 	<div id="footer-container"></div>
+	<!--放大動畫+側邊彈出動畫-->
+		<script>
+			function toggleFullscreen() {
+  const panel = document.getElementById('preview');
+  const fullscreen = panel.classList.toggle('fullscreen');
+  document.body.style.overflow = fullscreen ? 'hidden' : '';
+}
+
+function closePreview() {
+  const panel = document.getElementById('preview');
+  panel.classList.remove('active');
+  panel.classList.remove('fullscreen');
+  document.getElementById('overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+		let currentArticleFile = null;
+
+function loadArticle(filename) {
+  currentArticleFile = filename;
+
+  fetch(filename)
+    .then(res => res.text())
+    .then(html => {
+      const panel = document.getElementById('preview');
+      const content = document.getElementById('preview-content');
+      const overlay = document.getElementById('overlay');
+
+      if (!panel || !content || !overlay) {
+        console.error("找不到 preview 或 overlay 結構！");
+        return;
+      }
+
+      content.innerHTML = html;
+      panel.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      panel.scrollTop = 0;
+      content.scrollTop = 0;
+    })
+    .catch(err => {
+      console.error("文章載入失敗：", err);
+    });
+}
+			function openInNewTab() {
+  console.log("開啟文章：", currentArticleFile); // ⬅️ Debug 用，可以保留
+
+  if (currentArticleFile) {
+    const currentFolder = window.location.pathname.replace(/\/[^\/]*$/, "/");
+	  const url = window.location.origin + currentFolder + currentArticleFile;
+    const win = window.open(url, '_blank');
+    if (!win) {
+      alert("瀏覽器封鎖了彈出視窗，請允許本站開啟新分頁！");
+    }
+  } else {
+    alert("目前沒有載入任何文章！");
+  }
+}
+
+
+	</script>
+	
+	<!--<script>
+  function loadArticle(filename) {
+    fetch(filename)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('preview-content').innerHTML = html;
+        document.getElementById('preview').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+		preview.scrollTop = 0;
+        content.scrollTop = 0;
+      });
+  }
+</script>-->
+	
+	<!--側邊彈出動畫
+	<script>
+		function showPreview(content) {
+			document.getElementById('preview-content').innerText = content;
+			document.getElementById('preview').classList.add('active');
+			document.getElementById('overlay').classList.add('active');
+		}
+	</script>-->
+
+<script>
+  function navigateTo(page, event) {
+    if (event) event.preventDefault();
+
+    const cleanUrl = '/' + page.replace(/\.html$/, '').replace(/^\/+/, '');
+    const htmlPath = page.replace(/^\/+/, '');
+
+    history.pushState({}, "", cleanUrl);
+
+    fetch(htmlPath)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + htmlPath);
+        return res.text();
+      })
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        console.error("載入失敗", htmlPath);
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
+      });
+  }
+
+  function getHtmlPathFromUrl(urlPath) {
+    const trimmed = urlPath.replace(/^\/+/, '').replace(/\/$/, '');
+    return trimmed === '' ? 'iframe.html' : trimmed + '.html';
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const page = getHtmlPathFromUrl(location.pathname);
+    navigateTo(page);
+  });
+
+  window.addEventListener("popstate", () => {
+    const page = getHtmlPathFromUrl(location.pathname);
+
+    fetch(page)
+      .then(res => {
+        if (!res.ok) throw new Error("Page not found: " + page);
+        return res.text();
+      })
+      .then(html => {
+        document.getElementById("content-container").innerHTML = html;
+      })
+      .catch(err => {
+        console.error("載入失敗", page);
+        document.getElementById("content-container").innerHTML = "<h2>頁面載入失敗</h2>";
+      });
+  });
+</script>
 	<script>
     fetch("/navbar.html")
       .then(res => res.text())
